@@ -1,0 +1,42 @@
+header {
+  width: 100%;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+
+/* Logo */
+.logo img {
+  height: 55px;
+  width: auto;
+}
+
+/* Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #0077b6;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.3s, border-bottom 0.1s;
+  padding-bottom: 4px;
+}
+
+/* Animación */
+.nav-links a:hover {
+  color: #0096c7;
+  border-bottom: 3px solid #0096c7;
+}
