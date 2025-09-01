@@ -1,6 +1,7 @@
-
-body {
+/* Estilos globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, Verdana, "sans-serif"; 
-  padding:0px;
-  margin:0px;
 }
