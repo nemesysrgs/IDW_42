@@ -1,12 +1,12 @@
 header {
   width: 100%;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+  background-color: #ffe1e6;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Navbar */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
 }
@@ -17,7 +17,7 @@ header {
   width: auto;
 }
 
-/* Links */
+/* Navs Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -28,15 +28,29 @@ header {
 
 .nav-links a {
   text-decoration: none;
-  color: #0077b6;
+  color: #1755a0;
   font-weight: bold;
   font-size: 1.1rem;
   transition: color 0.3s, border-bottom 0.1s;
   padding-bottom: 4px;
 }
 
-/* Animación */
 .nav-links a:hover {
   color: #0096c7;
   border-bottom: 3px solid #0096c7;
+}
+
+/* Botón Portal Pacientes */
+.boton-portal a {
+  text-decoration: none;
+  background-color: #1755a0;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.boton-portal a:hover {
+  background-color: #0096c7;
 }
