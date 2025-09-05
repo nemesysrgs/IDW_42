@@ -1,0 +1,52 @@
+/* Menú lateral de Institucional */
+
+/* layout Institucional general */
+.institucional-layout{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/*Menu lateral de institucional */
+.menu-institucional{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    width: 237px;
+    background-color: #FFE1E6;
+    padding: 1.5rem;
+    flex-shrink: 0;
+    align-self: stretch; /* Extiende el menú lateral verticalmente hasta el final del layout*/
+}
+
+.menu-institucional nav{
+    flex-grow: 1;
+}
+
+.menu-institucional nav ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-institucional nav ul li a{
+    color: #2F4156;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.3rem 1rem ;
+    display: block;
+}
+
+.menu-institucional nav ul li a:hover{
+    color: #0096c7;
+    border-left: 3px solid #0096c7;
+}
+
+.contenido-institucional{
+    flex-grow: 1; /* Contenido ocupa todo el espacio disponible dentro del contenedor */
+    padding: 1.5rem 3rem;
+}
