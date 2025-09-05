@@ -33,7 +33,7 @@
 }
 
 .menu-institucional nav ul li a{
-    color: #2F4156;
+    color: #1755a0;
     text-decoration: none;
     font-weight: bold;
     font-size: 1.1rem;
@@ -48,5 +48,118 @@
 
 .contenido-institucional{
     flex-grow: 1; /* Contenido ocupa todo el espacio disponible dentro del contenedor */
-    padding: 1.5rem 3rem;
+}
+
+.seccion-institucional{
+    width: 100%;
+    padding: 3rem 4rem;
+
+}
+#quienes-somos,
+#nuestra-historia {
+    background-color: #C8D9E6;
+}
+
+#nuestro-adn,
+#nuestra-evolucion{
+    background-color: #F5EFEB;
+}
+
+.seccion-institucional h2{
+    color:#1755a0;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 1rem;
+}
+
+.seccion-institucional h3{
+    color:#1755a0;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 4px solid #1755a0;
+    padding-left: 0.8rem;
+}
+
+.seccion-institucional p{
+    color:#1755a0;
+    font-weight: 200px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 1.5rem;
+}
+
+.imagen_quienes-somos img{
+    width: 100%;
+}
+
+.pilares-institucionales{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.pilares-institucionales li{
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+    color:#1755a0;
+    line-height: 1,6;
+}
+
+.pilares-institucionales li strong{
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.3rem;
+}
+
+.bloque-valores {
+    display:flex;
+    max-width:1000px;
+    margin: 3rem auto;
+}
+
+.imagen-valores{
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+}
+.imagen-valores img{
+    width: 90%;
+    height: auto;
+}
+
+.contenido-valores{
+    width: 35%;
+}
+
+.valores-institucionales{
+    list-style: none;
+    padding-left: 0;
+    margin: 2rem  auto;
+    max-width: 218px;
+}
+
+.valores-institucionales li{
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    background-color: #ffffff;
+    border-left: 6px solid #1755a0;
+    font-size: 18px;
+    font-weight: 500;
+    color:#1755a0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.valores-institucionales li:hover{
+    color: #0096c7;
+    border-left: 7px solid #0096c7;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
 }
