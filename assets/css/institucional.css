@@ -17,8 +17,6 @@
     padding: 3rem 1.5rem;
     flex-shrink: 0;
     align-self:stretch; /* Extiende el menú lateral verticalmente hasta el final del layout*/
-    position: sticky;
-    top: 723px;
 }
 
 .menu-institucional nav{
