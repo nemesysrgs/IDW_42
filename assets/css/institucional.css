@@ -1,0 +1,246 @@
+/* Menú lateral de Institucional */
+
+/* layout Institucional general */
+.institucional-layout{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+/* Menu lateral de institucional */
+.menu-institucional{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    width: 237px;
+    background-color: #FFE1E6;
+    padding: 3rem 1.5rem;
+    flex-shrink: 0;
+    align-self:stretch; /* Extiende el menú lateral verticalmente hasta el final del layout*/
+}
+
+.menu-institucional nav{
+    flex-grow: 1;
+}
+
+.menu-institucional nav ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-institucional nav ul li a{
+    color: #1755a0;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 0.3rem 1rem ;
+    display: block;
+}
+
+.menu-institucional nav ul li a:hover{
+    color: #0096c7;
+    border-left: 3px solid #0096c7;
+}
+
+.contenido-institucional{
+    flex-grow: 1; /* Contenido ocupa todo el espacio disponible dentro del contenedor */
+}
+
+.seccion-institucional{
+    width: 100%;
+    padding: 3rem 4rem;
+
+}
+
+/* Secciones de Institucional */
+
+#quienes-somos,
+#nuestra-historia {
+    background-color: #C8D9E6;
+}
+
+#nuestro-adn,
+#nuestra-evolucion{
+    background-color: #F5EFEB;
+}
+
+.seccion-institucional h2{
+    color:#1755a0;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 1rem;
+}
+
+.seccion-institucional h3{
+    color:#1755a0;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 4px solid #1755a0;
+    padding-left: 0.8rem;
+}
+
+.seccion-institucional p{
+    color:#1755a0;
+    font-weight: 200px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 1.5rem;
+}
+
+.imagen_quienes-somos img{
+    width: 100%;
+}
+
+.pilares-institucionales{
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.pilares-institucionales li{
+    margin-bottom: 1.5rem;
+    font-size: 16px;
+    color:#1755a0;
+    line-height: 1,6;
+}
+
+.pilares-institucionales li strong{
+    font-weight: 700;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 0.3rem;
+}
+
+/* Sección: Nuestro ADN / Sub-Sección: Valores*/
+
+.bloque-valores {
+    display:flex;
+    max-width:1000px;
+    margin: 3rem auto;
+}
+
+.imagen-valores{
+    width: 55%;
+    display: flex;
+    justify-content: flex-end;
+}
+.imagen-valores img{
+    width: 90%;
+    height: auto;
+}
+
+.contenido-valores{
+    width: 35%;
+}
+
+.valores-institucionales{
+    list-style: none;
+    padding-left: 0;
+    margin: 2rem  auto;
+    max-width: 218px;
+}
+
+.valores-institucionales li{
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    background-color: #ffffff;
+    border-left: 6px solid #1755a0;
+    font-size: 18px;
+    font-weight: 500;
+    color:#1755a0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.valores-institucionales li:hover{
+    color: #0096c7;
+    border-left: 7px solid #0096c7;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Seccioó: Nuestra Historia */
+
+.contenido_nuestra-historia{
+    display:flex;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    margin-bottom: 3rem;
+}
+
+.texto_nuestra-historia{
+    flex: 0 0 58%;
+}
+
+.imagen_nuestra-historia{
+    flex: 0 0 40%;
+}
+
+.imagen_nuestra-historia img{
+    max-width: 95%;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Seccioó: Nuestra Evolución */
+
+.seccion-institucional details{
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.seccion-institucional summary{
+    color: #1755a0;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+}
+
+.seccion-institucional details[open] summary {
+    color: #0096c7;
+    font-weight: 600;
+}
+
+.seccion-institucional details p{
+    font-weight: 200;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #1755a0;
+    margin-top: 15px;
+    margin-bottom: 15px !important; 
+}
+
+/* Link para volver al inicio de la página Institucional */
+
+.volver-institucional{
+    text-align: right;
+    margin-top: 2.5rem;
+}
+
+.link_volver {
+    color: #1755a0; 
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.link_volver:hover {
+    color: #0096c7;
+    text-decoration: underline;
+}

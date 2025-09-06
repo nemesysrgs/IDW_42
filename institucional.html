@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Institucion - IDW S.A.</title>
+    <title>Institucional | CiMed</title>
     <link rel="stylesheet" href="assets/css/global.css" />
     <link rel="stylesheet" href="assets/css/navbar.css" />
     <link rel="stylesheet" href="assets/css/cabecera.css" />
+    <link rel="stylesheet" href="assets/css/institucional.css">
     <link rel="stylesheet" href="assets/css/footer.css" />
   </head>
   <body>
@@ -32,6 +33,7 @@
         </div>
       </nav>
     </header>
+
     <main>
       <!-- Sección: Cabecera CIMed-->
       <div class="cabecera">
@@ -44,122 +46,155 @@
       </div>
 
       <!-- Sección: Título General de la Página Institucional -->
-      <section>
-        <h1>Presentación Institucional</h1>
+      <section  class="title_block">
+        <h1>Institucional</h1>
       </section>
 
-      <!-- Menú lateral interno para la navegación entre secciones en la página institucional de CIMed -->
-      <aside>
-        <nav>
-          <ul>
-            <li><a href="#quienes-somos">Quiénes somos</a></li>
-            <li><a href="#nuestro-adn">Nuestro ADN</a></li>
-            <li><a href="#nuestra-historia">Nuestra Historia</a></li>
-            <li><a href="#nuestra-evolucion">Nuestra Evolución</a></li>
-          </ul>
-        </nav>
-      </aside>
+      <!-- Bloque Institucional: Menú lateral (navegación entre secciones) + Secciones de CIMed -->
+       <div class="institucional-layout">
+          <aside class="menu-institucional">
+            <nav>
+              <ul class="">
+                <li><a href="#quienes-somos">Quiénes somos</a></li>
+                <li><a href="#nuestro-adn">Nuestro ADN</a></li>
+                <li><a href="#nuestra-historia">Nuestra Historia</a></li>
+                <li><a href="#nuestra-evolucion">Nuestra Evolución</a></li>
+              </ul>
+            </nav>
+          </aside>
 
-      <!-- Sección: CIMed -->
-      <section id="quienes-somos">
-        <h2>Quiénes somos</h2>
-        <!-- Texto que describe la identidad y el enfoque médico-tecnológico de CIMed -->
-        <p>En i+Med combinamos nuestra experiencia médica con soluciones tecnológicas para ofrecer una atención integral, ágil y personalizada. Desde la gestión digital de turnos hasta el seguimiento personalizado en línea, transformamos la forma de atender y cuidar la salud.</p>
-        <p>Nuestro enfoque se basa en hacer la vida más fácil a los pacientes a través de la innovación. Por eso desarrollamos herramientas digitales que les permiten acceder a su historial clínico, gestionar turnos de forma online, recibir recordatorios automáticos y comunicarse con profesionales de la salud sin necesidad de estar presentes físicamente.</p>
-        <p>Este seguimiento digital nos permite acompañar al paciente de forma constante, reducir los tiempos de espera y garantizar una atención más ágil, eficaz, accesible y humana.</p>
-      </section>
+          <div class="contenido-institucional">
+            <!-- Sección: CIMed -->
+            <section id="quienes-somos" class="seccion-institucional">
+              <h2>Quiénes somos</h2>
+              <div class="contenido_quienes-somos">
+                <!-- Texto que describe la identidad y el enfoque médico-tecnológico de CIMed -->
+                <p>En i+Med combinamos nuestra experiencia médica con soluciones tecnológicas para ofrecer una atención integral, ágil y personalizada. Desde la gestión digital de turnos hasta el seguimiento personalizado en línea, transformamos la forma de atender y cuidar la salud.</p>
+                <p>Nuestro enfoque se basa en hacer la vida más fácil a los pacientes a través de la innovación. Por eso desarrollamos herramientas digitales que les permiten acceder a su historial clínico, gestionar turnos de forma online, recibir recordatorios automáticos y comunicarse con profesionales de la salud sin necesidad de estar presentes físicamente.</p>
+                <p>Este seguimiento digital nos permite acompañar al paciente de forma constante, reducir los tiempos de espera y garantizar una atención más ágil, eficaz, accesible y humana.</p>
+              </div>
+              <div class="imagen_quienes-somos">
+                <img src="assets/img/quienes-somos_institucional.png" alt="Profesional Médico de Institucional Quienes somos">
+              </div>
+            </section>
 
-      <!-- Sección: ADN de CIMed (Mision, visión y valores que la guían) -->
-      <section id="nuestro-adn">
-        <h2>Nuestro ADN</h2>
-        <!-- Sub-Sección: Misión Institucional -->
-        <h3>Misión</h3>
-        <!-- Texto que describe la razón de ser y el enfoque de la Institución -->
-        <p>Brindar una atención médica ética, integral y humanizada, que integre innovación y excelencia profesional centrada en las necesidades individuales de cada paciente. </p>
-        <p>Trabajar día a día con responsabilidad, vocación de servicio y compromiso buscando generar un impacto positivo tanto en la vida de las personas como en la sociedad. </p>
+            <!-- Sección: ADN de CIMed (Mision, visión y valores que la guían) -->
+            <section id="nuestro-adn" class="seccion-institucional">
+              <h2>Nuestro ADN</h2>
+              <!-- Sub-Sección: Misión Institucional -->
+              <h3>Misión</h3>
+              <!-- Texto que describe la razón de ser y el enfoque de la Institución -->
+              <p>Brindar una atención médica ética, integral y humanizada, que integre innovación y excelencia profesional centrada en las necesidades individuales de cada paciente. </p>
+              <p>Trabajar día a día con responsabilidad, vocación de servicio y compromiso buscando generar un impacto positivo tanto en la vida de las personas como en la sociedad. </p>
 
-        <!-- Sub-Sección: Visión Institucional -->
-        <h3>Visión</h3>
-        <!-- Texto que describe lo que que aspira a ser y a alcanzar a futuro la Institución -->
-        <p>Nos proponemos consolidarnos como una institución médica de referencia a nivel local, regional y nacional, reconocida por su calidad asistencial, capacidad de innovación y compromiso humano.</p>
-        <p>Queremos que cada paciente encuentre en i+Med un equipo profesional comprometido con su bienestar y una atención cercana basada en la confianza y el respeto.</p>
-        <!-- Pilares fundamentales en los que apoya su visión la Institución -->
-        <p>Para ello, construimos el futuro de la salud sobre tres pilares fundamentales:</p>
-        <ol>
-          <li>Excelencia Médica: mediante la actualización constante de nuestros equipos profesionales y recursos.</li>
-          <li>Innovación Tecnológica: para facilitar el acceso y la comunicación médico-paciente, además de optimizar los procesos de diagnóstico y tratamiento.</li>
-          <li>Humanización: comprender al paciente como un ser integral, atendiendo su integridad física, mental y emocional.</li>
-        </ol>
+              <!-- Sub-Sección: Visión Institucional -->
+              <h3>Visión</h3>
+              <!-- Texto que describe lo que que aspira a ser y a alcanzar a futuro la Institución -->
+              <p>Nos proponemos consolidarnos como una institución médica de referencia a nivel local, regional y nacional, reconocida por su calidad asistencial, capacidad de innovación y compromiso humano.</p>
+              <p>Queremos que cada paciente encuentre en i+Med un equipo profesional comprometido con su bienestar y una atención cercana basada en la confianza y el respeto.</p>
+              <!-- Pilares fundamentales en los que apoya su visión la Institución -->
+              <p>Para ello, construimos el futuro de la salud sobre tres pilares fundamentales:</p>
+              <ol class="pilares-institucionales">
+                <li><strong>Excelencia Médica:</strong> Mediante la actualización constante de nuestros equipos profesionales y recursos.</li>
+                <li><strong>Innovación Tecnológica:</strong> Para facilitar el acceso y la comunicación médico-paciente, además de optimizar los procesos de diagnóstico y tratamiento.</li>
+                <li><strong>Humanización:</strong> Comprender al paciente como un ser integral, atendiendo su integridad física, mental y emocional.</li>
+              </ol>
 
-        <!-- Sub-Sección: Valores Institucionales -->
-        <h3>Valores</h3>
-        <!-- Enumera los principios rectores de la Institución -->
-        <p>Estos son los principios que guían nuestra cultura y forma de trabajar:</p>
-        <ul>
-          <li>Ética</li>
-          <li>Humanidad</li>
-          <li>Compromiso</li>
-          <li>Excelencia</li>
-          <li>Innovación</li>
-          <li>Accesibilidad</li>
-          <li>Trabajo en Equipo</li>
-        </ul>
-      </section>
+              <!-- Sub-Sección: Valores Institucionales -->
+              <h3>Valores</h3>
+              <!-- Enumera los principios rectores de la Institución -->
+              <p>Estos son los principios que guían nuestra cultura y forma de trabajar:</p>
+              <div class="bloque-valores">
+                <div class="imagen-valores">
+                  <img src="assets/img/valores_institucional.png" alt="Profesional médica de Institucional Valores">
+                </div>
+                <div class="contenido-valores">
+                  <ul class="valores-institucionales">
+                    <li>Ética</li>
+                    <li>Humanidad</li>
+                    <li>Compromiso</li>
+                    <li>Excelencia</li>
+                    <li>Innovación</li>
+                    <li>Accesibilidad</li>
+                    <li>Trabajo en Equipo</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="volver-institucional">
+                <a href="#quienes-somos" class="link_volver">Volver</a>
+              </div>
+            </section>
 
-      <!-- Sección: Historia de CIMed -->
-      <section id="nuestra-historia">
-        <h2>Nuestra Historia</h2>
-        <!-- Texto que describe el origen y desarrollo inicial de CIMed -->
-        <p>Nuestra institución nació hace más de dos décadas con un propósito claro: poner a las personas en el centro de la atención médica</p>
-        <p>Fundada en el año 2000, i+Med se convirtió rápidamente en un espacio de referencia en salud integral, gracias a un modelo de trabajo basado en la innovación, la excelencia médica y la calidez humana.</p>
-        <p>Desde sus inicios, nuestra clínica se propuso transformar la manera de acompañar a cada paciente, priorizando no solo la eficacia en los tratamientos, sino también el respeto, la contención y el cuidado personalizado.</p>
-      </section>
+            <!-- Sección: Historia de CIMed -->
+            <section id="nuestra-historia" class="seccion-institucional">
+              <h2>Nuestra Historia</h2>
+              <div class="bloque_nuestra-historia">
+                <div class="contenido_nuestra-historia">
+                  <div class="texto_nuestra-historia">
+                    <!-- Texto que describe el origen y desarrollo inicial de CIMed -->
+                    <p>Nuestra institución nació hace más de dos décadas con un propósito claro: poner a las personas en el centro de la atención médica</p>
+                    <p>Fundada en el año 2000, i+Med se convirtió rápidamente en un espacio de referencia en salud integral, gracias a un modelo de trabajo basado en la innovación, la excelencia médica y la calidez humana.</p>
+                    <p>Desde sus inicios, nuestra clínica se propuso transformar la manera de acompañar a cada paciente, priorizando no solo la eficacia en los tratamientos, sino también el respeto, la contención y el cuidado personalizado.</p>
+                  </div>
+                  <div class="imagen_nuestra-historia">
+                    <img src="assets/img/nuestra-historia_institucional.png" alt="Profesional Médico de Institucional Nuestra historia"">
+                  </div>
+                </div>
+              </div>
+              <div class="volver-institucional">
+                <a href="#quienes-somos" class="link_volver">Volver</a>
+              </div>
+            </section>
 
-      <!-- Sección: Evolución de CIMed-->
-      <section id="nuestra-evolucion">
-        <h2>Nuestra Evolución</h2>
-        <!-- Presenta la trayectoria institucional destacando la innovación, transformación tecnológica y mejoras en la atención -->
-        <p>A lo largo de estos años, i+Med ha transitado un camino de transformación constante, impulsado por la innovación y el compromiso de brindar una atención médica cada vez más eficiente. Cada etapa ha representado un avance significativo en la forma de entender, gestionar y acompañar el cuidado de nuestros pacientes, consolidando un  modelo que combina excelencia clínica con tecnología al servicio de la salud.</p>
-        <!-- Destaca los hitos de innovación y transformación tecnológica de la Institución -->
-        <details>
-          <summary>2000 | Fundación de i+Med</summary>
-          <p>Nace i+Med con el objetivo de brindar atención médica integral, centrada en las personas. Excelencia clínica y trato humano fueron sus pilares fundamentales.</p>
-        </details>
+            <!-- Sección: Evolución de CIMed-->
+            <section id="nuestra-evolucion" class="seccion-institucional">
+              <h2>Nuestra Evolución</h2>
+              <!-- Presenta la trayectoria institucional destacando la innovación, transformación tecnológica y mejoras en la atención -->
+              <p>A lo largo de estos años, i+Med ha transitado un camino de transformación constante, impulsado por la innovación y el compromiso de brindar una atención médica cada vez más eficiente. Cada etapa ha representado un avance significativo en la forma de entender, gestionar y acompañar el cuidado de nuestros pacientes, consolidando un  modelo que combina excelencia clínica con tecnología al servicio de la salud.</p>
+              <!-- Destaca los hitos de innovación y transformación tecnológica de la Institución -->
+              <details>
+                <summary>2000 | Fundación de i+Med</summary>
+                <p>Nace i+Med con el objetivo de brindar atención médica integral, centrada en las personas. Excelencia clínica y trato humano fueron sus pilares fundamentales.</p>
+              </details>
 
-        <details>
-          <summary>2005 | Expansión de Servicios</summary>
-          <p>Se amplía la oferta de especialidades médicas incorporando nuevas áreas de diagnóstico y tratamiento fortaleciendo la mirada integral del paciente.</p>
-        </details>
+              <details>
+                <summary>2005 | Expansión de Servicios</summary>
+                <p>Se amplía la oferta de especialidades médicas incorporando nuevas áreas de diagnóstico y tratamiento fortaleciendo la mirada integral del paciente.</p>
+              </details>
 
-        <details>
-          <summary>2010 | Digitalización</summary>
-          <p>i+Med empieza a incorporar herramientas tecnológicas en sus procesos internos, mejorando la gestión de historias clínicas y la coordinación entre los equipos médicos.</p>
-        </details>
+              <details>
+                <summary>2010 | Digitalización</summary>
+                <p>i+Med empieza a incorporar herramientas tecnológicas en sus procesos internos, mejorando la gestión de historias clínicas y la coordinación entre los equipos médicos.</p>
+              </details>
 
-        <details>
-          <summary>2015 | Implementación del Sistema de Turnos Online</summary>
-          <p>Se lanza la primera versión del Sistema de Gestión de Turnos Digitales, facilitando el acceso a la atención médica y reduciendo los tiempos de espera.</p>
-        </details>
+              <details>
+                <summary>2015 | Implementación del Sistema de Turnos Online</summary>
+                <p>Se lanza la primera versión del Sistema de Gestión de Turnos Digitales, facilitando el acceso a la atención médica y reduciendo los tiempos de espera.</p>
+              </details>
 
-        <details>
-          <summary>2020 | Evolución hacia el Modelo de Salud Digital</summary>
-          <p>i+Med refuerza su estrategia tecnológica integrando nuevas plataformas para el acceso al historial clínico, la interacción entre profesionales y pacientes, además del seguimiento remoto.</p>
-        </details>
+              <details>
+                <summary>2020 | Evolución hacia el Modelo de Salud Digital</summary>
+                <p>i+Med refuerza su estrategia tecnológica integrando nuevas plataformas para el acceso al historial clínico, la interacción entre profesionales y pacientes, además del seguimiento remoto.</p>
+              </details>
 
-        <details>
-          <summary>2022 | Creación del Modelo de Seguimiento Digital</summary>
-          <p>Se consolida un nuevo enfoque de atención al paciente: seguimiento digital continuo, recordatorios automatizados y canales de contacto fluidos con los profesionales de la salud.</p>
-        </details>
+              <details>
+                <summary>2022 | Creación del Modelo de Seguimiento Digital</summary>
+                <p>Se consolida un nuevo enfoque de atención al paciente: seguimiento digital continuo, recordatorios automatizados y canales de contacto fluidos con los profesionales de la salud.</p>
+              </details>
 
-        <details>
-          <summary>2025 | I+Med HOY</summary>
-          <p>Con más de dos décadas de trayectoria, i+Med continúa innovando para brindar una atención cada vez más eficiente y personalizada, combinando la calidez humana con la potencia de la tecnología.</p>
-        </details>
-      </section>
-
+              <details>
+                <summary>2025 | I+Med HOY</summary>
+                <p>Con más de dos décadas de trayectoria, i+Med continúa innovando para brindar una atención cada vez más eficiente y personalizada, combinando la calidez humana con la potencia de la tecnología.</p>
+              </details>
+              <div class="volver-institucional">
+                <a href="#quienes-somos" class="link_volver">Volver</a>
+              </div>
+            </section>
+          </div>
+       </div>
     </main>
 
-        <footer>
+      <footer>
   <table class="footer-table">
     <tr>
 
@@ -180,9 +215,9 @@
       <td class="footer-social">
         <h3>Seguínos</h3>
         <div class="social-icons">
-          <a href="#"><img src="facebook.png" alt="Facebook"> Facebook</a>
-          <a href="#"><img src="instagram.png" alt="Instagram"> Instagram</a>
-          <a href="#"><img src="twitter.png" alt="Twitter"> Twitter</a>
+          <a href="#"><img src="assets/img/facebook.png" alt="Facebook"> Facebook</a>
+          <a href="#"><img src="assets/img/instagram.png" alt="Instagram"> Instagram</a>
+          <a href="#"><img src="assets/img/x.png" alt="Twitter"> Twitter</a>
         </div>
       </td>
     </tr>
