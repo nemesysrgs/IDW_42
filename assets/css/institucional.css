@@ -16,7 +16,9 @@
     background-color: #FFE1E6;
     padding: 3rem 1.5rem;
     flex-shrink: 0;
-    align-self: stretch; /* Extiende el menú lateral verticalmente hasta el final del layout*/
+    align-self:stretch; /* Extiende el menú lateral verticalmente hasta el final del layout*/
+    position: sticky;
+    top: 723px;
 }
 
 .menu-institucional nav{
@@ -190,6 +192,7 @@
 .imagen_nuestra-historia img{
     max-width: 95%;
     display: block;
+    border-radius: 10px;
 }
 
 /* Seccioó: Nuestra Evolución */
@@ -222,4 +225,24 @@
     color: #1755a0;
     margin-top: 15px;
     margin-bottom: 15px !important; 
+}
+
+/* Link para volver al inicio de la página Institucional */
+
+.volver-institucional{
+    text-align: right;
+    margin-top: 2.5rem;
+}
+
+.link_volver {
+    color: #1755a0; 
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.link_volver:hover {
+    color: #0096c7;
+    text-decoration: underline;
 }
