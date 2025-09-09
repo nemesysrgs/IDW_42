@@ -20,7 +20,7 @@
 
 .texto_cabecera h1 {
     color: #000;
-    font-family: "Anton", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 900;
     font-size: 120px;
     margin-bottom: 5px;
@@ -29,6 +29,7 @@
 }
 
 .texto_cabecera h1 span {
+    font-style: normal;
     color: #1755a0;
     font-size: 150px;
     font-weight: 900;
@@ -38,14 +39,14 @@
 
 
 .texto_cabecera h2 {
-    font-family: "Anton", sans-serif;
-    font-size: 33px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 31px;
     font-weight: 600;
     letter-spacing: 2px;
 }
 
 .texto_cabecera p {
-    font-family: "Anton", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 22px;
     font-weight: 400;
     font-style: italic;
