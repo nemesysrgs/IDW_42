@@ -1,9 +1,9 @@
  #contacto  {
-
+    background-color: #C8D9E6;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 40px auto 40px auto;
+    padding: 40px 10% 40px 10%;
 } 
 
 #contacto .form-container {
