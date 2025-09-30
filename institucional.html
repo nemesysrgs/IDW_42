@@ -4,12 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Institucional | i+Med</title>
-    <!-- Boostrap 5 CSS (CDN) -->
+    <!-- Bootstrap 5 CSS (CDN) -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+    <!-- Tipografía Institucional - Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <!-- CSS Personalizado -->
     <link rel="stylesheet" href="assets/css/global.css" />
     <link rel="stylesheet" href="assets/css/navbar.css" />
     <link rel="stylesheet" href="assets/css/cabecera.css" />
@@ -52,15 +53,41 @@
       </div>
 
       <!-- Sección: Título General de la Página Institucional -->
-      <section  class="title_block">
+
+      <!-- <section  class="title_block">
         <h1>Institucional</h1>
+      </section> -->
+
+      <section class="title_block">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
+              <h1 class="display-4">Institucional</h1>
+            </div>
+          </div>        
+        </div>
       </section>
 
       <!-- Bloque Institucional: Menú lateral (navegación entre secciones) + Secciones de i+Med -->
-       <div class="institucional-layout">
-          <aside class="menu-institucional">
-            <nav>
-              <ul class="">
+      
+      <!-- <div class="institucional-layout">
+        <aside class="menu-institucional">
+          <nav>
+            <ul>
+              <li><a href="#quienes-somos">Quiénes somos</a></li>
+              <li><a href="#nuestro-adn">Nuestro ADN</a></li>
+              <li><a href="#nuestra-historia">Nuestra Historia</a></li>
+              <li><a href="#nuestra-evolucion">Nuestra Evolución</a></li>
+            </ul>
+          </nav>
+        </aside> -->
+      
+      <div class="container-fluid my-0 institucional-layout p-0 m-0 ">
+        <div class="row g-0 ">
+          <!-- Menú Institucional-->
+          <aside class="menu-institucional col-12 col-lg-3 mb-0 mb-lg-0 d-block">
+            <nav class="flex-grow-1">
+              <ul>
                 <li><a href="#quienes-somos">Quiénes somos</a></li>
                 <li><a href="#nuestro-adn">Nuestro ADN</a></li>
                 <li><a href="#nuestra-historia">Nuestra Historia</a></li>
@@ -69,8 +96,10 @@
             </nav>
           </aside>
 
-          <div class="contenido-institucional">
-            <!-- Sección: i+Med -->
+          <!-- Secciones Institucionales -->
+          <div class="contenido-institucional col-12 col-lg-9 order-0 order-lg-1">
+
+            <!-- Sección: Quienes Somos (i+Med) -->
             <section id="quienes-somos" class="seccion-institucional">
               <h2>Quiénes somos</h2>
               <div class="contenido_quienes-somos">
@@ -196,8 +225,10 @@
                 <a href="#quienes-somos" class="link_volver">Volver</a>
               </div>
             </section>
+          
           </div>
-       </div>
+        </div>
+      </div>
     </main>
 
       <footer>
@@ -229,7 +260,7 @@
     </tr>
   </table>
 </footer>
-    <!-- Boostrap 5 JS + Popper (CDN) -->
+    <!-- Boostrap 5 JS Bundle con Popper (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>

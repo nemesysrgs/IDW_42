@@ -1,13 +1,16 @@
 /* Menú lateral de Institucional */
 
-/* layout Institucional general */
+/* layout Institucional General */
+
 .institucional-layout{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
+    min-height: 100vh;
 }
 
-/* Menu lateral de institucional */
+/* Menu Lateral de Institucional: LG - XL */
+
 .menu-institucional{
     display: flex;
     flex-direction: column;
@@ -23,6 +26,8 @@
     flex-grow: 1;
 }
 
+/* Lista de Navegación */
+
 .menu-institucional nav ul{
     display: flex;
     flex-direction: column;
@@ -31,6 +36,8 @@
     padding: 0;
     margin: 0;
 }
+
+/* Enlaces del Menú */
 
 .menu-institucional nav ul li a{
     color: #1755a0;
@@ -169,7 +176,7 @@
     cursor: pointer;
 }
 
-/* Seccioó: Nuestra Historia */
+/* Sección: Nuestra Historia */
 
 .contenido_nuestra-historia{
     display:flex;
@@ -193,7 +200,7 @@
     border-radius: 10px;
 }
 
-/* Seccioó: Nuestra Evolución */
+/* Sección: Nuestra Evolución */
 
 .seccion-institucional details{
     background-color: #ffffff;
@@ -243,4 +250,31 @@
 .link_volver:hover {
     color: #0096c7;
     text-decoration: underline;
+}
+
+/* Menu lateral de Institucional - Ajuste: SM - MD */
+
+@media (max-width: 991.98px) {
+  .menu-institucional {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0;
+  }
+
+  .menu-institucional nav ul {
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .menu-institucional nav ul li a {
+    border-left: none;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .menu-institucional nav ul li a:hover {
+    border-left: none;
+    border-bottom: 2px solid #0096c7; 
+  }
 }
