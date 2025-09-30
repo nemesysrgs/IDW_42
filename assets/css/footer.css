@@ -1,3 +1,4 @@
+/* Paleta de colores para el fondo del footer*/
 footer {
     background-color: #eeb9c4;
     padding: 50px 5% 40px 5%;
@@ -10,11 +11,6 @@ footer {
     border-collapse: collapse;
 }
 
-.footer-table td {
-    width: 33%;
-    vertical-align: top;
-    padding: 10px 20px;
-}
 
 .footer-contact {
     text-align: left;
@@ -27,10 +23,19 @@ footer {
 .footer-social {
     text-align: right;
 }
+@media (max-width: 575px) {
+  .footer-social {
+  text-align: left;
+}
+}
+
 
 .footer-contact h3,
 .footer-center h3,
 .footer-social h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+    font-family: "Montserrat", sans-serif;
     margin-bottom: 8px;
     color: #003366;
 }
