@@ -1,0 +1,74 @@
+
+.profesionales{
+    background-color: #c5d6e2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+
+}
+
+.profesionales article{
+    border: 1px solid #ccc;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 3px;
+}
+
+.profesionales img{
+    max-width: 300px;
+    height: 350px;
+    object-fit: cover;
+}
+
+.profesionales h2 {
+    color: #1755a0;
+    font-family: "Anton", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 5px;
+    line-height: 40px;
+}
+
+.profesionales p{
+    color: #1755a0;
+    font-family: "Anton", sans-serif;
+    font-weight: 200;
+    font-size: 15px;
+    line-height: 15px;
+    font-style: italic;
+}
+.obras-sociales{
+    background-color: #f3efeb;
+    text-align: center;
+    padding: 40px 10% 40px 10%;
+}
+
+.obras-sociales ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* espacio entre items */
+    flex-wrap: wrap; /* opcional: permite que bajen a otra línea */
+}
+
+.obras-sociales ul li {
+    flex: 0 0 100px; /* ancho fijo en flex */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    transition: background-color 0.3s ease;
+}
+
+.obras-sociales li:hover{
+    background-color: #c8d9e6;
+}
+
+.obras-sociales li img{
+    max-width: 120px;
+}
