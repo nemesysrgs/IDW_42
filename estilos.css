@@ -1,84 +1,163 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+/* contacto.css - versión responsive + integración con utilidades Bootstrap */
+
+/* Variables (fácil de ajustar o ampliar para modo oscuro) */
+:root {
+  --bg-section: #C8D9E6;
+  --primary: #1755a0; /* color similar al botón portal */
+  --primary-contrast: #ffffff;
+  --card-bg: #ffffff;
+  --muted: #555555;
+  --radius: 12px;
+  --max-width-form: 540px;
 }
 
-.form-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
+/* Sección contacto */
+#contacto {
+  background-color: var(--bg-section);
+  padding: 48px 0;
+  display: block;
+  font-family: "Montserrat", Arial, sans-serif;
 }
 
-h2 {
-    text-align: center;
-    color: #004d99;
-    font-weight: 700;
+/* Form container (centra y da estilo) */
+#contacto .form-container {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  max-width: var(--max-width-form);
+  margin: 0 auto;
+  color: #222;
 }
 
-p {
-    text-align: center;
-    color: #555;
-    margin-bottom: 25px;
+/* Titulos/paragraphs */
+#contacto h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #123;
 }
 
-.form-group {
-    margin-bottom: 20px;
+#contacto p {
+  color: var(--muted);
+  margin-bottom: 18px;
 }
 
-label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #333;
+/* Inputs (se combinan con clases bootstrap .form-control) */
+#contacto .form-control {
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  transition: border-color 0.18s, box-shadow 0.18s;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-    transition: border-color 0.3s;
+#contacto .form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.15rem rgba(23,85,160,0.12);
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus {
-    border-color: #007bff;
-    outline: none;
+/* Botón (usamos .btn bootstrap pero reforzamos apariencia) */
+#contacto .btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 8px;
 }
 
-textarea {
-    resize: vertical;
+#contacto .btn-primary:hover,
+#contacto .btn-primary:focus {
+  background-color: #133f78;
+  border-color: #133f78;
 }
 
-button {
-    width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+/* Alerta de envío */
+#successAlert {
+  --bs-alert-bg: #e6f7ea;
+  --bs-alert-border-color: #c3eccf;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* --- Mobile nav toggle (solo para esta página) --- */
+.nav-toggle {
+  display: none; /* visible sólo en móvil - luego media query lo activa */
+  background: none;
+  border: none;
+  padding: 8px;
+  margin-left: 1rem;
+}
+.nav-toggle .hamburger {
+  display: inline-block;
+  width: 26px;
+  height: 2px;
+  background: #222;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 26px;
+  height: 2px;
+  background: #222;
+  transition: transform 0.2s ease, top 0.18s ease, bottom 0.18s ease;
+}
+.nav-toggle .hamburger::before { top: -8px; }
+.nav-toggle .hamburger::after { bottom: -8px; }
+
+/* Clase que muestra el nav en móvil */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+.nav-links.open {
+  display: block;
+}
+
+/* Estilos para el nav cuando está en bloque (móvil) */
+.nav-links.open li {
+  margin: 8px 0;
+}
+
+/* ===== Media queries (3 puntos de quiebre) ===== */
+
+/* Grandes (>= 992px) -> layout amplio */
+@media (min-width: 992px) {
+  #contacto { padding: 72px 0; }
+  :root { --max-width-form: 640px; }
+}
+
+/* Mediano (>= 768px y < 992px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #contacto { padding: 64px 0; }
+  :root { --max-width-form: 560px; }
+}
+
+/* Pequeño / móvil (<= 767.98px) */
+@media (max-width: 767.98px) {
+  /* Hacemos que nav se oculte y aparezca el toggle */
+  .nav-toggle {
+    display: inline-block;
+  }
+  .nav-links {
+    display: none;
+    padding-left: 0;
+    margin-top: 8px;
+  }
+  .boton-portal {
+    display: none; /* opcional: botón portal fuera para móviles en esta vista */
+  }
+
+  /* Ajustes de padding para móvil */
+  #contacto { padding: 36px 0; }
+  #contacto .form-container { padding: 20px; border-radius: 10px; }
+}
+
+/* Extra pequeño (<= 575.98px) -> último punto de quiebre */
+@media (max-width: 575.98px) {
+  :root { --max-width-form: 100%; }
+  #contacto h2 { font-size: 1.4rem; }
+  #contacto .form-container { padding: 16px; }
 }
