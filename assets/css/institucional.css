@@ -275,12 +275,6 @@
     border-bottom: 4px solid #0096c7; 
   }
 
-  /* Institucional - Encabezado Secciones (SM - MD) */
-
-  section h2 {
-    text-align: center;
-  }
-
   /* Sección: Quienes Somos - Imagen(SM -MD) */
 
   .imagen_quienes-somos img {
