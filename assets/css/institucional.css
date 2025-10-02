@@ -1,14 +1,13 @@
 /* Menú lateral de Institucional */
 
-/* layout Institucional General */
+/* layout Institucional general */
 .institucional-layout{
     display: flex;
     flex-direction: row;
-    align-items: stretch;
-    min-height: 100vh;
+    align-items: flex-start;
 }
 
-/* Menu Lateral de Institucional: (LG - XL) */
+/* Menu lateral de institucional */
 .menu-institucional{
     display: flex;
     flex-direction: column;
@@ -24,7 +23,6 @@
     flex-grow: 1;
 }
 
-/* Lista de Navegación */
 .menu-institucional nav ul{
     display: flex;
     flex-direction: column;
@@ -34,7 +32,6 @@
     margin: 0;
 }
 
-/* Enlaces del Menú */
 .menu-institucional nav ul li a{
     color: #1755a0;
     text-decoration: none;
@@ -46,7 +43,7 @@
 
 .menu-institucional nav ul li a:hover{
     color: #0096c7;
-    border-left: 4px solid #0096c7;
+    border-left: 3px solid #0096c7;
 }
 
 .contenido-institucional{
@@ -60,6 +57,7 @@
 }
 
 /* Secciones de Institucional */
+
 #quienes-somos,
 #nuestra-historia {
     background-color: #C8D9E6;
@@ -124,32 +122,32 @@
 }
 
 /* Sección: Nuestro ADN / Sub-Sección: Valores*/
+
 .bloque-valores {
     display:flex;
-    max-width:100%;
+    max-width:1000px;
     margin: 3rem auto;
 }
 
 .imagen-valores{
-    width: 65%;
+    width: 55%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
 }
-
 .imagen-valores img{
-    width: 80%;
-    height: 90%;
+    width: 90%;
+    height: auto;
 }
 
 .contenido-valores{
-    width: 40%;
+    width: 35%;
 }
 
 .valores-institucionales{
     list-style: none;
     padding-left: 0;
-    margin: 3rem  auto;
-    max-width: 220px;
+    margin: 2rem  auto;
+    max-width: 218px;
 }
 
 .valores-institucionales li{
@@ -166,40 +164,37 @@
 .valores-institucionales li:hover{
     color: #0096c7;
     border-left: 7px solid #0096c7;
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: bold;
     cursor: pointer;
 }
 
-/* Sección: Nuestra Historia */
-  .contenido_nuestra-historia {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1.5rem;
+/* Seccioó: Nuestra Historia */
+
+.contenido_nuestra-historia{
+    display:flex;
+    align-items: center;
+    gap: 50px;
     width: 100%;
-  }
+    margin-bottom: 3rem;
+}
 
-  .texto_nuestra-historia {
-    display: flex;
-    flex-direction: column;
-  }
+.texto_nuestra-historia{
+    flex: 0 0 58%;
+}
 
-  .imagen_nuestra-historia {
-    display: flex;
-    flex-direction: column;
-  }
+.imagen_nuestra-historia{
+    flex: 0 0 40%;
+}
 
-  .imagen_nuestra-historia img {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 0.5rem;
+.imagen_nuestra-historia img{
+    max-width: 95%;
     display: block;
-  }
+    border-radius: 10px;
+}
 
-/* Sección: Nuestra Evolución */
+/* Seccioó: Nuestra Evolución */
+
 .seccion-institucional details{
     background-color: #ffffff;
     border-radius: 8px;
@@ -218,6 +213,7 @@
 
 .seccion-institucional details[open] summary {
     color: #0096c7;
+    font-weight: 600;
 }
 
 .seccion-institucional details p{
@@ -230,6 +226,7 @@
 }
 
 /* Link para volver al inicio de la página Institucional */
+
 .volver-institucional{
     text-align: right;
     margin-top: 2.5rem;
@@ -246,190 +243,4 @@
 .link_volver:hover {
     color: #0096c7;
     text-decoration: underline;
-}
-
-/* RWD */
-
-/* Menu lateral de Institucional - Ajuste (SM - MD) */
-@media (max-width: 991.98px) {
-  .menu-institucional {
-    width: 100%;
-    padding: 1rem;
-    margin-bottom: 0;
-  }
-
-  .menu-institucional nav ul {
-    flex-direction: row;
-    gap: 1rem;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .menu-institucional nav ul li a {
-    border-left: none;
-    padding: 0.5rem 0.75rem;
-  }
-
-  .menu-institucional nav ul li a:hover {
-    border-left: none;
-    border-bottom: 4px solid #0096c7; 
-  }
-
-  /* Institucional - Encabezado Secciones (SM - MD) */
-
-  section h2 {
-    text-align: center;
-  }
-
-  /* Sección: Quienes Somos - Imagen(SM -MD) */
-
-  .imagen_quienes-somos img {
-  width: 100%;
-  height: 295px;
-  object-fit:cover;
-  }
-}
-
-/* Sección: Nuestro ADN / Sub-Sección Valores (SM) */
-@media (max-width: 767.98px) {
-
-  .contenido-valores {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-  }
-
-  .valores-institucionales {
-    max-width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin:0 auto;
-  }
-
-  .valores-institucionales li {
-    width: 70%;
-    text-align: center;
-    border-right: 6px solid #1755a0;
-  }
-
-  .valores-institucionales li:hover{
-    border-right: 7px solid #0096c7;
- } 
-
-}
-
-/* Sección: Nuestro ADN / Sub-Sección Valores (MD) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-
- .imagen-valores{
-    width: 60%;
-    display: flex; 
-    justify-content:flex-start;
-  }
-
-  .imagen-valores img{
-    width: 100%;
-    height: 90%;
-  }
-
-  .contenido-valores{
-    width: 30%;
-    margin-left: auto;
-  }
-  
-  .valores-institucionales{ 
-    max-width: 200px;
-    text-align: center;
-  }
-  
-  .valores-institucionales li{
-    border-right: 6px solid #1755a0;
-  }
-  
-  .valores-institucionales li:hover{
-    border-right: 7px solid #0096c7;
-  }
-
-}
-
-/* Sección: Nuestro ADN / Sub-Sección Valores (LG) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    
-  .imagen-valores img{
-    width: 90%;
-    height: 88%;
-}
-  .imagen-valores{
-    width: 70%; 
-    justify-content:left;
-}
-
-  .contenido-valores{
-    width: 30%;
-    margin-left: auto; 
-  }
-
-  .valores-institucionales li:hover{
-    border-right: none;
-  }
-
-}
-
-/* Sección: Nuestro ADN / Sub-Sección Valores (XL - XXL) */
-@media (min-width: 1200px) {
-
-  .imagen-valores{
-    width: 60%; 
-    justify-content:center;
- }
-
-  .contenido-valores{
-    width: 40%;
-    margin-left: auto; 
- }
-
-}
-  
-/* Sección: Nuestra Historia (XXL)*/
-@media (min-width: 1400px) {
-
-  .contenido_nuestra-historia {
-      flex-direction: row; 
-      gap: 3rem; 
-  }
-
-  .texto_nuestra-historia {
-    flex: 0 0 45%; 
-  }
-
-  .imagen_nuestra-historia {
-    flex: 0 0 50%; 
-  }
-
-}
-
-/* Sección: Nuestra Evolución (SM) */
-@media (max-width: 767.98px) {
-  
-  .seccion-institucional details summary {
-    font-size: 16.5px;
-  }
-  
-  .seccion-institucional details p {
-    font-size: 14.5px;
-  }
-  
-}
-
-/* Sección: Nuestra Evolución (MD) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-
-  .seccion-institucional details summary {
-    font-size: 17.5px;
-  }
-
-  .seccion-institucional details p {
-    font-size: 15.5px;
-  }
 }
