@@ -23,24 +23,64 @@
   
   <body>
     <header>
-      <nav class="navbar">
-        <div class="logo">
-          <a href="index.html">
-            <img
-              src="assets/img/navbar/logo.png"
-              alt="Logo i+Med Clínica Medica Integral"
-            />
+      <nav class="navbar navbar-expand-md py-3 px-4 border-bottom">
+        <div
+          class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between"
+        >
+          <a
+            href="index.html"
+            class="navbar-brand mb-2 mb-md-0 d-flex align-items-center"
+          >
+            <picture>
+              <source
+                media="(max-width: 768px)"
+                srcset="assets/img/navbar/logo2.png"
+              />
+              <img
+                src="assets/img/navbar/logo1.png"
+                alt="Logo de Clínica i+Med"
+                height="55"
+              />
+            </picture>
           </a>
-        </div>
-
-        <ul class="nav-links">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="institucional.html">Institucional</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-
-        <div class="boton-portal">
-          <a href="#">Portal Pacientes</a>
+          <button
+            class="navbar-toggler mb-2 mb-md-0"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <img
+              src="assets/img/icons/hamburguesa.svg"
+              alt="Menú"
+              height="30"
+            />
+          </button>
+          <div
+            class="collapse navbar-collapse justify-content-center text-center"
+            id="navbarNav"
+          >
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a href="index.html" class="nav-link px-3">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a href="institucional.html" class="nav-link px-3"
+                  >Institucional</a
+                >
+              </li>
+              <li class="nav-item">
+                <a href="contacto.html" class="nav-link px-3"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="text-end d-none d-md-block">
+            <a href="#" class="btn btn-portal">Portal Pacientes</a>
+          </div>
         </div>
       </nav>
     </header>
