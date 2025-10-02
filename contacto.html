@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto | i+Med</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/contacto.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <a href="index.html">
+          <img src="assets/img/navbar/logo.png" alt="Logo i+Med Clínica Medica Integral" />
+        </a>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="institucional.html">Institucional</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+
+      <div class="boton-portal">
+        <a href="#">Portal Pacientes</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section id="contacto">
+      <div class="form-container">
+        <h2>Contacto</h2>
+        <p>Por favor, complete el siguiente formulario y nos pondremos en contacto con usted a la brevedad.</p>
+        <form >
+          <div class="form-group">
+            <label for="nombre">Nombre Completo:</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono">
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
+          <button type="submit">Enviar Mensaje</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+      <footer>
+      <div class="row">
+        <div class="col-12 col-sm-6 align-self-start">
+          <div class="footer-contact">
+            <h3>Contáctanos</h3>
+            <p><i class="fa fa-whatsapp"></i> +54 9 3444 153 125</p>
+            <p><i class="fa fa-envelope"></i> 
+            <a href="mailto:contacto@clinicaimed.com">contacto@clinicaimed.com</a></p>
+          </div>
+          <div class="footer-contact">
+            <h3>Dirección</h3>
+            <p>Av. Leopoldo Herrera 666, Villaguay, Entre Ríos</p>
+            <p class="footer-rights">© Todos los derechos reservados</p>
+          </div>
+        </div>
+        <div class="col-12 col-sm-6 align-self-end">
+          <div class="footer-social">
+            <h3>Seguínos</h3>
+            <div class="social-icons">
+              <a href="#"><img src="assets/img/facebook.png" alt="Facebook"> </a>
+              <a href="#"><img src="assets/img/instagram.png" alt="Instagram"> </a>
+              <a href="#"><img src="assets/img/x.png" alt="X"> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
