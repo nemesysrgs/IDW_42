@@ -1,82 +1,95 @@
- #contacto  {
-    background-color: #C8D9E6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 10% 40px 10%;
-} 
+/* contacto.css - versión responsive */
 
-#contacto .form-container {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 500px;
-    box-sizing: border-box;
+/* Variables (ajustables) */
+:root {
+  --bg-section: #C8D9E6;
+  --primary: #1755a0;
+  --primary-contrast: #ffffff;
+  --card-bg: #ffffff;
+  --muted: #555555;
+  --radius: 12px;
+  --max-width-form: 540px;
 }
 
+/* Sección contacto */
+#contacto {
+  background-color: var(--bg-section);
+  padding: 48px 0;
+  display: block;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+
+/* Form container */
+#contacto .form-container {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  max-width: var(--max-width-form);
+  margin: 0 auto;
+  color: #222;
+}
+
+/* Títulos/paragraphs */
 #contacto h2 {
-    text-align: center;
-    color: #004d99;
-    font-weight: 700;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: #123;
 }
 
 #contacto p {
-    text-align: center;
-    color: #555;
-    margin-bottom: 25px;
+  color: var(--muted);
+  margin-bottom: 18px;
 }
 
-#contacto .form-group {
-    margin-bottom: 20px;
+/* Inputs (coexistir con .form-control de Bootstrap) */
+#contacto .form-control {
+  border-radius: 8px;
+  border: 1px solid #d0d7de;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  transition: border-color 0.18s, box-shadow 0.18s;
 }
 
-#contacto label {
-    display: block;
-    font-weight: 700;
-    margin-bottom: 8px;
-    color: #333;
+#contacto .form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.15rem rgba(23,85,160,0.12);
 }
 
-#contacto input[type="text"],
-input[type="email"],
-input[type="tel"],
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 16px;
-    transition: border-color 0.3s;
+/* Botón */
+#contacto .btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: 8px;
 }
 
-#contacto input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-textarea:focus {
-    border-color: #007bff;
-    outline: none;
+#contacto .btn-primary:hover,
+#contacto .btn-primary:focus {
+  background-color: #133f78;
+  border-color: #133f78;
 }
 
-#contacto textarea {
-    resize: vertical;
+/* Media queries (tres puntos de quiebre) */
+@media (min-width: 992px) {
+  #contacto { padding: 72px 0; }
+  :root { --max-width-form: 640px; }
 }
 
-#contacto button {
-    width: 100%;
-    padding: 15px;
-    background-color: #007bff;
-    border: none;
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+@media (min-width: 768px) and (max-width: 991.98px) {
+  #contacto { padding: 64px 0; }
+  :root { --max-width-form: 560px; }
 }
 
-#contacto button:hover {
-    background-color: #0056b3;
+@media (max-width: 767.98px) {
+  #contacto { padding: 36px 0; }
+  #contacto .form-container { padding: 20px; border-radius: 10px; }
+  .boton-portal { display: none; } /* opcional: ocultar portal en móvil si el equipo desea */
+}
+
+@media (max-width: 575.98px) {
+  :root { --max-width-form: 100%; }
+  #contacto h2 { font-size: 1.4rem; }
+  #contacto .form-container { padding: 16px; }
 }
