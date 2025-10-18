@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio | i+Med</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/global.css" />
+  <link rel="stylesheet" href="assets/css/navbar.css" />
+  <link rel="stylesheet" href="assets/css/cabecera.css" />
+  <link rel="stylesheet" href="assets/css/profesionales.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-md py-3 px-4 border-bottom">
+      <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+        <a href="index.html" class="navbar-brand mb-2 mb-md-0 d-flex justify-content-center align-items-center">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/navbar/logo2.png" />
+            <img src="assets/img/navbar/logo1.png" alt="Logo Clínica i+Med" height="55" />
+          </picture>
+        </a>
+        <div class="d-block d-md-none mb-2 text-center">
+          <a href="turnos_portal.html" class="btn btn-portal">TURNOS</a>
+        </div>
+        <button class="navbar-toggler mb-2 mb-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <img src="assets/img/icons/hamburguesa.svg" alt="Menú" height="30" />
+        </button>
+        <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
+          <ul class="navbar-nav mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a href="index.html" class="nav-link px-3">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a href="institucional.html" class="nav-link px-3">Institucional</a>
+            </li>
+            <li class="nav-item">
+              <a href="contacto.html" class="nav-link px-3">Contacto</a>
+            </li>
+          </ul>
+        </div>
+        <div class="text-end d-none d-md-block">
+          <a href="turnos_portal.html" class="btn btn-portal">TURNOS</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="container flex-grow-1">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-container bg-white rounded-3 shadow-sm p-4 p-md-5">
+            <div class="row">
+              <div class="col-12" id="div_error">
+
+              </div>
+            </div>
+            <form id="inicio_sesion">
+              <div class="mb-3">
+                <label for="usuario" class="form-label">Correo</label>
+                <input type="email" required name="usuario" class="form-control" id="usuario"
+                  aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" required name="pass" class="form-control" id="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="assets/js/login.js"></script>
+    <div class="row">
+      <div class="col-12 col-sm-6 align-self-start">
+        <div class="footer-contact">
+          <h3>Contáctanos</h3>
+          <p><i class="fa fa-whatsapp"></i> +54 9 3444 153 125</p>
+          <p>
+            <i class="fa fa-envelope"></i>
+            <a href="mailto:contacto@clinicaimed.com">contacto@clinicaimed.com</a>
+          </p>
+        </div>
+        <div class="footer-contact">
+          <h3>Dirección</h3>
+          <p>Av. Leopoldo Herrera 666, Villaguay, Entre Ríos</p>
+          <p class="footer-rights">© Todos los derechos reservados</p>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 align-self-end">
+        <div class="footer-social">
+          <h3>Seguínos</h3>
+          <div class="social-icons">
+            <a href="#"><img src="assets/img/facebook.png" alt="Facebook" />
+            </a>
+            <a href="#"><img src="assets/img/instagram.png" alt="Instagram" />
+            </a>
+            <a href="#"><img src="assets/img/x.png" alt="X" /> </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

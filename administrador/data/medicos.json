@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ariel",
+    "apellido": "Beltr&aacute;n",
+    "especialidad": 2,
+    "matricula": "",
+    "obras_sociales": 1,
+    "valor_consulta": 100.00,
+    "imagen": ""
+  },
+  {
+    "id": 2,
+    "nombre": "Mar&uacute;a",
+    "apellido": "Gonzalez",
+    "especialidad": 3,
+    "matricula": "",
+    "obras_sociales": 2,
+    "valor_consulta": 100.00,
+    "imagen": ""
+  },
+  {
+    "id": 3,
+    "nombre": "David",
+    "apellido": "Orosco",
+    "especialidad": 4,
+    "matricula": "",
+    "obras_sociales": 5,
+    "valor_consulta": 100.00,
+    "imagen": ""
+  },
+  {
+    "id": 4,
+    "nombre": "Gustavo",
+    "apellido": "Soria",
+    "especialidad": 5,
+    "matricula": "",
+    "obras_sociales": 4,
+    "valor_consulta": 100.00,
+    "imagen": ""
+  }
+]

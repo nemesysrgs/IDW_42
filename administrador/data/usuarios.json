@@ -1,0 +1,12 @@
+[
+    {
+        "email":"admin@mail.com",
+        "pass":"123",
+        "tipo":"admin"
+    },
+    {
+        "email":"user@mail.com",
+        "pass":"321",
+        "tipo":"usuario"
+    }
+]

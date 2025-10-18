@@ -1,0 +1,13 @@
+[
+  { "id": 1, "nombre":"APSOT" },
+  { "id": 2, "nombre":"Avalian" },
+  { "id": 3, "nombre":"CitySalud" },
+  { "id": 4, "nombre":"FEMEDICA" },
+  { "id": 5, "nombre":"Galeno" },
+  { "id": 6, "nombre":"Jer&aacute;rquicos" },
+  { "id": 7, "nombre":"OSAP" },
+  { "id": 8, "nombre":"OSDE" },
+  { "id": 9, "nombre":"OSPJN" },
+  { "id": 10, "nombre":"Sancor Salud" },
+  { "id": 11, "nombre":"Swiss Medical" }
+]
