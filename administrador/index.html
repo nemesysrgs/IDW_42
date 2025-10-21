@@ -21,7 +21,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Medicos</a>
+                        <a class="nav-link active" aria-current="page" href="medicos.html">Medicos</a>
                     </li>
                 </ul>
                 </div>
@@ -29,92 +29,10 @@
         </nav>
     </header>
     <main>
-        <div class="container">
-            <table class="table table-responsive" id="tabla_medicos">
-            <thead>
-                <th>Apellido</th>
-                <th>Nombre</th>
-                <th>Especialidades</th>
-                <th>Matricula</th>
-                <th>OS</th>
-            </thead>
-            <tbody>
-                <tr class="table-active"></tr>
-            </tbody>
-            </table>
-        </div>
 
     </main>
     <footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script>
-
-            function load_data( archivo, variable ){
-                if ( !localStorage.getItem(variable) ){
-                    fetch(`data/${archivo}`)
-                    .then( promesa => promesa.json() )
-                    .then( data =>{
-                        localStorage.setItem(variable,JSON.stringify(data))
-                    })
-                }
-            }
-
-            load_data("usuarios.json", "usuarios")
-            load_data("medicos.json", "medicos")
-            load_data("obras_sociales.json", "obras_sociales")
-            load_data("especialidades.json", "especialidades")
-
-
-            function obtener_usuarios(){
-                return JSON.parse(localStorage.getItem("usuarios")) || []
-            }
-
-            function obtener_medicos(){
-                return JSON.parse(localStorage.getItem("medicos")) || []
-            }
-            function obtener_obras_sociales(){
-                return JSON.parse(localStorage.getItem("obras_sociales")) || []
-            }
-
-            function obtener_especialidades(){
-                return JSON.parse(localStorage.getItem("especialidades")) || []
-            }
-
-            if ( localStorage.getItem("usuario_logueado") ){
-                let user_logueado = localStorage.getItem("usuario_logueado")
-                let usuarios = obtener_usuarios()
-                const existe = usuarios.filter( usuario => usuario.email == user_logueado )
-                if ( existe[0].tipo != "admin") location.href = "../index.html"
-            }else location.href = "../index.html"
-            
-            let tabla_medicos = document.querySelector("#tabla_medicos")
-
-            function actualizar_tabla(){
-                let medicos = obtener_medicos()
-                let obras_sociales = obtener_obras_sociales()
-                let especialidades = obtener_especialidades()
-
-                medicos.forEach( medico => {
-                    let tr = document.createElement("tr")
-                    let especialidad = especialidades.filter( esp => esp.id == medico.especialidad )
-                    let obra_social = obras_sociales.filter( esp => esp.id == medico.obras_sociales )
-
-
-                    tr.innerHTML =  `
-                    <td>${medico.apellido}</td>
-                    <td>${medico.nombre}</td>
-                    <td>${especialidad[0].nombre}</td>
-                    <td>${medico.matricula}</td>
-                    <td>${obra_social[0].nombre}</td>
-                    `
-                    tabla_medicos.appendChild(tr)
-                })
-            }
-
-            actualizar_tabla()
-
-            
-        </script>
     </footer>
 </body>
 </html>

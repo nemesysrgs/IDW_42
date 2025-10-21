@@ -1,13 +1,16 @@
-[
-  { "id": 1, "nombre":"APSOT" },
-  { "id": 2, "nombre":"Avalian" },
-  { "id": 3, "nombre":"CitySalud" },
-  { "id": 4, "nombre":"FEMEDICA" },
-  { "id": 5, "nombre":"Galeno" },
-  { "id": 6, "nombre":"Jer&aacute;rquicos" },
-  { "id": 7, "nombre":"OSAP" },
-  { "id": 8, "nombre":"OSDE" },
-  { "id": 9, "nombre":"OSPJN" },
-  { "id": 10, "nombre":"Sancor Salud" },
-  { "id": 11, "nombre":"Swiss Medical" }
-]
+{
+  "proximo":11,
+  "data": [
+    { "id": 0, "nombre":"APSOT" },
+    { "id": 1, "nombre":"Avalian" },
+    { "id": 2, "nombre":"CitySalud" },
+    { "id": 3, "nombre":"FEMEDICA" },
+    { "id": 4, "nombre":"Galeno" },
+    { "id": 5, "nombre":"Jer&aacute;rquicos" },
+    { "id": 6, "nombre":"OSAP" },
+    { "id": 7, "nombre":"OSDE" },
+    { "id": 8, "nombre":"OSPJN" },
+    { "id": 9, "nombre":"Sancor Salud" },
+    { "id": 10, "nombre":"Swiss Medical" }
+  ]
+}

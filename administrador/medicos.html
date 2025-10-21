@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Médicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+            <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Médicos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="d-flex justify-content-center align-items-center min-vh-100 my-5">
+            <div class="card w-50">
+                <div class="card-body">
+                    <form id="formulario_medicos">
+                        <div id="error"></div>
+                        <input type="hidden" name="id">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <div class="w-100 text-center"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+" class="img-thumbnail" width="200px" id="retrato" alt="retrato"/></div>
+                            </div>
+                            <div class="mb-3 col-12">
+                                <label for="formFile" class="form-label">Imagen <span class='text-danger'>*</span></label>
+                                <input class="form-control" autocomplete="off" type="file" id="formFile">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-apellido" class=" col-form-label">Apellido <span class='text-danger'>*</span></label>
+                                <input type="text" autocomplete="off" name="apellido" placeholder="Apellidos del profesional" class="form-control" id="input-apellido" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-nombre" class=" col-form-label">Nombre <span class='text-danger'>*</span></label>
+                                <input type="text" autocomplete="off" name="nombre" placeholder="Nombres del profesional" class="form-control" id="input-nombre">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="input-matricula" class=" col-form-label">Matricula <span class='text-danger'>*</span></label>
+                                <input type="number" autocomplete="off" placeholder="Ej: 12345" name="matricula" class="form-control" id="input-matricula" value="">
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="input-nombre" class=" col-form-label">Valor de la consulta <span class='text-danger'>*</span></label>
+                                <input type="number" autocomplete="off" placeholder="Ej: 15000.00" name="valor_consulta" min="0.00" value="0.00" class="form-control" id="input-nombre">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-especialidad" class=" col-form-label">Especialidades <span class='text-danger'>*</span></label>
+                                <div id="input-especialidad-nombres" class="fw-bold">Sin especialidad</div>
+                                <input type="hidden" autocomplete="off" name="especialidades" id="input-especialidad">
+                            </div>
+                            <div class="mb-3 col-12">
+                            <div class="btn-group w-100">
+                                <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione su especialidad
+                                </button>
+                                <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
+                                    <input class="form-control m-2" style="width: 95%;" placeholder="Buscar especialidad" type="text" id="filtro-especialidad" >
+                                    <div id="esp_container" class="mx-2"> 
+                                    </div>                                  
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-osocial" class=" col-form-label">Obras sociales</label>
+                                <div id="input-osocial-nombres" class="fw-bold">Trabaja sin obra social</div>
+                                <input type="hidden" autocomplete="off" name="osociales" id="input-osocial">
+                            </div>
+                            <div class="mb-3 col-12">
+                            <div class="btn-group w-100">
+                                <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione su osocial
+                                </button>
+                                <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
+                                    <input class="form-control m-2" style="width: 95%;" placeholder="Buscar obra social" type="text" id="filtro-osocial" >
+                                    <div id="os_container" class="mx-2"> 
+                                    </div>                                  
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <button type="submit" class="btn btn-danger w-100" onclick="reset_form()">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabla_medicos">
+                    <thead>
+                        <th class="d-none d-md-block">#</th>
+                        <th>Apellido y nombre</th>
+                        <th>Matricula</th>
+                        <th>Especialidades</th>
+                        <th>Obras Sociales</th>
+                        <th>Control</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="js/medicos.js"></script>
+        <script>
+            const error_container = document.querySelector("#error")
+            const formulario = document.querySelector("#formulario_medicos")
+            const busqueda_esp = document.getElementById("filtro-especialidad")
+            const busqueda_os = document.getElementById("filtro-osocial")
+            const inputFile = document.getElementById('formFile');
+            const retrato = document.getElementById('retrato');
+            
+            let edicion = false
+
+            let no_img = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+"
+
+            formulario.addEventListener("submit", ( event )=>{
+                event.preventDefault()
+                const medicos = obtener_datos("medicos");
+                elementos = formulario.querySelectorAll("input[type='file'],input[type='text'],input[type='hidden']")
+                const medicoObj = {
+                    id: ( edicion ) ? formulario.querySelector("input[name='id']").value : medicos.proximo,
+                    apellido: formulario.querySelector("input[name='apellido']").value,
+                    nombre: formulario.querySelector("input[name='nombre']").value,
+                    matricula: Number(formulario.querySelector("input[name='matricula']").value),
+                    valor_consulta: parseFloat(formulario.querySelector("input[name='valor_consulta']").value),
+                    especialidad: formulario.querySelector("input[name='especialidades']").value
+                                    ? formulario.querySelector("input[name='especialidades']").value.split(",").map(Number)
+                                    : [],
+                    obras_sociales: formulario.querySelector("input[name='osociales']").value
+                                    ? formulario.querySelector("input[name='osociales']").value.split(",").map(Number)
+                                    : [],
+                    imagen: retrato.src
+                };
+
+                if ( !medicoObj.apellido || !medicoObj.nombre ||  !medicoObj.matricula ||  !medicoObj.valor_consulta || !medicoObj.especialidad || !medicoObj.imagen ){
+                    error_container.innerHTML = "<div class='alert alert-warning'>Todos los campos marcados con <span class='text-danger'>*</span> son requeridos</div>"
+                    return;
+                }
+
+                if ( edicion ){
+                    medicos.data[edicion] = medicoObj;
+                }else{
+                    medicos.data.push(medicoObj);
+                    medicos.proximo = medicos.proximo + 1;
+                }
+                reset_form()
+                localStorage.setItem("medicos", JSON.stringify(medicos))
+                actualizar_tabla()
+            });
+
+            function reset_form(){
+                formulario.reset();
+                retrato.src = no_img; 
+                document.getElementById("input-especialidad-nombres").innerHTML = "Sin especialidad"
+                document.getElementById("input-osocial-nombres").innerHTML = "Trabaja sin obra social"
+                cargar_especialidades();
+                cargar_obras_sociales();
+            }
+            
+            /* agrego event listener en la busqueda de especialidades y obras sociales */
+            busqueda_esp.addEventListener("input", () => {
+                const texto = busqueda_esp.value.toLowerCase();
+                const especialidades = document.querySelectorAll(".check_esp");
+                especialidades.forEach(esp => {
+                    const valor = esp.dataset.value.toLowerCase();
+                    if (!valor.includes(texto)) esp.classList.add("d-none");
+                    else  esp.classList.remove("d-none");
+                });
+            });
+
+            busqueda_os.addEventListener("input", () => {
+                const texto = busqueda_os.value.toLowerCase();
+                const obras_sociales = document.querySelectorAll(".check_os");
+                obras_sociales.forEach(os => {
+                    const valor = os.dataset.value.toLowerCase();
+                    if (!valor.includes(texto)) os.classList.add("d-none");
+                    else  os.classList.remove("d-none");
+                });
+            });
+            
+            /* cargo los elementos de especialidades */
+            async function cargar_especialidades() {
+                const container = document.getElementById("esp_container");
+                container.innerHTML = ""
+                const especialidades = await obtener_datos("especialidades");
+                especialidades.data.forEach((esp, index) => {
+                    const item = document.createElement("li");
+                    item.classList.add("check_esp");
+                    item.dataset.value = esp.nombre; 
+                    item.innerHTML = `
+                    <input class="form-check-input" type="checkbox" value="${esp.id}" name="especialidades">
+                    <label class="form-check-label" for="check-${index}">${esp.nombre}</label>
+                    `;
+                    container.appendChild(item);
+                    item.addEventListener('change',()=>{
+                        actualizar_input_especialidades()
+                    })
+                });
+            }
+
+            function actualizar_input_especialidades() {
+                const especialidades = document.querySelectorAll(".check_esp input[type='checkbox']");
+                const nombres = document.getElementById("input-especialidad-nombres");
+                const indices = document.getElementById("input-especialidad");
+
+                const _nombres = [];
+                const _indices = [];
+
+                especialidades.forEach(chk => {
+                    if (chk.checked) {
+                    const li = chk.closest(".check_esp");
+                    _nombres.push(li.dataset.value); 
+                    _indices.push(chk.value);
+                    }
+                });
+
+                nombres.innerHTML = _nombres.join(", ");
+                indices.value = _indices.join(",");
+                if(_indices.length == 0) nombres.innerHTML = "Sin especialidad"
+            }
+            /* cargo elementos de obras sociales */
+            async function cargar_obras_sociales() {
+                const container = document.getElementById("os_container");
+                container.innerHTML = ""
+                const obras_sociales = await obtener_datos("obras_sociales");
+                obras_sociales.data.forEach((esp, index) => {
+                    const item = document.createElement("li");
+                    item.classList.add("check_os");
+                    item.dataset.value = esp.nombre; 
+                    item.innerHTML = `
+                    <input class="form-check-input" type="checkbox" value="${esp.id}" name="obras_sociales">
+                    <label class="form-check-label" for="check-${index}">${esp.nombre}</label>
+                    `;
+                    container.appendChild(item);
+                    item.addEventListener('change',()=>{
+                        actualizar_input_obras_sociales()
+                    })
+                });
+            }
+
+            function actualizar_input_obras_sociales() {
+                const obras_sociales = document.querySelectorAll(".check_os input[type='checkbox']");
+                const nombres = document.getElementById("input-osocial-nombres");
+                const indices = document.getElementById("input-osocial");
+
+                const _nombres = [];
+                const _indices = [];
+
+                obras_sociales.forEach(chk => {
+                    if (chk.checked) {
+                    const li = chk.closest(".check_os");
+                    _nombres.push(li.dataset.value); 
+                    _indices.push(chk.value);
+                    }
+                });
+
+                nombres.innerHTML = _nombres.join(", ");
+                indices.value = _indices.join(",");
+                if(_indices.length == 0) nombres.innerHTML = "Trabaja sin obra social"
+            }
+
+            inputFile.addEventListener('change', () => {
+                const file = inputFile.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        retrato.src = e.target.result; // base64
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            cargar_especialidades();
+            cargar_obras_sociales();
+
+        </script>
+    </footer>
+</body>
+
+</html>
