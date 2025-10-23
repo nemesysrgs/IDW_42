@@ -35,3 +35,19 @@
   color: #0096c7 !important;
   border-bottom: 3px solid #0096c7;
 }
+
+/* Botón Portal Pacientes */
+.btn-portal {
+  background-color: #1755a0;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  text-decoration: none;
+}
+
+.btn-portal:hover {
+  background-color: #0096c7;
+  color: white;
+}
