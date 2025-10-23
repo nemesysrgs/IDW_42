@@ -8,3 +8,10 @@ Rodríguez, Alejandro Daniel Alberto  - Footer y redes sociales.
 Vallejos, Leandro - Formulario de contacto.
 
 Cada integrante armo el html y css de cada seccion correspondiente.
+
+#Entrega 3
+Usuario: admin@mail.com
+contraseña: 123
+
+Usuario: user@mail.com
+contraseña: 321

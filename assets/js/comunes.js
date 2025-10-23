@@ -31,5 +31,3 @@ async function carga_inicial(){
     await cargar_data_archivo("administrador/data/obras_sociales.json", "obras_sociales")
     await cargar_data_archivo("administrador/data/especialidades.json", "especialidades")
 }
-
-carga_inicial()

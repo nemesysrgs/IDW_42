@@ -10,13 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="../assets/css/navbar.css" />
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg  bg-rosa">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand mb-0" href="#">
                     <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,17 +26,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarItems">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li>
+<!--                         <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
+<!--                         <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li> -->
                     </ul>
                     <div class="dropdown">
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             Menú
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
-                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Logout</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -43,7 +45,7 @@
     </header>
     <main>
         <div class="d-flex justify-content-center align-items-center min-vh-100 my-5 d-none" id="form-container">
-            <div class="card w-50">
+            <div class="card ">
                 <div class="card-body">
                     <form id="formulario_medicos">
                         <div id="error"></div>
@@ -70,7 +72,7 @@
                         </div>
                         <div class="row">
                             <div class="mb-3 col-12 col-md-6">
-                                <label for="input-matricula" class=" col-form-label">Matricula <span class='text-danger'>*</span></label>
+                                <label for="input-matricula" class=" col-form-label">Matrícula <span class='text-danger'>*</span></label>
                                 <input type="number" autocomplete="off" placeholder="Ej: 12345" name="matricula" class="form-control" id="input-matricula" value="">
                             </div>
                             <div class="mb-3 col-12 col-md-6">
@@ -79,7 +81,13 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="mb-3 col-12">
+                            <div class="mb-3col-12">
+                                <label for="input_descripcion" class=" col-form-label">Descripción del profesional  <span class='text-danger'>*</span></label>
+                                <textarea type="text" autocomplete="off" placeholder="Datos relevantes del profesional" name="descripcion" class="form-control" id="input_descripcion" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col-12">
                                 <label for="input-especialidad" class=" col-form-label">Especialidades <span class='text-danger'>*</span></label>
                                 <div id="input-especialidad-nombres" class="fw-bold">Sin especialidad</div>
                                 <input type="hidden" autocomplete="off" name="especialidades" id="input-especialidad">
@@ -87,7 +95,7 @@
                             <div class="mb-3 col-12">
                             <div class="btn-group w-100">
                                 <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Seleccione su especialidad
+                                    Seleccione especialidad
                                 </button>
                                 <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
                                     <input class="form-control m-2" style="width: 95%;" placeholder="Buscar especialidad" type="text" id="filtro-especialidad" >
@@ -107,7 +115,7 @@
                             <div class="mb-3 col-12">
                             <div class="btn-group w-100">
                                 <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Seleccione su osocial
+                                    Seleccione obra social
                                 </button>
                                 <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
                                     <input class="form-control m-2" style="width: 95%;" placeholder="Buscar obra social" type="text" id="filtro-osocial" >
@@ -119,35 +127,39 @@
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6">
-                                <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                                <button type="submit" class="btn btn-primary w-100 mb-2">Guardar</button>
                             </div>
                             <div class="col-12 col-md-6">
-                                <button type="button" class="btn btn-danger w-100" onclick="reset_form()">Cancelar</button>
+                                <button type="button" class="btn btn-danger w-100 mb-2" onclick="reset_form()">Cancelar</button>
                             </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="container my-3" id="table-container">
+        <div class="container-fluid my-3" id="table-container">
             <div class="row">
                 <div class="col-12 d-flex justify-content-end">
-                    <button class="btn btn-secondary" onclick="abrir_form()">Agregar medico</button>
+                    <button class="btn btn-portal" onclick="abrir_form()">Agregar médico</button>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-striped" id="tabla_medicos">
-                    <thead>
-                        <th class="d-none d-md-block">#</th>
-                        <th>Apellido y nombre</th>
-                        <th>Matricula</th>
-                        <th>Especialidades</th>
-                        <th>Obras Sociales</th>
-                        <th>Control</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="tabla_medicos">
+                            <thead>
+                                <th class="d-none d-md-table-cell">#</th>
+                                <th>Apellido y nombre</th>
+                                <th>Matrícula</th>
+                                <th>Especialidades</th>
+                                <th>Obras Sociales</th>
+                                <th>Control</th>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -194,6 +206,7 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
         <script src="../assets/js/comunes.js"></script>
+
         <script>
             async function inicializar_vista(){
                 await cargar_data_archivo("data/usuarios.json", "usuarios")
@@ -202,7 +215,6 @@
                 await cargar_data_archivo("data/especialidades.json", "especialidades")
                 await validar_usuario()
             }
-
             inicializar_vista()
         </script>
         <script src="js/medicos-tabla.js"></script>

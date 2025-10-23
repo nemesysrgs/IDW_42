@@ -66,34 +66,93 @@
   </header>
 
   <main>
-    <section class="clinica-image">
-      <div class="container">
-        <div class="cabecera row">
-          <div class="texto_cabecera p-0 col align-self-center">
-            <h1>i<span>+</span>Med</h1>
-            <h2>Clínica Médica Integral</h2>
-            <p>Tecnología e innovación al servicio de tu salud</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <div class="container-flow bg-beige py-5">
-      <div class="row justify-content-center  w-100">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
-          <h1 class="display-4">Próximamente...</h1>
-        </div>
-      </div>
-    </div>
+        <div class="container my-5">
+            <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="row g-0">
+                <div class="col-md-2 text-center d-flex align-items-center justify-content-center">
+                    <img 
+                    id="foto_medico"
+                    src="data:image/jpeg;base64," 
+                    alt="Foto del médico" 
+                    class="img-fluid rounded-circle p-3" 
+                    style="width: 220px; height: 220px; object-fit: cover;"
+                    >
+                </div>
 
+                <div class="col-md-10 p-4 text-md-start text-center">
+                    <h3 class="fw-bold mb-1" id="nombre"></h3>
+                    <p class="text-muted mb-2" id="especialidades"></p>
+                    <p class="mb-1" id="matricula"></p>
+                    <p class="mb-3" id="valor_consulta"></p>
+                    <p><a class="btn btn-portal" href="turnos_portal.html">Sacar turno</a></p>
+                </div>
+                <div class="col-12 p-4 border-top">
 
-  </main>
+                    <div class="mb-3">
+                    <h6 class="fw-bold mb-2">Obras Sociales:</h6>
+                    <div class="d-flex flex-wrap gap-2" id="obras_sociales">
+                    </div>
+                    </div>
+
+                    <div class="descripcion mt-3" id="descripcion">
+                    
+                    </div>
+                    
+                </div>
+                </div>
+            </div>
+            </div>
+    </main>
   <footer>
     <!-- Boostrap 5 JS Bundle con Popper (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
     <script src="assets/js/comunes.js"></script>
+    <script>
+        function cargar_datos_medico(){
+            const url_medico = window.location.href;
+            const url = new URL(url_medico);
+            const params = url.searchParams;
+            const medicos = obtener_datos("medicos")
+            
+            if ( !params.get("id") || params.get("id") == "" ){
+                window.location.href = "404.html"
+            }
+            const id = params.get("id");
+            
+            const _medico = medicos.data.filter(med => med.id === Number(id));
+            
+            if ( _medico.length === 0 ){
+                window.location.href = "404.html"
+            }
+            
+            const medico = _medico[0];
+            const especialidad = obtener_datos("especialidades")
+            const obras_sociales = obtener_datos("obras_sociales")
 
+            document.getElementById("foto_medico").src = medico.imagen;
+            document.getElementById("nombre").innerText = `${medico.apellido}, ${medico.nombre}`;
+            document.getElementById("especialidades").innerText = medico.especialidad.map(espec_id => {
+                const espec = especialidad.data.find(e => e.id === espec_id);
+                return espec ? espec.nombre : "";
+            }).join(", ");
+            document.getElementById("matricula").innerHTML = `<strong>Matrícula:</strong> ${medico.matricula}`;
+            document.getElementById("valor_consulta").innerHTML = `<strong>Valor Consulta:</strong> $${medico.valor_consulta}`;
+            
+            document.getElementById("obras_sociales").innerHTML = medico.obras_sociales.map(os_id => {
+                const os = obras_sociales.data.find(e => e.id === os_id);
+                return os ? `<span class='badge bg-fucsia'>${os.nombre}</span>` : "";
+            }).join("");
+            document.getElementById("descripcion").innerHTML = medico.descripcion;
+            
+        }
+        async function inicializar_vista(){
+            await cargar_datos_medico()
+        }
+
+    inicializar_vista()
+    </script>
     <div class="row">
       <div class="col-12 col-sm-6 align-self-start">
         <div class="footer-contact">

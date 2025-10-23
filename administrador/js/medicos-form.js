@@ -10,15 +10,18 @@ const retrato = document.getElementById('retrato');
 let edicion = false
 let no_img = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+"
 formulario.addEventListener("submit", ( event )=>{
+
     event.preventDefault()
     const medicos = obtener_datos("medicos");
-    elementos = formulario.querySelectorAll("input[type='file'],input[type='text'],input[type='hidden']")
+    elementos = formulario.querySelectorAll("input[type='file'],input[type='text'],input[type='hidden'],textarea")
+    console.log(edicion, ( edicion === false ) ? medicos.proximo : formulario.querySelector("input[name='id']").value)
     const medicoObj = {
         id: ( edicion === false ) ? medicos.proximo : formulario.querySelector("input[name='id']").value,
         apellido: formulario.querySelector("input[name='apellido']").value,
         nombre: formulario.querySelector("input[name='nombre']").value,
         matricula: Number(formulario.querySelector("input[name='matricula']").value),
         valor_consulta: parseFloat(formulario.querySelector("input[name='valor_consulta']").value),
+        descripcion: formulario.querySelector("textarea[name='descripcion']").innerHTML,
         especialidad: formulario.querySelector("input[name='especialidades']").value
                         ? formulario.querySelector("input[name='especialidades']").value.split(",").map(Number)
                         : [],
@@ -32,9 +35,11 @@ formulario.addEventListener("submit", ( event )=>{
         return;
     }
     if ( edicion === false ){
+        console.log("entra a nuevo")
         medicos.data.push(medicoObj);
         medicos.proximo = medicos.proximo + 1;
     }else{
+        console.log("entra a edicion", edicion)
         medicos.data[edicion] = medicoObj;
         edicion = false
     }
@@ -49,7 +54,7 @@ function abrir_form(){
     form_container.scrollIntoView();
 }
 
-function cerrar_form(){
+function cerrar_form(){   
     form_container.classList.add("d-none")
     table_container.classList.remove("d-none")
 }
@@ -57,6 +62,7 @@ function cerrar_form(){
 function reset_form(){
     formulario.reset();
     cerrar_form()
+    edicion = false;
     retrato.src = no_img; 
     document.getElementById("input-especialidad-nombres").innerHTML = "Sin especialidad"
     document.getElementById("input-osocial-nombres").innerHTML = "Trabaja sin obra social"
@@ -181,8 +187,7 @@ inputFile.addEventListener('change', () => {
     }
 });
 
-cargar_especialidades();
-cargar_obras_sociales();
+
 
 async function editar_medico( index ){
     const lista_medicos = await obtener_datos("medicos");
@@ -195,6 +200,7 @@ async function editar_medico( index ){
     formulario.querySelector("input[name='nombre']").value = medico.nombre;
     formulario.querySelector("input[name='matricula']").value = medico.matricula;
     formulario.querySelector("input[name='valor_consulta']").value = medico.valor_consulta;
+    formulario.querySelector("textarea[name='descripcion']").innerText = medico.descripcion;
     formulario.querySelector("input[name='especialidades']").value = medico.especialidades;
     formulario.querySelector("input[name='osociales']").value = medico.osociales;
     formulario.querySelector("#formFile").value = "";
@@ -221,3 +227,15 @@ async function borrar_medico( index ){
         modal.hide()
     })
 }
+
+async function inicializar_vista(){
+    await cargar_data_archivo("data/usuarios.json", "usuarios")
+    await cargar_data_archivo("data/medicos.json", "medicos")
+    await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
+    await cargar_data_archivo("data/especialidades.json", "especialidades")
+    await validar_usuario()
+    cargar_especialidades();
+    cargar_obras_sociales();
+
+}
+inicializar_vista()

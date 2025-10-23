@@ -19,42 +19,17 @@ async function cargar_profesionales(){
                 <p class="card-text">
                     ${especialidad.map(e=>`<span>${e.nombre}</span>`).join(", ")}
                 </p>
-                <p><small>(mat. ${medico.matricula})</small></p>
+                <p><a href="ver_profesional.html?id=${medico.id}" target="_blank">ver más</a></p>
+                <p><small>(MN: ${medico.matricula})</small></p>
             </div>
         </div>
         `
         prof_container.appendChild(article)
     })
 }
-cargar_profesionales()
+async function inicializar_vista(){
+    await carga_inicial()
+    cargar_profesionales()
+}
+inicializar_vista()
 
-
-/* medico
-<article class="col-12 col-sm-6 col-lg-3">
-  <div class="card h-100 text-center shadow-sm">
-    <img
-      src="assets/img/gustavo_soria.png"
-      alt="Gustavo Soria"
-      class="card-img-top img-fluid"
-    />
-    <div class="card-body">
-      <h2 class="card-title">Gustavo Soria</h2>
-      <p class="card-text">
-        <span>Proctólogo</span>,
-        <span>Urólogo</span>
-      </p>
-    </div>
-  </div>
-</article> */
-
-/* obra social
-<div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1">
-  <a href="#obras-sociales" class="d-block text-center">
-    <img
-      src="assets/img/obras-sociales/ospjn.png"
-      class="img-fluid p-2"
-      alt="OSPJN"
-      title="OSPJN"
-    />
-  </a>
-</div> */

@@ -13,8 +13,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
-  <link rel="stylesheet" href="assets/css/cabecera.css" />
-  <link rel="stylesheet" href="assets/css/profesionales.css" />
+  <link rel="stylesheet" href="assets/css/portal_pacientes.css" />
   <link rel="stylesheet" href="assets/css/footer.css" />
 </head>
 
@@ -66,10 +65,21 @@
   </header>
 
   <main>
-    <section class="clinica-image">
-      <div class="container">
+
+    <section class="portal-pacientes py-5 p-md-5 clinica-image">
+      <div class="container text-center">
+        <h1 class="mt-5">
+          <span class="bg-rosa py-3 px-md-5 px-0 lh-lg">Página no encontrada</span>
+        </h1>
+        
+        <div class="links">
+          <div class="row">
+            <p class="bg-azul text-white fw-bold p-4">Si cree que esto es un error, por favor contactese con el servicio al cliente</p>
+          </div>
+        </div>
+
         <div class="cabecera row">
-          <div class="texto_cabecera p-0 col align-self-center">
+          <div class="texto_cabecera p-0 col align-self-center d-none d-sm-none d-lg-block">
             <h1>i<span>+</span>Med</h1>
             <h2>Clínica Médica Integral</h2>
             <p>Tecnología e innovación al servicio de tu salud</p>
@@ -77,13 +87,6 @@
         </div>
       </div>
     </section>
-    <div class="container-flow bg-beige py-5">
-      <div class="row justify-content-center  w-100">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 text-center">
-          <h1 class="display-4">Próximamente...</h1>
-        </div>
-      </div>
-    </div>
 
 
   </main>
@@ -93,7 +96,12 @@
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
     <script src="assets/js/comunes.js"></script>
-
+    <script>
+      async function inicializar_vista(){
+          await carga_inicial()
+      }
+      inicializar_vista()
+    </script>
     <div class="row">
       <div class="col-12 col-sm-6 align-self-start">
         <div class="footer-contact">
@@ -107,7 +115,6 @@
         <div class="footer-contact">
           <h3>Dirección</h3>
           <p>Av. Leopoldo Herrera 666, Villaguay, Entre Ríos</p>
-          <p class="footer-rights">© Todos los derechos reservados</p>
         </div>
       </div>
       <div class="col-12 col-sm-6 align-self-end">
@@ -121,6 +128,11 @@
             <a href="#"><img src="assets/img/x.png" alt="X" /> </a>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="footer-rights">© Todos los derechos reservados</p>
       </div>
     </div>
   </footer>
