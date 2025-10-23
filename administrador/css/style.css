@@ -1,0 +1,37 @@
+#form-container {
+  width: 100%;
+}
+
+#form-container .card {
+  width: 100%;
+  max-width: 40rem;
+  margin: auto; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word;
+}
+
+#input-osocial-nombres,
+#input-especialidad-nombres {
+  white-space: normal;
+  word-break: break-word;
+}
+
+#os_container,
+#esp_container{
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Links */
+.nav-link {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #1755a0 !important;
+  transition: color 0.3s, border-bottom 0.1s;
+  padding-bottom: 4px;
+}
+
+.nav-link:hover {
+  color: #0096c7 !important;
+  border-bottom: 3px solid #0096c7;
+}
