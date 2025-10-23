@@ -3,31 +3,31 @@
   "data": [
     {
       "id": 0,
-      "nombre": "Endocrin&oacute;logo"
+      "nombre": "Endocrinologia"
     },
     {
       "id": 1,
-      "nombre": "Fisi&oacute;loga"
+      "nombre": "Fisiologia"
     },
     {
       "id": 2,
-      "nombre": "Fisioterapeuta"
+      "nombre": "Fisioterapia"
     },
     {
       "id": 3,
-      "nombre": "Kinesi&oacute;loga"
+      "nombre": "Kinesiologia"
     },
     {
       "id": 4,
-      "nombre": "Oftalm&oacute;logo"
+      "nombre": "Oftalmologia"
     },
     {
       "id": 5,
-      "nombre": "Proct&oacute;logo"
+      "nombre": "Proctologia"
     },
     {
       "id": 6,
-      "nombre": "Ur&oacute;logo"
+      "nombre": "Urologia"
     }
   ]
 }

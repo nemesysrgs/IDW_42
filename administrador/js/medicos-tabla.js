@@ -21,8 +21,8 @@ function actualizar_tabla(){
             
         </td>
         <td>
-            <button type="button" class="btn btn-outline-warning boton-editar" data-id="${index}"><i class="fa-solid fa-edit"></i></button>
-            <button type="button" class="btn btn-outline-danger boton-borrar" data-id="${index}"><i class="fa-solid fa-trash-can"></i></button>
+            <button type="button" onclick="editar_medico(${index})" class="btn btn-outline-warning boton-editar" data-id="${index}"><i class="fa-solid fa-edit"></i></button>
+            <button type="button" onclick="borrar_medico(${index})" class="btn btn-outline-danger boton-borrar" data-id="${index}"><i class="fa-solid fa-trash-can"></i></button>
         </td>
         `
         tabla_medicos.appendChild(tr)

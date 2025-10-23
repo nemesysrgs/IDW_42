@@ -14,18 +14,29 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Médicos</a>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbarItems">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
                     </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menú
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
+                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Logout</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -39,11 +50,10 @@
                         <input type="hidden" name="id">
                         <div class="row">
                             <div class="mb-3 col-12">
-                                <div class="w-100 text-center"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+" class="img-thumbnail" width="200px" id="retrato" alt="retrato"/></div>
+                                <div class="w-100 text-center"><img role="button" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+" class="img-thumbnail" width="200px" id="retrato" alt="retrato" onclick="inputFile.click()"/></div>
                             </div>
-                            <div class="mb-3 col-12">
-                                <label for="formFile" class="form-label">Imagen <span class='text-danger'>*</span></label>
-                                <input class="form-control" accept=".jpg, .jpeg, .png, image/jpeg, image/png" autocomplete="off" type="file" id="formFile">
+                            <div class="mb-3 col-12 d-none">
+                                <input class="form-control" accept=".jpg, .jpeg, .png, image/jpeg, image/png" autocomplete="off" name="inputFile" type="file" id="formFile">
                             </div>
                         </div>
                         <div class="row">
@@ -142,11 +152,59 @@
         </div>
     </main>
 
+    <div class="modal fade" id="borrarMedico" tabindex="-1" aria-labelledby="borrarMedicoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="borrarMedicoLabel">¿Borrar medico?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+
+        <div class="modal-body">
+        <h2 class="fs-5">Estas a punto de borrar a <span id="borrar_titulo" class="fw-bold">Ariel</span></h2>
+        <div class="alert alert-danger">Este medico puede tener turnos asignados. </div></p>
+        <hr>
+        <h2 class="fs-5">¿Que desea hacer?</h2>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2">
+            <label class="form-check-label" for="radioDefault2">
+                Cancelar todos los turnos e informar a los pacientes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+            <label class="form-check-label" for="radioDefault2">
+                Informar a los pacientes de que deben seleccionar otro profesional en el portal de pacientes.
+            </label>
+        </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmarBorrado">Si, borrar!</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
         <script src="../assets/js/comunes.js"></script>
+        <script>
+            async function inicializar_vista(){
+                await cargar_data_archivo("data/usuarios.json", "usuarios")
+                await cargar_data_archivo("data/medicos.json", "medicos")
+                await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
+                await cargar_data_archivo("data/especialidades.json", "especialidades")
+                await validar_usuario()
+            }
+
+            inicializar_vista()
+        </script>
         <script src="js/medicos-tabla.js"></script>
         <script src="js/medicos-form.js"></script>
     </footer>

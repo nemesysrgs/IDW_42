@@ -14,7 +14,7 @@ formulario.addEventListener("submit", ( event )=>{
     const medicos = obtener_datos("medicos");
     elementos = formulario.querySelectorAll("input[type='file'],input[type='text'],input[type='hidden']")
     const medicoObj = {
-        id: ( edicion ) ? formulario.querySelector("input[name='id']").value : medicos.proximo,
+        id: ( edicion === false ) ? medicos.proximo : formulario.querySelector("input[name='id']").value,
         apellido: formulario.querySelector("input[name='apellido']").value,
         nombre: formulario.querySelector("input[name='nombre']").value,
         matricula: Number(formulario.querySelector("input[name='matricula']").value),
@@ -31,11 +31,12 @@ formulario.addEventListener("submit", ( event )=>{
         error_container.innerHTML = "<div class='alert alert-warning'>Todos los campos marcados con <span class='text-danger'>*</span> son requeridos</div>"
         return;
     }
-    if ( edicion ){
-        medicos.data[edicion] = medicoObj;
-    }else{
+    if ( edicion === false ){
         medicos.data.push(medicoObj);
         medicos.proximo = medicos.proximo + 1;
+    }else{
+        medicos.data[edicion] = medicoObj;
+        edicion = false
     }
     reset_form()
     localStorage.setItem("medicos", JSON.stringify(medicos))
@@ -85,7 +86,7 @@ busqueda_os.addEventListener("input", () => {
 });
 
 /* cargo los elementos de especialidades */
-async function cargar_especialidades() {
+async function cargar_especialidades( checkeadas = [] ) {
     const container = document.getElementById("esp_container");
     container.innerHTML = ""
     const especialidades = await obtener_datos("especialidades");
@@ -93,8 +94,12 @@ async function cargar_especialidades() {
         const item = document.createElement("li");
         item.classList.add("check_esp");
         item.dataset.value = esp.nombre; 
+        let checked = ''
+        if ( checkeadas.includes(esp.id) ) {
+            checked = 'checked';
+        }
         item.innerHTML = `
-        <input class="form-check-input" type="checkbox" value="${esp.id}" name="especialidades">
+        <input class="form-check-input" type="checkbox" ${checked} value="${esp.id}" name="especialidades">
         <label class="form-check-label" for="check-${index}">${esp.nombre}</label>
         `;
         container.appendChild(item);
@@ -102,6 +107,7 @@ async function cargar_especialidades() {
             actualizar_input_especialidades()
         })
     });
+    if( checkeadas != [] ) actualizar_input_especialidades()
 }
 function actualizar_input_especialidades() {
     const especialidades = document.querySelectorAll(".check_esp input[type='checkbox']");
@@ -122,23 +128,28 @@ function actualizar_input_especialidades() {
 }
 
 /* cargo elementos de obras sociales */
-async function cargar_obras_sociales() {
+async function cargar_obras_sociales( checkeadas = [] ) {
     const container = document.getElementById("os_container");
     container.innerHTML = ""
     const obras_sociales = await obtener_datos("obras_sociales");
-    obras_sociales.data.forEach((esp, index) => {
+    obras_sociales.data.forEach((osocial, index) => {
         const item = document.createElement("li");
         item.classList.add("check_os");
-        item.dataset.value = esp.nombre; 
+        item.dataset.value = osocial.nombre; 
+        let checked = ''
+        if ( checkeadas.includes(osocial.id) ) {
+            checked = 'checked';
+        }
         item.innerHTML = `
-        <input class="form-check-input" type="checkbox" value="${esp.id}" name="obras_sociales">
-        <label class="form-check-label" for="check-${index}">${esp.nombre}</label>
+        <input class="form-check-input" type="checkbox" ${checked} value="${osocial.id}" name="obras_sociales">
+        <label class="form-check-label" for="check-${index}">${osocial.nombre}</label>
         `;
         container.appendChild(item);
         item.addEventListener('change',()=>{
             actualizar_input_obras_sociales()
         })
     });
+    if( checkeadas != [] ) actualizar_input_obras_sociales()
 }
 
 function actualizar_input_obras_sociales() {
@@ -172,3 +183,41 @@ inputFile.addEventListener('change', () => {
 
 cargar_especialidades();
 cargar_obras_sociales();
+
+async function editar_medico( index ){
+    const lista_medicos = await obtener_datos("medicos");
+    const medico = lista_medicos.data[index];
+    edicion = index;
+    abrir_form()
+
+    formulario.querySelector("input[name='id']").value = medico.id;
+    formulario.querySelector("input[name='apellido']").value = medico.apellido;
+    formulario.querySelector("input[name='nombre']").value = medico.nombre;
+    formulario.querySelector("input[name='matricula']").value = medico.matricula;
+    formulario.querySelector("input[name='valor_consulta']").value = medico.valor_consulta;
+    formulario.querySelector("input[name='especialidades']").value = medico.especialidades;
+    formulario.querySelector("input[name='osociales']").value = medico.osociales;
+    formulario.querySelector("#formFile").value = "";
+    cargar_especialidades( medico.especialidad )
+    cargar_obras_sociales( medico.obras_sociales )
+    retrato.src = medico.imagen
+
+    
+}
+
+async function borrar_medico( index ){
+    const lista_medicos = await obtener_datos("medicos");
+    const medico = lista_medicos.data[index]
+    const info_borrar = document.getElementById("borrarMedico");
+    const modal = new bootstrap.Modal(info_borrar)
+    const nombre = info_borrar.querySelector("#borrar_titulo");
+    const confirm = info_borrar.querySelector("#confirmarBorrado")
+    nombre.innerHTML = `${medico.apellido}, ${medico.nombre}`
+    modal.show()
+    confirm.addEventListener("click", ()=>{
+        lista_medicos.data.splice(index,1)
+        localStorage.setItem("medicos", JSON.stringify(lista_medicos))
+        actualizar_tabla()
+        modal.hide()
+    })
+}

@@ -1,0 +1,104 @@
+.clinica-image{
+    background-image: url("../img/cabecera.png"); 
+    background-size: cover;
+    background-position: center;
+}
+.cabecera {
+    width: 100%;
+}
+.portal-pacientes{
+  min-height: 75vh;
+}
+
+.links{
+  margin: 6em 0 9em;
+  text-transform: uppercase;
+  font-size: 22px;
+}
+
+.cabecera .texto_cabecera {
+    text-align: center;
+}
+
+.texto_cabecera h1 {
+    color: #000;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 900;
+    font-size: 72px;
+    margin-bottom: 5px;
+    line-height: 50px;
+
+}
+
+.texto_cabecera h1 span {
+    font-style: normal;
+    color: #1755a0;
+    font-size: 105px;
+    font-weight: 900;
+    position: relative;
+    top: 10px; 
+}
+
+@media (min-width: 576px) {
+  .texto_cabecera h1 {
+    font-size: 60px;
+    line-height: 50px;
+  }
+  .texto_cabecera h1 span {
+    font-size: 75px;
+  }
+
+}
+
+@media (min-width: 768px) {
+  .texto_cabecera h1 {
+    font-size: 70px;
+    line-height: 45px;
+  }
+  .texto_cabecera h1 span {
+    font-size: 110px;
+  }
+}
+
+@media (min-width: 992px) {
+  .texto_cabecera h1 {
+    font-size: 72px;
+    line-height: 45px;
+  }
+  .texto_cabecera h1 span {
+    font-size: 105px;
+  }
+}
+
+.texto_cabecera h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: auto;
+}
+
+.texto_cabecera p {
+    font-family: "Montserrat", sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.texto_cabecera span {
+    color: #c8d9e6;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.title_block{
+    background-color: #f3efeb;
+    text-align: center;
+    padding: 40px 15%;
+}
+
+.title_block h1 {
+    color:#1755a0;
+    font-size: 45px;
+
+}

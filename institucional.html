@@ -31,7 +31,7 @@
         <a href="index.html" class="navbar-brand mb-2 mb-md-0 d-flex justify-content-center align-items-center">
           <picture>
             <source media="(max-width: 768px)" srcset="assets/img/navbar/logo2.png" />
-            <img src="assets/img/navbar/logo1.png" alt="Logo Clínica i+Med" height="55" />
+            <img src="assets/img/navbar/logo2.png" alt="Logo Clínica i+Med" height="55" />
           </picture>
         </a>
         <div class="d-block d-md-none mb-2 text-center">
@@ -58,9 +58,7 @@
                 <li><a class="dropdown-item lav-link" href="profesionales.html">Profesionales</a></li>
               </ul>
             </li>
-            <li class="nav-item">
-              <a href="pacientes.html" class="nav-link px-3">Pacientes</a>
-            </li>
+
             <li class="nav-item">
               <a href="contacto.html" class="nav-link px-3">Contacto</a>
             </li>
@@ -291,30 +289,44 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
+      <script src="assets/js/comunes.js"></script>
+      <script>
+        async function inicializar_vista(){
+            await carga_inicial()
+        }
+        inicializar_vista()
+      </script>
     <div class="row">
       <div class="col-12 col-sm-6 align-self-start">
         <div class="footer-contact">
           <h3>Contáctanos</h3>
           <p><i class="fa fa-whatsapp"></i> +54 9 3444 153 125</p>
-          <p><i class="fa fa-envelope"></i>
+          <p>
+            <i class="fa fa-envelope"></i>
             <a href="mailto:contacto@clinicaimed.com">contacto@clinicaimed.com</a>
           </p>
         </div>
         <div class="footer-contact">
           <h3>Dirección</h3>
           <p>Av. Leopoldo Herrera 666, Villaguay, Entre Ríos</p>
-          <p class="footer-rights">© Todos los derechos reservados</p>
         </div>
       </div>
       <div class="col-12 col-sm-6 align-self-end">
         <div class="footer-social">
           <h3>Seguínos</h3>
           <div class="social-icons">
-            <a href="#"><img src="assets/img/facebook.png" alt="Facebook"> </a>
-            <a href="#"><img src="assets/img/instagram.png" alt="Instagram"> </a>
-            <a href="#"><img src="assets/img/x.png" alt="X"> </a>
+            <a href="#"><img src="assets/img/facebook.png" alt="Facebook" />
+            </a>
+            <a href="#"><img src="assets/img/instagram.png" alt="Instagram" />
+            </a>
+            <a href="#"><img src="assets/img/x.png" alt="X" /> </a>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center">
+        <p class="footer-rights">© Todos los derechos reservados</p>
       </div>
     </div>
     </tr>
