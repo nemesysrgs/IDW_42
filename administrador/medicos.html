@@ -11,12 +11,12 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../assets/css/global.css" />
-    <link rel="stylesheet" href="../assets/css/navbar.css" />
+    <link rel="stylesheet" href="css/style.css" />
 </head>
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg  bg-rosa">
+        <nav class="navbar navbar-expand-lg navbar-light bg-rosa">
             <div class="container-fluid">
                 <a class="navbar-brand mb-0" href="#">
                     <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
@@ -26,12 +26,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarItems">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<!--                         <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
-<!--                         <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li> -->
+                        <li class="nav-item"><a class="nav-link d-block d-md-none" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a></li>
                     </ul>
-                    <div class="dropdown">
+                    <div class="dropdown d-none d-md-block">
                         <button class="btn btn-outline-primary dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             Menú
                         </button>
@@ -44,7 +42,7 @@
         </nav>
     </header>
     <main>
-        <div class="d-flex justify-content-center align-items-center min-vh-100 my-5 d-none" id="form-container">
+        <div class="d-flex justify-content-center align-items-center min-vh-100 my-5 d-none medicos-form" id="form-container">
             <div class="card ">
                 <div class="card-body">
                     <form id="formulario_medicos">
