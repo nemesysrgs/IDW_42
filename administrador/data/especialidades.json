@@ -1,33 +1,56 @@
 {
-  "proximo":7,
+  "proximo": 51,
   "data": [
-    {
-      "id": 0,
-      "nombre": "Endocrinologia"
-    },
-    {
-      "id": 1,
-      "nombre": "Fisiologia"
-    },
-    {
-      "id": 2,
-      "nombre": "Fisioterapia"
-    },
-    {
-      "id": 3,
-      "nombre": "Kinesiologia"
-    },
-    {
-      "id": 4,
-      "nombre": "Oftalmologia"
-    },
-    {
-      "id": 5,
-      "nombre": "Proctologia"
-    },
-    {
-      "id": 6,
-      "nombre": "Urologia"
-    }
+    { "id": 0, "nombre": "Alergología" },
+    { "id": 1, "nombre": "Anestesiología" },
+    { "id": 2, "nombre": "Cardiología" },
+    { "id": 3, "nombre": "Cirugía general" },
+    { "id": 4, "nombre": "Cirugía plástica y reconstructiva" },
+    { "id": 5, "nombre": "Dermatología" },
+    { "id": 6, "nombre": "Endocrinología" },
+    { "id": 7, "nombre": "Gastroenterología" },
+    { "id": 8, "nombre": "Geriatría" },
+    { "id": 9, "nombre": "Ginecología y obstetricia" },
+    { "id": 10, "nombre": "Hematología" },
+    { "id": 11, "nombre": "Infectología" },
+    { "id": 12, "nombre": "Medicina interna" },
+    { "id": 13, "nombre": "Medicina familiar" },
+    { "id": 14, "nombre": "Medicina legal" },
+    { "id": 15, "nombre": "Medicina nuclear" },
+    { "id": 16, "nombre": "Nefrología" },
+    { "id": 17, "nombre": "Neonatología" },
+    { "id": 18, "nombre": "Neumonología" },
+    { "id": 19, "nombre": "Neurología" },
+    { "id": 20, "nombre": "Nutrición clínica" },
+    { "id": 21, "nombre": "Odontología" },
+    { "id": 22, "nombre": "Oftalmología" },
+    { "id": 23, "nombre": "Oncología" },
+    { "id": 24, "nombre": "Ortopedia y traumatología" },
+    { "id": 25, "nombre": "Otorrinolaringología" },
+    { "id": 26, "nombre": "Patología" },
+    { "id": 27, "nombre": "Pediatría" },
+    { "id": 28, "nombre": "Psiquiatría" },
+    { "id": 29, "nombre": "Radiología e imagenología" },
+    { "id": 30, "nombre": "Reumatología" },
+    { "id": 31, "nombre": "Urología" },
+    { "id": 32, "nombre": "Proctología" },
+    { "id": 33, "nombre": "Kinesiología" },
+    { "id": 34, "nombre": "Fisioterapia" },
+    { "id": 35, "nombre": "Fisiología" },
+    { "id": 36, "nombre": "Endodoncia" },
+    { "id": 37, "nombre": "Estomatología" },
+    { "id": 38, "nombre": "Inmunología clínica" },
+    { "id": 39, "nombre": "Medicina del deporte" },
+    { "id": 40, "nombre": "Medicina de urgencias" },
+    { "id": 41, "nombre": "Medicina ocupacional" },
+    { "id": 42, "nombre": "Terapia intensiva" },
+    { "id": 43, "nombre": "Toxicología" },
+    { "id": 44, "nombre": "Cirugía cardiovascular" },
+    { "id": 45, "nombre": "Cirugía torácica" },
+    { "id": 46, "nombre": "Cirugía vascular periférica" },
+    { "id": 47, "nombre": "Cirugía maxilofacial" },
+    { "id": 48, "nombre": "Cirugía pediátrica" },
+    { "id": 49, "nombre": "Cirugía oncológica" },
+    { "id": 50, "nombre": "Gastroenterología pediátrica" }
   ]
 }

@@ -12,7 +12,7 @@ function actualizar_tabla(){
         let obra_social = obras_sociales.filter( os => medico.obras_sociales.includes(os.id) )
         tr.innerHTML =  ` 
         <td class="d-none d-md-block"><img src="${medico.imagen}" width="80px" class="img-thumbnail" alt="Foto de ${medico.apellido}, ${medico.nombre}"></td>
-        <td>${medico.apellido}, ${medico.nombre}</td>
+        <td><a href='../ver_profesional.html?id=${medico.id}' target="_blank">${medico.apellido}, ${medico.nombre}</a></td>
         <td>${medico.matricula}</td>
         <td>${especialidad.map(e=>`<span class="badge bg-secondary">${e.nombre}</span>`).join(", ")}</td>
         <td>
@@ -30,7 +30,10 @@ function actualizar_tabla(){
 }
 
 async function inicializar_vista(){
-    await carga_inicial()
+    await cargar_data_archivo("data/usuarios.json", "usuarios")
+    await cargar_data_archivo("data/medicos.json", "medicos")
+    await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
+    await cargar_data_archivo("data/especialidades.json", "especialidades")
     await validar_usuario()
     actualizar_tabla()
 }

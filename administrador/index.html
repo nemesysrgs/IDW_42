@@ -10,12 +10,13 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="../assets/css/global.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg  bg-rosa">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand mb-0" href="#">
                     <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,17 +24,17 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarItems">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li>
+                       <!--  <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li> -->
                         <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
+<!--                         <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li> -->
                     </ul>
                     <div class="dropdown">
-                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             Menú
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
-                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Logout</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
