@@ -13,8 +13,7 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
-  <link rel="stylesheet" href="assets/css/cabecera.css" />
-  <link rel="stylesheet" href="assets/css/profesionales.css" />
+  <link rel="stylesheet" href="assets/css/portal_pacientes.css" />
   <link rel="stylesheet" href="assets/css/footer.css" />
 </head>
 
@@ -66,10 +65,26 @@
   </header>
 
   <main>
-    <section class="clinica-image">
-      <div class="container">
+
+    <section class="portal-pacientes py-5 p-md-5 clinica-image">
+      <div class="container text-center">
+        <h1 class="mt-5">
+          <span class="bg-rosa py-3 px-md-5 px-0 lh-lg">¿ESTÁS REGISTRADO EN PORTAL PACIENTE?</span>
+        </h1>
+        
+        <div class="links">
+          <div class="row">
+            <div class="col-12 col-md-6 mb-5 mt-md-0">
+              <a href="turnos.html" class="bg-azul text-white fw-bold p-4">No estoy registrado</a>
+            </div>
+            <div class="col-12 col-md-6 mt-5 mt-md-0">
+              <a href="login.html" class="bg-azul text-white fw-bold p-4">Estoy registrado</a>
+            </div>
+          </div>
+        </div>
+
         <div class="cabecera row">
-          <div class="texto_cabecera p-0 col align-self-center">
+          <div class="texto_cabecera p-0 col align-self-center d-none d-sm-none d-lg-block">
             <h1>i<span>+</span>Med</h1>
             <h2>Clínica Médica Integral</h2>
             <p>Tecnología e innovación al servicio de tu salud</p>
@@ -77,50 +92,7 @@
         </div>
       </div>
     </section>
-    <section class="bg-beige b-0 p-0">
-      <div class="container p-5">
-        <div class="row">
-          <div class="d-flex">
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Cuerpo médico</h2>
-                  <p class="fst-italic">Buscar por profesional o especialidad</p>
-                  </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
 
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Sacar un turno</h2>
-                  <p class="fst-italic">Sacar un turno con alguno de nuestros profesionales</p>
-                  </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Coberturas</h2>
-                  <p class="fst-italic">Consultar la vigencia de las obras sociales y prepagas adheridas</p>
-                </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </section>
 
   </main>
   <footer>
@@ -135,7 +107,6 @@
       }
       inicializar_vista()
     </script>
-
     <div class="row">
       <div class="col-12 col-sm-6 align-self-start">
         <div class="footer-contact">

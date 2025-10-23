@@ -5,3 +5,28 @@
   box-sizing: border-box;
   font-family: "Arial", Verdana, "sans-serif"; 
 }
+
+.bg-azul{
+  background-color: #1755a0 !important;
+  color: white;
+}
+
+.bg-celeste{
+  background-color: #C8D9E6 !important;
+  color: #1755a0
+}
+
+.bg-beige{
+  background-color: #F5EFEB !important;
+  color: #1755a0
+}
+
+.bg-rosa{
+  background-color: #FFE1E6 !important;
+  color: #1755a0
+}
+
+.bg-fucsia{
+  background-color: #F7C9D4 !important;
+  color: #1755a0
+}

@@ -1,4 +1,4 @@
-# IDW-2025 Grupo 42
+# Grupo 42
 # Integrantes
 Fernandez, Maria Itatí - Diseño de maqueta general, paleta de colores, cabecera.
 Paniagua, Alejo Daniel - Navegacion y armado de estructura de carpetas.

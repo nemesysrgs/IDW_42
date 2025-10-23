@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Médicos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarItems">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li>
+                        <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
+                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li>
+                    </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Menú
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
+                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="d-flex justify-content-center align-items-center min-vh-100 my-5 d-none" id="form-container">
+            <div class="card w-50">
+                <div class="card-body">
+                    <form id="formulario_medicos">
+                        <div id="error"></div>
+                        <input type="hidden" name="id">
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <div class="w-100 text-center"><img role="button" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeD0iMCIgeT0iMCIgZmlsbD0iZ3JheSIgLz4KPC9zdmc+" class="img-thumbnail" width="200px" id="retrato" alt="retrato" onclick="inputFile.click()"/></div>
+                            </div>
+                            <div class="mb-3 col-12 d-none">
+                                <input class="form-control" accept=".jpg, .jpeg, .png, image/jpeg, image/png" autocomplete="off" name="inputFile" type="file" id="formFile">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-apellido" class=" col-form-label">Apellido <span class='text-danger'>*</span></label>
+                                <input type="text" autocomplete="off" name="apellido" placeholder="Apellidos del profesional" class="form-control" id="input-apellido" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-nombre" class=" col-form-label">Nombre <span class='text-danger'>*</span></label>
+                                <input type="text" autocomplete="off" name="nombre" placeholder="Nombres del profesional" class="form-control" id="input-nombre">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="input-matricula" class=" col-form-label">Matricula <span class='text-danger'>*</span></label>
+                                <input type="number" autocomplete="off" placeholder="Ej: 12345" name="matricula" class="form-control" id="input-matricula" value="">
+                            </div>
+                            <div class="mb-3 col-12 col-md-6">
+                                <label for="input-nombre" class=" col-form-label">Valor de la consulta <span class='text-danger'>*</span></label>
+                                <input type="number" autocomplete="off" placeholder="Ej: 15000.00" name="valor_consulta" min="0.00" value="0.00" class="form-control" id="input-nombre">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-especialidad" class=" col-form-label">Especialidades <span class='text-danger'>*</span></label>
+                                <div id="input-especialidad-nombres" class="fw-bold">Sin especialidad</div>
+                                <input type="hidden" autocomplete="off" name="especialidades" id="input-especialidad">
+                            </div>
+                            <div class="mb-3 col-12">
+                            <div class="btn-group w-100">
+                                <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione su especialidad
+                                </button>
+                                <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
+                                    <input class="form-control m-2" style="width: 95%;" placeholder="Buscar especialidad" type="text" id="filtro-especialidad" >
+                                    <div id="esp_container" class="mx-2"> 
+                                    </div>                                  
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-12">
+                                <label for="input-osocial" class=" col-form-label">Obras sociales</label>
+                                <div id="input-osocial-nombres" class="fw-bold">Trabaja sin obra social</div>
+                                <input type="hidden" autocomplete="off" name="osociales" id="input-osocial">
+                            </div>
+                            <div class="mb-3 col-12">
+                            <div class="btn-group w-100">
+                                <button type="button" class="btn btn-secondary dropdown-toggle text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Seleccione su osocial
+                                </button>
+                                <ul class="dropdown-menu overflow-auto" style="width: 100%;" style="max-height: 200px;">
+                                    <input class="form-control m-2" style="width: 95%;" placeholder="Buscar obra social" type="text" id="filtro-osocial" >
+                                    <div id="os_container" class="mx-2"> 
+                                    </div>                                  
+                                </ul>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <button type="submit" class="btn btn-primary w-100">Guardar</button>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <button type="button" class="btn btn-danger w-100" onclick="reset_form()">Cancelar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="container my-3" id="table-container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                    <button class="btn btn-secondary" onclick="abrir_form()">Agregar medico</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped" id="tabla_medicos">
+                    <thead>
+                        <th class="d-none d-md-block">#</th>
+                        <th>Apellido y nombre</th>
+                        <th>Matricula</th>
+                        <th>Especialidades</th>
+                        <th>Obras Sociales</th>
+                        <th>Control</th>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal fade" id="borrarMedico" tabindex="-1" aria-labelledby="borrarMedicoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="borrarMedicoLabel">¿Borrar medico?</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        
+
+        <div class="modal-body">
+        <h2 class="fs-5">Estas a punto de borrar a <span id="borrar_titulo" class="fw-bold">Ariel</span></h2>
+        <div class="alert alert-danger">Este medico puede tener turnos asignados. </div></p>
+        <hr>
+        <h2 class="fs-5">¿Que desea hacer?</h2>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2">
+            <label class="form-check-label" for="radioDefault2">
+                Cancelar todos los turnos e informar a los pacientes
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+            <label class="form-check-label" for="radioDefault2">
+                Informar a los pacientes de que deben seleccionar otro profesional en el portal de pacientes.
+            </label>
+        </div>
+        </div>
+
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirmarBorrado">Si, borrar!</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <footer>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="../assets/js/comunes.js"></script>
+        <script>
+            async function inicializar_vista(){
+                await cargar_data_archivo("data/usuarios.json", "usuarios")
+                await cargar_data_archivo("data/medicos.json", "medicos")
+                await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
+                await cargar_data_archivo("data/especialidades.json", "especialidades")
+                await validar_usuario()
+            }
+
+            inicializar_vista()
+        </script>
+        <script src="js/medicos-tabla.js"></script>
+        <script src="js/medicos-form.js"></script>
+    </footer>
+</body>
+
+</html>

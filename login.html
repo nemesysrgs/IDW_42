@@ -5,12 +5,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Inicio | i+Med</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/global.css" />
   <link rel="stylesheet" href="assets/css/navbar.css" />
   <link rel="stylesheet" href="assets/css/cabecera.css" />
@@ -43,14 +41,8 @@
             <li class="nav-item">
               <a href="institucional.html" class="nav-link px-3">Institucional</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Servicios
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item lav-link" href="especialidades.html">Especialidades</a></li>
-                <li><a class="dropdown-item lav-link" href="profesionales.html">Profesionales</a></li>
-              </ul>
+            <li class="nav-item">
+              <a href="servicios.html" class="nav-link px-3">Servicios</a>
             </li>
 
             <li class="nav-item">
@@ -65,69 +57,35 @@
     </nav>
   </header>
 
-  <main>
-    <section class="clinica-image">
-      <div class="container">
-        <div class="cabecera row">
-          <div class="texto_cabecera p-0 col align-self-center">
-            <h1>i<span>+</span>Med</h1>
-            <h2>Clínica Médica Integral</h2>
-            <p>Tecnología e innovación al servicio de tu salud</p>
+  <main class="py-5">
+    <div class="container my-5">
+        <div class="row justify-content-center ">
+          <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+          <div class="form-container bg-white rounded-3 shadow-sm p-4 p-md-5">
+            <h1>Iniciar sesión</h1>
+            <div class="row">
+              <div class="col-12" id="div_error"></div>
+            </div>
+            <form id="inicio_sesion">
+              <div class="mb-3">
+                <label for="usuario" class="form-label">Correo</label>
+                <input type="email" required name="usuario" class="form-control" id="usuario"
+                  aria-describedby="emailHelp">
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" required name="pass" class="form-control" id="password">
+              </div>
+              <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+            </form>
           </div>
         </div>
       </div>
-    </section>
-    <section class="bg-beige b-0 p-0">
-      <div class="container p-5">
-        <div class="row">
-          <div class="d-flex">
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Cuerpo médico</h2>
-                  <p class="fst-italic">Buscar por profesional o especialidad</p>
-                  </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Sacar un turno</h2>
-                  <p class="fst-italic">Sacar un turno con alguno de nuestros profesionales</p>
-                  </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
-
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-4">
-              <div class="card mx-3 bg-celeste h-100">
-                <div class="card-body text-center">
-                  <h2 class="mb-2 fw-bold">Coberturas</h2>
-                  <p class="fst-italic">Consultar la vigencia de las obras sociales y prepagas adheridas</p>
-                </div>
-                <div class="card-footer bg-transparent">
-                  <a class="btn bg-azul w-100">Buscar</a>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </section>
-
+    </div>
   </main>
   <footer>
-    <!-- Boostrap 5 JS Bundle con Popper (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="assets/js/comunes.js"></script>
     <script>
       async function inicializar_vista(){
@@ -135,7 +93,7 @@
       }
       inicializar_vista()
     </script>
-
+    <script src="assets/js/login.js"></script>
     <div class="row">
       <div class="col-12 col-sm-6 align-self-start">
         <div class="footer-contact">

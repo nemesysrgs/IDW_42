@@ -64,3 +64,12 @@ nav.navbar {
   height: 35px;
   width: auto;
 }
+.dropdown-menu {
+  background-color: #ffe1e6;
+  font-weight: bold;
+  border: none
+}
+.dropdown-item {
+  color: #1755a0;
+  font-weight: bold;
+}
