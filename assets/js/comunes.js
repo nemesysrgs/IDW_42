@@ -5,6 +5,7 @@ export async function cargar_data_archivo( archivo, variable ){
         const data = await fetch(`${archivo}`)
         const data_archivo = await data.json() 
         localStorage.setItem(variable,JSON.stringify(data_archivo))
+        return data_archivo
     }
 }
 
@@ -33,7 +34,6 @@ export function cerrar_sesion( admin = false){
 }
 
 export async function carga_inicial(){
-    await cargar_data_archivo("administrador/data/usuarios.json", "usuarios")
     await cargar_data_archivo("administrador/data/medicos.json", "medicos")
     await cargar_data_archivo("administrador/data/obras_sociales.json", "obras_sociales")
     await cargar_data_archivo("administrador/data/especialidades.json", "especialidades")

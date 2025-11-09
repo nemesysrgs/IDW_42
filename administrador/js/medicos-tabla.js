@@ -1,3 +1,5 @@
+import { validar_usuario } from "../../assets/js/comunes.js";
+
 let medicos = [];
 let especialidades = [];
 let obrasSociales = [];
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     .getElementById("btnConfirmarEliminar")
     .addEventListener("click", confirmar_eliminar);
 
+  await validar_usuario();
   await cargar_datos_base(); // Cargar especialidades y obras sociales
   await cargar_medicos(); // Cargar médicos
 });
@@ -47,18 +50,17 @@ async function cargar_datos_base() {
 
 async function cargar_medicos() {
   try {
-    // Intentar cargar desde localStorage
     const guardados = localStorage.getItem("medicos");
     if (guardados) {
       const dataGuardada = JSON.parse(guardados);
       if (Array.isArray(dataGuardada) && dataGuardada.length > 0) {
         medicos = dataGuardada;
         mostrar_medicos();
-        return; // ⬅️ si hay datos en localStorage, no toca el JSON
+        return;
       }
     }
 
-    // Si no hay nada en localStorage, cargar desde el JSON original
+
     const resp = await fetch("data/medicos.json");
     const data = await resp.json();
     medicos = data.data || [];
@@ -76,7 +78,6 @@ function mostrar_medicos() {
   tbody.innerHTML = "";
 
   medicos.forEach((m) => {
-    // Obtener nombres de especialidades y obras sociales
     const espNombres = (m.especialidad || [])
       .map((id) => {
         const e = especialidades.find((x) => x.id === id);
@@ -91,7 +92,6 @@ function mostrar_medicos() {
       })
       .join(", ");
 
-    // Crear fila
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${m.id}</td>
@@ -247,3 +247,6 @@ function mostrar_toast(mensaje, tipo = "success") {
   document.getElementById("toastMensajeMedico").textContent = mensaje;
   toast.show();
 }
+
+window.abrir_modal_editar = abrir_modal_editar;
+window.abrir_modal_eliminar = abrir_modal_eliminar;

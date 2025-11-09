@@ -1,3 +1,5 @@
+import { validar_usuario } from "../../assets/js/comunes.js";
+
 let usuarios = [];
 let modalUsuario, modalEliminar;
 let modoEdicion = false;
@@ -231,3 +233,7 @@ function mostrar_toast(mensaje, tipo = "success") {
   const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
   toast.show();
 }
+
+
+window.abrir_modal_editar = abrir_modal_editar;
+window.abrir_modal_eliminar = abrir_modal_eliminar;

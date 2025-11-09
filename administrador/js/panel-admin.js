@@ -1,3 +1,4 @@
+import { cargar_data_archivo, validar_usuario } from "../assets/js/comunes.js";
 // ======================================
 // panel-admin.js
 // ======================================
