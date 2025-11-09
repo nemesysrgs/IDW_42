@@ -1,3 +1,5 @@
+import { carga_inicial, obtener_datos } from "./comunes.js"
+
 const prof_container = document.getElementById("profesionales_container")
 
 
@@ -27,6 +29,7 @@ async function cargar_profesionales(){
         prof_container.appendChild(article)
     })
 }
+
 async function inicializar_vista(){
     await carga_inicial()
     cargar_profesionales()

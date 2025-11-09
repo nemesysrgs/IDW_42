@@ -1,6 +1,8 @@
+import { cargar_data_archivo, obtener_datos, validar_usuario } from "../../assets/js/comunes.js";
+
 let tabla_medicos = document.querySelector("#tabla_medicos tbody")
 
-function actualizar_tabla(){
+export function actualizar_tabla(){
     tabla_medicos.innerHTML = "";
     let medicos = obtener_datos("medicos").data
     let obras_sociales = obtener_datos("obras_sociales").data
@@ -30,7 +32,6 @@ function actualizar_tabla(){
 }
 
 async function inicializar_vista(){
-    await cargar_data_archivo("data/usuarios.json", "usuarios")
     await cargar_data_archivo("data/medicos.json", "medicos")
     await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
     await cargar_data_archivo("data/especialidades.json", "especialidades")

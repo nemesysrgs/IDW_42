@@ -1,3 +1,5 @@
+import { cargar_data_archivo, obtener_datos, validar_usuario } from "../../assets/js/comunes.js"
+
 const error_container = document.querySelector("#error")
 const form_container = document.getElementById("form-container")
 const table_container = document.getElementById("table-container")
@@ -229,11 +231,10 @@ async function borrar_medico( index ){
 }
 
 async function inicializar_vista(){
-    await cargar_data_archivo("data/usuarios.json", "usuarios")
     await cargar_data_archivo("data/medicos.json", "medicos")
     await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
     await cargar_data_archivo("data/especialidades.json", "especialidades")
-    await validar_usuario()
+    //await validar_usuario()
     cargar_especialidades();
     cargar_obras_sociales();
 
