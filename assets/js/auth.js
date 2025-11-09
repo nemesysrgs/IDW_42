@@ -1,6 +1,5 @@
 export async function auth( username, password ){
     try{
-        console.log(username, password)
         const promesa = await fetch('https://dummyjson.com/user/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,7 +29,6 @@ export async function getUserData( accessToken ){
             throw new Error('Error al obtener los datos del usuario')
         }
         const response = await promesa.json()
-        if ( response.username == "michaelw" ) response.role = "superadmin"
         return response
     }catch(e){
         console.log(e)

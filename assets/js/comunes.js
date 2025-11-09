@@ -18,7 +18,7 @@ export async function validar_usuario(){
         try{
             const userData = await getUserData(user_logueado)
             console.log(userData.role)
-            if ( userData.role != "admin" && userData.role != 'superadmin') location.href = "../index.html"
+            if ( userData.role != "admin" && userData.role != 'moderator') location.href = "../index.html"
         }catch(e){
             cerrar_sesion()
         }
