@@ -1,0 +1,104 @@
+/* =========================================================
+   ESTILOS ESPECÍFICOS DEL PANEL DE ADMINISTRACIÓN
+   ========================================================= */
+
+/* ===== Título principal ===== */
+h1 {
+  color: #1755a0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ===== Cards del Dashboard ===== */
+.card {
+  border: none;
+  border-radius: 14px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+  min-height: 340px; /* 🔹 Un poco más grandes */
+  background-color: #ffffff;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* Imagen de las cards */
+.card img {
+  max-height: 140px;
+  object-fit: contain;
+  padding: 1.5rem;
+}
+
+/* Título dentro de la card */
+.card-title {
+  color: #1755a0;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Texto descriptivo dentro de la card */
+.card-text {
+  font-size: 0.95rem;
+  color: #6c757d;
+  margin-bottom: 1rem;
+}
+
+/* ===== Botón azul personalizado ===== */
+.btn-azul {
+  background-color: #1755a0;
+  color: #fff;
+  border: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+}
+
+.btn-azul:hover {
+  background-color: #0f3e78;
+  color: #fff;
+  transform: scale(1.03);
+}
+
+/* ===== Animación de aparición ===== */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+
+/* En pantallas pequeñas las cards se centran */
+@media (max-width: 575.98px) {
+  .card {
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+/* En pantallas grandes (XL) ajustamos el ancho máximo del container */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1320px;
+  }
+}
+
+/* ===== Ajuste general del main ===== */
+main.container {
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}

@@ -3,18 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel de Administración</title>
+    <title>Obras Sociales - Panel de Administración</title>
+
+    <!-- Bootstrap -->
     <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
     />
+
+    <!-- Estilos globales y específicos -->
     <link rel="stylesheet" href="../assets/css/global.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/navbar.css" />
   </head>
-  <body>
+
+  <body class="bg-light">
     <!-- ===== NAVBAR ADMIN ===== -->
     <header>
       <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
@@ -82,23 +85,21 @@
       </nav>
     </header>
 
-    </main>
-    <footer class="text-center py-4 text-muted small">
-      <!-- ===== FOOTER ===== -->
-        <p class="mb-0">© 2025 Clínica Salud - Panel Administrador</p>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script type="module" src="../assets/js/comunes.js"></script>
-        <script>
-            async function inicializar_vista(){
-                
-                await cargar_data_archivo("data/medicos.json", "medicos")
-                await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
-                await cargar_data_archivo("data/especialidades.json", "especialidades")
-                await validar_usuario()
-            }
+    <!-- ===== CONTENIDO PRINCIPAL ===== -->
+    <main class="container my-5">
+      <h1 class="mb-4 text-center fw-bold">Gestión de Obras Sociales</h1>
 
-        inicializar_vista();
-      </script>
+      <!-- Aquí irán los formularios, tablas o ABM -->
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-center py-4 text-muted small">
+      <p class="mb-0">© 2025 Clínica Salud - Panel Administrador</p>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/comunes.js"></script>
+    <script src="js/obras-sociales.js"></script>
   </body>
 </html>

@@ -1,0 +1,46 @@
+/* ===========================
+   ESTILOS PARA MÉDICOS
+   =========================== */
+
+main h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+#btn-agregar {
+  font-size: 0.95rem;
+  padding: 0.6rem 1.2rem;
+}
+
+/* Imagen en tabla */
+.table img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Centrado */
+.table td,
+.table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.table td.small {
+  max-width: 250px;
+  white-space: normal;
+  word-wrap: break-word;
+  text-align: left;
+}
+
+
+/* Modal ancho grande */
+@media (min-width: 992px) {
+  .modal-dialog.modal-lg {
+    max-width: 800px;
+  }
+}
+
+/* Margen inferior para que el footer no tape */
+main {
+  margin-bottom: 4rem;
+}

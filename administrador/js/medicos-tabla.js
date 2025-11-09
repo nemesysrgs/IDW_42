@@ -1,42 +1,249 @@
-import { cargar_data_archivo, obtener_datos, validar_usuario } from "../../assets/js/comunes.js";
+let medicos = [];
+let especialidades = [];
+let obrasSociales = [];
+let modalMedico, modalEliminar;
+let modoEdicion = false;
+let idAEliminar = null;
+let toast;
 
-let tabla_medicos = document.querySelector("#tabla_medicos tbody")
+document.addEventListener("DOMContentLoaded", async () => {
+  modalMedico = new bootstrap.Modal(document.getElementById("modalMedico"));
+  modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
 
-export function actualizar_tabla(){
-    tabla_medicos.innerHTML = "";
-    let medicos = obtener_datos("medicos").data
-    let obras_sociales = obtener_datos("obras_sociales").data
-    let especialidades = obtener_datos("especialidades").data
+  const toastEl = document.getElementById("toastMedico");
+  toast = new bootstrap.Toast(toastEl);
 
-    medicos.forEach( (medico, index) => {
-        let tr = document.createElement("tr")
-        let especialidad = especialidades.filter( esp => medico.especialidad.includes(esp.id) )
-        let obra_social = obras_sociales.filter( os => medico.obras_sociales.includes(os.id) )
-        tr.innerHTML =  ` 
-        <td class="d-none d-md-block"><img src="${medico.imagen}" width="80px" class="img-thumbnail" alt="Foto de ${medico.apellido}, ${medico.nombre}"></td>
-        <td><a href='../ver_profesional.html?id=${medico.id}' target="_blank">${medico.apellido}, ${medico.nombre}</a></td>
-        <td>${medico.matricula}</td>
-        <td>${especialidad.map(e=>`<span class="badge bg-secondary">${e.nombre}</span>`).join(", ")}</td>
-        <td>
-            ${ obra_social.slice(0,3).map(os=>`<span class="badge bg-secondary">${os.nombre}</span>`).join(", ")}
-            ${ obra_social.length - 3 > 0 ? `<span class="badge bg-secondary cursor-pointer" title="${obra_social.slice(3).map(os=>`${os.nombre}`).join(", ")}"> ... ${ (obra_social.length - 3)} más</span>` : "" }
-            
-        </td>
-        <td>
-            <button type="button" onclick="editar_medico(${index})" class="btn btn-outline-warning boton-editar" data-id="${index}"><i class="fa-solid fa-edit"></i></button>
-            <button type="button" onclick="borrar_medico(${index})" class="btn btn-outline-danger boton-borrar" data-id="${index}"><i class="fa-solid fa-trash-can"></i></button>
-        </td>
-        `
-        tabla_medicos.appendChild(tr)
-    })
+  document
+    .getElementById("btn-agregar")
+    .addEventListener("click", abrir_modal_agregar);
+  document
+    .getElementById("btnGuardar")
+    .addEventListener("click", guardar_medico);
+  document
+    .getElementById("btnConfirmarEliminar")
+    .addEventListener("click", confirmar_eliminar);
+
+  await cargar_datos_base(); // Cargar especialidades y obras sociales
+  await cargar_medicos(); // Cargar médicos
+});
+
+async function cargar_datos_base() {
+  try {
+    const [espResp, obrasResp] = await Promise.all([
+      fetch("data/especialidades.json"),
+      fetch("data/obras_sociales.json"),
+    ]);
+
+    const espData = await espResp.json();
+    const obrasData = await obrasResp.json();
+
+    especialidades = espData.data || [];
+    obrasSociales = obrasData.data || [];
+  } catch (error) {
+    console.error("Error cargando datos base:", error);
+    mostrar_toast("Error al cargar especialidades/obras sociales", "danger");
+  }
 }
 
-async function inicializar_vista(){
-    await cargar_data_archivo("data/medicos.json", "medicos")
-    await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
-    await cargar_data_archivo("data/especialidades.json", "especialidades")
-    await validar_usuario()
-    actualizar_tabla()
+async function cargar_medicos() {
+  try {
+    // Intentar cargar desde localStorage
+    const guardados = localStorage.getItem("medicos");
+    if (guardados) {
+      const dataGuardada = JSON.parse(guardados);
+      if (Array.isArray(dataGuardada) && dataGuardada.length > 0) {
+        medicos = dataGuardada;
+        mostrar_medicos();
+        return; // ⬅️ si hay datos en localStorage, no toca el JSON
+      }
+    }
+
+    // Si no hay nada en localStorage, cargar desde el JSON original
+    const resp = await fetch("data/medicos.json");
+    const data = await resp.json();
+    medicos = data.data || [];
+    localStorage.setItem("medicos", JSON.stringify(medicos));
+
+    mostrar_medicos();
+  } catch (error) {
+    console.error("Error cargando médicos:", error);
+    mostrar_toast("Error al cargar los datos.", "danger");
+  }
 }
 
-inicializar_vista()
+function mostrar_medicos() {
+  const tbody = document.querySelector("#tabla_medicos tbody");
+  tbody.innerHTML = "";
+
+  medicos.forEach((m) => {
+    // Obtener nombres de especialidades y obras sociales
+    const espNombres = (m.especialidad || [])
+      .map((id) => {
+        const e = especialidades.find((x) => x.id === id);
+        return e ? e.nombre : `ID ${id}`;
+      })
+      .join(", ");
+
+    const obrasNombres = (m.obras_sociales || [])
+      .map((id) => {
+        const o = obrasSociales.find((x) => x.id === id);
+        return o ? o.nombre : `ID ${id}`;
+      })
+      .join(", ");
+
+    // Crear fila
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${m.id}</td>
+      <td>${m.matricula}</td>
+      <td>
+        <img 
+          src="${
+            m.imagen && m.imagen.startsWith("http")
+              ? m.imagen
+              : m.imagen || "../assets/img/no-image.png"
+          }" 
+          alt="Foto de ${m.nombre}" 
+          class="rounded-circle border" 
+          width="55" 
+          height="55"
+        >
+      </td>
+      <td>${m.nombre}</td>
+      <td>${m.apellido}</td>
+      <td>${espNombres}</td>
+      <td>${obrasNombres}</td>
+      <td>$${m.valor_consulta.toLocaleString()}</td>
+      <td class="text-start small">${m.descripcion || "-"}</td>
+      <td>
+        <button 
+          class="btn btn-sm btn-primary me-1" 
+          onclick="abrir_modal_editar(${m.id})"
+        >Editar</button>
+        <button 
+          class="btn btn-sm btn-outline-danger" 
+          onclick="abrir_modal_eliminar(${m.id})"
+        >Eliminar</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function abrir_modal_agregar() {
+  modoEdicion = false;
+  document.getElementById("formMedico").reset();
+  document.getElementById("medicoId").value = "";
+  document.getElementById("modalMedicoLabel").textContent = "Agregar Médico";
+  modalMedico.show();
+}
+
+function abrir_modal_editar(id) {
+  modoEdicion = true;
+  const m = medicos.find((x) => x.id === id);
+  if (!m) return;
+
+  document.getElementById("medicoId").value = m.id;
+  document.getElementById("matricula").value = m.matricula;
+  document.getElementById("apellido").value = m.apellido;
+  document.getElementById("nombre").value = m.nombre;
+  document.getElementById("descripcion").value = m.descripcion;
+  document.getElementById("especialidad").value = Array.isArray(m.especialidad)
+    ? m.especialidad.join(", ")
+    : m.especialidad;
+  document.getElementById("obras_sociales").value = Array.isArray(
+    m.obras_sociales
+  )
+    ? m.obras_sociales.join(", ")
+    : m.obras_sociales;
+  document.getElementById("imagen").value = m.imagen;
+  document.getElementById("valor_consulta").value = m.valor_consulta;
+
+  document.getElementById("modalMedicoLabel").textContent = "Editar Médico";
+  modalMedico.show();
+}
+
+function guardar_medico() {
+  const id = parseInt(document.getElementById("medicoId").value);
+  const matricula = parseInt(document.getElementById("matricula").value);
+  const apellido = document.getElementById("apellido").value.trim();
+  const nombre = document.getElementById("nombre").value.trim();
+  const descripcion = document.getElementById("descripcion").value.trim();
+  const especialidad = document
+    .getElementById("especialidad")
+    .value.split(",")
+    .map((n) => parseInt(n.trim()))
+    .filter((n) => !isNaN(n));
+  const obras_sociales = document
+    .getElementById("obras_sociales")
+    .value.split(",")
+    .map((n) => parseInt(n.trim()))
+    .filter((n) => !isNaN(n));
+  const imagen = document.getElementById("imagen").value.trim();
+  const valor_consulta = parseFloat(
+    document.getElementById("valor_consulta").value
+  );
+
+  if (!matricula || !apellido || !nombre || isNaN(valor_consulta)) {
+    mostrar_toast("Por favor completá los campos obligatorios.", "danger");
+    return;
+  }
+
+  if (modoEdicion) {
+    const m = medicos.find((x) => x.id === id);
+    Object.assign(m, {
+      matricula,
+      apellido,
+      nombre,
+      especialidad,
+      descripcion,
+      obras_sociales,
+      imagen,
+      valor_consulta,
+    });
+    mostrar_toast("Médico actualizado correctamente.", "success");
+  } else {
+    const nuevo_id = medicos.length
+      ? Math.max(...medicos.map((m) => m.id)) + 1
+      : 1;
+    medicos.push({
+      id: nuevo_id,
+      matricula,
+      apellido,
+      nombre,
+      especialidad,
+      descripcion,
+      obras_sociales,
+      imagen,
+      valor_consulta,
+    });
+    mostrar_toast("Médico agregado correctamente.", "success");
+  }
+
+  localStorage.setItem("medicos", JSON.stringify(medicos));
+  mostrar_medicos();
+  modalMedico.hide();
+}
+
+function abrir_modal_eliminar(id) {
+  idAEliminar = id;
+  modalEliminar.show();
+}
+
+function confirmar_eliminar() {
+  medicos = medicos.filter((m) => m.id !== idAEliminar);
+  localStorage.setItem("medicos", JSON.stringify(medicos));
+  mostrar_medicos();
+  modalEliminar.hide();
+  mostrar_toast("Médico eliminado correctamente.", "danger");
+}
+
+function mostrar_toast(mensaje, tipo = "success") {
+  const toastEl = document.getElementById("toastMedico");
+  toastEl.classList.remove("text-bg-success", "text-bg-danger");
+  toastEl.classList.add(
+    tipo === "danger" ? "text-bg-danger" : "text-bg-success"
+  );
+  document.getElementById("toastMensajeMedico").textContent = mensaje;
+  toast.show();
+}
