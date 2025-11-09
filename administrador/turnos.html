@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Panel de Administración</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -10,53 +10,105 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-</head>
-<body>
+    <link rel="stylesheet" href="../assets/css/global.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/navbar.css" />
+  </head>
+  <body>
+    <!-- ===== NAVBAR ADMIN ===== -->
     <header>
-        <nav class="navbar navbar-expand-lg  bg-rosa">
-            <div class="container-fluid">
-                <a class="navbar-brand mb-0" href="#">
-                    <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems" aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarItems">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-<!--                         <li class="nav-item"><a class="nav-link" href="index.html">Admin</a></li> -->
-                        <li class="nav-item"><a class="nav-link" href="medicos.html">Medicos</a></li>
-<!--                         <li class="nav-item"><a class="nav-link" href="especialidades.html">Especialidades</a></li>
-                        <li class="nav-item"><a class="nav-link" href="turnos.html">Turnos</a></li> -->
-                    </ul>
-                    <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="menuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                            Menú
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="menuButton">
-                            <li><a class="dropdown-item" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a></li>
-                        </ul>
-                    </div>
-                </div>
+      <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="index.html">
+            <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarItems"
+            aria-controls="navbarItems"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarItems">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="medicos.html">Médicos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="usuarios.html">Usuarios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="especialidades.html"
+                  >Especialidades</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="turnos.html">Turnos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="obras-sociales.html"
+                  >Obras Sociales</a
+                >
+              </li>
+            </ul>
+
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-primary dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                Menú
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <a
+                    class="dropdown-item text-danger"
+                    href="#"
+                    onclick="cerrar_sesion(true)"
+                    >Cerrar sesión</a
+                  >
+                </li>
+              </ul>
             </div>
-        </nav>
+          </div>
+        </div>
+      </nav>
     </header>
-    <main>
 
-    </main>
-    <footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <script src="../assets/js/comunes.js"></script>
-        <script>
-            async function inicializar_vista(){
-                await cargar_data_archivo("data/usuarios.json", "usuarios")
-                await cargar_data_archivo("data/medicos.json", "medicos")
-                await cargar_data_archivo("data/obras_sociales.json", "obras_sociales")
-                await cargar_data_archivo("data/especialidades.json", "especialidades")
-                await validar_usuario()
-            }
+    <main></main>
+    <footer class="text-center py-4 text-muted small">
+      <!-- ===== FOOTER ===== -->
+      <p class="mb-0">© 2025 Clínica Salud - Panel Administrador</p>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+      ></script>
+      <script src="../assets/js/comunes.js"></script>
+      <script>
+        async function inicializar_vista() {
+          await cargar_data_archivo("data/usuarios.json", "usuarios");
+          await cargar_data_archivo("data/medicos.json", "medicos");
+          await cargar_data_archivo(
+            "data/obras_sociales.json",
+            "obras_sociales"
+          );
+          await cargar_data_archivo(
+            "data/especialidades.json",
+            "especialidades"
+          );
+          await validar_usuario();
+        }
 
-            inicializar_vista()
-        </script>
+        inicializar_vista();
+      </script>
     </footer>
-</body>
+  </body>
 </html>

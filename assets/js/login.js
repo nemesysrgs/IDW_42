@@ -13,7 +13,7 @@ if ( localStorage.getItem("usuario_logueado") ){
   let user_logueado = localStorage.getItem("usuario_logueado")
   let usuarios = obtener_usuarios().data
   const existe = usuarios.filter( usuario => usuario.email == user_logueado )
-  if ( existe[0].tipo == "admin") location.href = "administrador/medicos.html"
+  if ( existe[0].tipo == "admin") location.href = "/administrador/index.html"
   else location.href = "turnos.html"
 }
 
@@ -38,6 +38,6 @@ formulario.addEventListener("submit",function ( event ){
 
     localStorage.setItem("usuario_logueado",email)
 
-    if ( existe[0].tipo == "admin") location.href = "administrador/medicos.html"
+    if ( existe[0].tipo == "admin") location.href = "/administrador/index.html"
     else location.href = "turnos.html"
 })
