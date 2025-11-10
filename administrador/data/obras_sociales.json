@@ -1,17 +1,17 @@
 {
   "proximo":12,
   "data": [
-    { "id": 0, "nombre":"Particular" },
-    { "id": 1, "nombre":"APSOT" },
-    { "id": 2, "nombre":"Avalian" },
-    { "id": 3, "nombre":"CitySalud" },
-    { "id": 4, "nombre":"FEMEDICA" },
-    { "id": 5, "nombre":"Galeno" },
-    { "id": 6, "nombre":"Jer&aacute;rquicos" },
-    { "id": 7, "nombre":"OSAP" },
-    { "id": 8, "nombre":"OSDE" },
-    { "id": 9, "nombre":"OSPJN" },
-    { "id": 10, "nombre":"Sancor Salud" },
-    { "id": 11, "nombre":"Swiss Medical" }
+    { "id": 0, "nombre":"Particular", "descripcion":"Para pacientes in cobertura" },
+    { "id": 1, "nombre":"APSOT", "descripcion":"Obra social para los empleados del Grupo Techint y sus familiares" },
+    { "id": 2, "nombre":"Avalian", "descripcion":"Obra social para profesionales independientes, monotributistas, pequeños y medianos empresarios, y sus familias. " },
+    { "id": 3, "nombre":"CitySalud", "descripcion":"Obra social para titulares de pensiones no contributivas" },
+    { "id": 4, "nombre":"FEMEDICA", "descripcion":"Federación Médica Gremial de la Capital Federal" },
+    { "id": 5, "nombre":"Galeno", "descripcion":"Prepaga" },
+    { "id": 6, "nombre":"Jerárquicos", "descripcion":"Obra social para empleados bancarios, monotributistas, autonomos y jubilados" },
+    { "id": 7, "nombre":"OSAP", "descripcion":"Obra Social de Aceros Paraná" },
+    { "id": 8, "nombre":"OSDE", "descripcion":"Obra social trabajadores en relacion de dependencia, monotributistas, jubilados y pensionados y sus familias. " },
+    { "id": 9, "nombre":"OSPJN", "descripcion":"Obra Social del Poder Judicial de la Nación" },
+    { "id": 10, "nombre":"Sancor Salud", "descripcion":"Obra social y prepaga para empleados registrados en relación de dependencia, monotributistas y grupos familiares" },
+    { "id": 11, "nombre":"Swiss Medical", "descripcion":"Prepaga" }
   ]
 }

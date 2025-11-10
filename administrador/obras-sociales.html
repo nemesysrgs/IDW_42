@@ -1,105 +1,184 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Obras Sociales - Panel de Administración</title>
 
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin - Obras Sociales</title>
 
-    <!-- Estilos globales y específicos -->
-    <link rel="stylesheet" href="../assets/css/global.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-  </head>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <body class="bg-light">
-    <!-- ===== NAVBAR ADMIN ===== -->
-    <header>
-      <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="index.html">
-            <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
-          </a>
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+</head>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarItems"
-            aria-controls="navbarItems"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+<body>
+  <!-- ===== NAVBAR ADMIN ===== -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
+        </a>
 
-          <div class="collapse navbar-collapse" id="navbarItems">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="medicos.html">Médicos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="usuarios.html">Usuarios</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="especialidades.html"
-                  >Especialidades</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="turnos.html">Turnos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="obras-sociales.html"
-                  >Obras Sociales</a
-                >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems"
+          aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="medicos.html">Médicos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="usuarios.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="especialidades.html">Especialidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="turnos.html">Turnos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="obras-sociales.html">Obras Sociales</a>
+            </li>
+          </ul>
+
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              Menú
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item text-danger" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a>
               </li>
             </ul>
-
-            <div class="dropdown">
-              <button
-                class="btn btn-outline-primary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                Menú
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                  <a
-                    class="dropdown-item text-danger"
-                    href="#"
-                    onclick="cerrar_sesion(true)"
-                    >Cerrar sesión</a
-                  >
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <!-- ===== CONTENIDO PRINCIPAL ===== -->
-    <main class="container my-5">
-      <h1 class="mb-4 text-center fw-bold">Gestión de Obras Sociales</h1>
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="container my-4">
+    <div class="row align-items-center mb-4">
+      <div class="col-12 col-md-8">
+        <h1 class="mb-0">Gestión de Obras Sociales</h1>
+        <p class="text-muted mb-0">
+          Administrá las obras sociales del sistema
+        </p>
+      </div>
+      <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
+        <button class="btn btn-primary w-auto" id="btn-agregar">
+          Agregar Obra Social
+        </button>
+      </div>
+    </div>
 
-      <!-- Aquí irán los formularios, tablas o ABM -->
-    </main>
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered" id="tabla_obras_sociales">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
 
-    <!-- ===== FOOTER ===== -->
-    <footer class="text-center py-4 text-muted small">
-      <p class="mb-0">© 2025 Clínica Salud - Panel Administrador</p>
-    </footer>
+  <!-- ===== MODAL OBRA SOCIAL ===== -->
+  <div class="modal fade" id="modalObraSocial" tabindex="-1" aria-labelledby="modalObraSocialLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalObraSocialLabel">Editar Obra Social</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formObraSocial">
+            <input type="hidden" id="obraSocialId" />
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/comunes.js"></script>
-    <script src="js/obras-sociales.js"></script>
-  </body>
+            <div class="mb-3">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="descripcion" class="form-label">Descripción</label>
+              <textarea class="form-control" id="descripcion" rows="3"></textarea>
+            </div>
+          </form>
+
+          <div id="alertaValidacion" class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+            <div id="alertaTexto"></div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-primary" id="btnGuardar">
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL ELIMINAR ===== -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalEliminarLabel">
+            Eliminar Obra Social
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro de que desea eliminar esta obra social?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100">
+    <div id="toastNotificacion" class="toast align-items-center text-bg-success border-0" role="alert"
+      aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMensaje">Operación exitosa.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="text-center py-4 text-muted small">
+    <p class="mb-0">© 2025 Clínica Salud - Panel Administrador</p>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/obras-sociales-tabla.js"></script>
+</body>
+
 </html>
