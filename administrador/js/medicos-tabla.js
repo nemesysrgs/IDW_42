@@ -1,4 +1,8 @@
-import { validar_usuario } from "../../assets/js/comunes.js";
+import {
+  validar_usuario,
+  cargar_data_archivo,
+  obtener_datos,
+} from "../../assets/js/comunes.js";
 
 let medicos = [];
 let especialidades = [];
@@ -32,16 +36,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function cargar_datos_base() {
   try {
-    const [espResp, obrasResp] = await Promise.all([
-      fetch("data/especialidades.json"),
-      fetch("data/obras_sociales.json"),
-    ]);
+    const espData = await cargar_data_archivo(
+      "data/especialidades.json",
+      "especialidades"
+    );
+    const obrasData = await cargar_data_archivo(
+      "data/obras_sociales.json",
+      "obras_sociales"
+    );
 
-    const espData = await espResp.json();
-    const obrasData = await obrasResp.json();
-
-    especialidades = espData.data || [];
-    obrasSociales = obrasData.data || [];
+    especialidades =
+      espData?.data || obtener_datos("especialidades").data || [];
+    obrasSociales =
+      obrasData?.data || obtener_datos("obras_sociales").data || [];
   } catch (error) {
     console.error("Error cargando datos base:", error);
     mostrar_toast("Error al cargar especialidades/obras sociales", "danger");
@@ -59,7 +66,6 @@ async function cargar_medicos() {
         return;
       }
     }
-
 
     const resp = await fetch("data/medicos.json");
     const data = await resp.json();
