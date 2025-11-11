@@ -38,7 +38,6 @@ async function cargar_usuarios_dummy() {
         ...u,
         birthDate: u.birthDate ? u.birthDate.split("T")[0] : "",
       }))
-      .filter((u) => u.role === "user");
 
     mostrar_usuarios();
   } catch (error) {
@@ -52,23 +51,26 @@ function mostrar_usuarios() {
 
   usuarios.forEach((user) => {
     const tr = document.createElement("tr");
+
+    const imgSrc = user.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
     tr.innerHTML = `
       <td>${user.id}</td>
-      <td><img src="${user.image}" class="rounded" width="50" height="50"></td>
+      <td>
+        <img src="${imgSrc}" class="rounded border" width="50" height="50"
+             onerror="this.onerror=null;this.classList.remove('border');this.src='https://cdn-icons-png.flaticon.com/512/149/149071.png';">
+      </td>
       <td>${user.firstName}</td>
       <td>${user.lastName}</td>
+      <td>${user.username || "-"}</td>
       <td>${user.email}</td>
       <td>${user.phone || "-"}</td>
-      <td>${user.age || "-"}</td>
       <td>${user.gender || "-"}</td>
+      <td>${user.age || "-"}</td>
       <td>${user.birthDate || "-"}</td>
       <td class="text-center">
-        <button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${
-          user.id
-        })">Editar</button>
-        <button class="btn btn-sm btn-outline-danger btn-eliminar" onclick="abrir_modal_eliminar(${
-          user.id
-        })">Eliminar</button>
+        <button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${user.id})">Editar</button>
+        <button class="btn btn-sm btn-outline-danger btn-eliminar" onclick="abrir_modal_eliminar(${user.id})">Eliminar</button>
       </td>
     `;
     tbody.appendChild(tr);
