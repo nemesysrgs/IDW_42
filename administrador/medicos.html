@@ -186,26 +186,110 @@
                   ></textarea>
                 </div>
                 <div class="col-md-6 mb-3">
-                  <label class="form-label">Especialidad</label>
+                  <label class="form-label">Especialidades</label>
+                  <div class="accordion" id="accordionEspecialidades">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingEsp">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseEsp"
+                        >
+                          Seleccionar especialidades
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseEsp"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionEspecialidades"
+                      >
+                        <div
+                          class="accordion-body"
+                          id="contenedor-especialidades"
+                        >
+                          <!-- checkboxes dinámicos -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <small
+                    class="text-muted d-block mt-1"
+                    id="resumen-especialidades"
+                  >
+                    Ninguna seleccionada
+                  </small>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label class="form-label">Obras Sociales</label>
+                  <div class="accordion" id="accordionObras">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingObs">
+                        <button
+                          class="accordion-button collapsed"
+                          type="button"
+                          data-bs-toggle="collapse"
+                          data-bs-target="#collapseObs"
+                        >
+                          Seleccionar obras sociales
+                        </button>
+                      </h2>
+                      <div
+                        id="collapseObs"
+                        class="accordion-collapse collapse"
+                        data-bs-parent="#accordionObras"
+                      >
+                        <div class="accordion-body" id="contenedor-obras">
+                          <!-- checkboxes dinámicos -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <small class="text-muted d-block mt-1" id="resumen-obras">
+                    Ninguna seleccionada
+                  </small>
+                </div>
+                <div class="col-md-12 mb-3">
+                  <label class="form-label">Foto (URL)</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="especialidad"
-                    placeholder="ID o nombre"
+                    id="imagen"
+                    placeholder="Pega aquí una URL de imagen"
+                    oninput="mostrarPreviewImagen(this.value)"
                   />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label"
-                    >Obras Sociales (IDs separados por coma)</label
-                  >
-                  <input type="text" class="form-control" id="obras_sociales" />
-                </div>
-                <div class="col-md-12 mb-3">
-                  <label class="form-label">Foto (Base64 o URL)</label>
-                  <input type="text" class="form-control" id="imagen" />
+                  <div class="mt-2 text-center">
+                    <img
+                      id="previewImagen"
+                      src=""
+                      alt="Vista previa"
+                      style="
+                        max-width: 120px;
+                        max-height: 120px;
+                        display: none;
+                        border-radius: 8px;
+                        object-fit: cover;
+                      "
+                    />
+                  </div>
                 </div>
               </div>
             </form>
+            <!-- mensajes de alerta -->
+            <div
+              id="alertaMedico"
+              class="alert alert-warning alert-dismissible fade d-none"
+              role="alert"
+            >
+              <span id="mensajeAlertaMedico"></span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Cerrar"
+              ></button>
+            </div>
           </div>
           <div class="modal-footer">
             <button class="btn btn-secondary" data-bs-dismiss="modal">
@@ -245,6 +329,28 @@
               Eliminar
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- Toast de notificaciones -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+      <div
+        id="toastMedico"
+        class="toast align-items-center text-bg-success border-0"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="d-flex">
+          <div class="toast-body" id="toastMensajeMedico">
+            Acción realizada correctamente.
+          </div>
+          <button
+            type="button"
+            class="btn-close btn-close-white me-2 m-auto"
+            data-bs-dismiss="toast"
+            aria-label="Cerrar"
+          ></button>
         </div>
       </div>
     </div>

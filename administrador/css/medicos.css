@@ -14,7 +14,7 @@ main h1 {
 
 /* Imagen en tabla */
 .table img {
-  border-radius: 50%;
+  border-radius: 10%;
   object-fit: cover;
 }
 
@@ -32,6 +32,24 @@ main h1 {
   text-align: left;
 }
 
+#contenedor-especialidades,
+#contenedor-obras {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0.5rem;
+}
+
+#contenedor-especialidades .form-check,
+#contenedor-obras .form-check {
+  margin-bottom: 0.25rem;
+}
+
+#resumen-especialidades,
+#resumen-obras {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+}
 
 /* Modal ancho grande */
 @media (min-width: 992px) {
