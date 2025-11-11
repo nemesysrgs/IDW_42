@@ -82,10 +82,10 @@
         <div class="row justify-content-center">
           <div class="col-12 col-sm-10 col-md-8 col-lg-7">
             <div class="bg-white rounded-3 shadow-sm p-4 p-md-5">
-              <h2 class="mb-2 text-center">Reservá tu turno</h2>
-              <p class="text-muted text-center mb-4">Completá los pasos para reservar tu turno</p>
-
-              <!-- PASO 1: Tipo de atención -->
+              <div id="reserva-encabezado">
+                <h2 class="mb-2 text-center">Reservá tu turno</h2>
+                <p class="text-muted text-center mb-4">Completá los pasos para reservar tu turno</p>
+              </div>
               <div id="paso-1" class="wizard-step">
                 <h5 class="mb-3">1. Tipo de atención</h5>
                 <div class="row g-3">
@@ -111,7 +111,6 @@
                 </div>
               </div>
 
-              <!-- PASO 2: Especialidad -->
               <div id="paso-2" class="wizard-step" style="display:none;">
                 <h5 class="mb-3">2. Especialidad</h5>
                 <div class="row g-3">
@@ -128,7 +127,6 @@
                 </div>
               </div>
 
-              <!-- PASO 3: Médico -->
               <div id="paso-3" class="wizard-step" style="display:none;">
                 <h5 class="mb-3">3. Médico</h5>
                 <div class="row g-3">
@@ -148,13 +146,15 @@
                 </div>
               </div>
 
-              <!-- PASO 4: Fecha y horario -->
               <div id="paso-4" class="wizard-step" style="display:none;">
                 <h5 class="mb-3">4. Fecha y horario</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="form-text mb-2">Sugerencia: próximo turno disponible</div>
-                    <div id="proximo_turno" class="alert alert-success py-2" style="display:none;"></div>
+                    <div id="proximo_turno" class="alert alert-success py-2 d-flex justify-content-between align-items-center" style="display:none;">
+                      <span id="proximo_turno_texto"></span>
+                      <a href="#" id="aceptar_turno" class="ms-3">Aceptar turno</a>
+                    </div>
                   </div>
                   <div class="col-12 col-md-6">
                     <label for="input_fecha" class="form-label">Seleccionar fecha</label>
@@ -176,7 +176,6 @@
                 </div>
               </div>
 
-              <!-- PASO 5: Datos y resumen -->
               <div id="paso-5" class="wizard-step" style="display:none;">
                 <h5 class="mb-3">5. Datos del paciente y resumen</h5>
                 <div class="row g-3">
@@ -212,13 +211,9 @@
                     <label for="dni" class="form-label">DNI</label>
                     <input type="text" id="dni" class="form-control" />
                   </div>
-                  <div class="col-12 col-md-4">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" class="form-control" />
-                  </div>
-                  <div class="col-12 col-md-4">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" id="apellido" class="form-control" />
+                  <div class="col-12 col-md-8">
+                    <label for="nombre_apellido" class="form-label">Nombre y Apellido</label>
+                    <input type="text" id="nombre_apellido" class="form-control" />
                   </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-5">Volver</button>
@@ -226,6 +221,51 @@
                       <button class="btn btn-outline-danger" id="btn-cancelar">Cancelar</button>
                       <button class="btn btn-success" id="btn-confirmar">Confirmar reserva</button>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div id="paso-6" class="wizard-step" style="display:none;">
+                <div class="text-center mb-4">
+                  <div class="alert alert-success py-3 mb-4">
+                    <h4 class="mb-2">¡Reserva confirmada!</h4>
+                    <p class="mb-0">Recibirá confirmación por email/whatsapp.</p>
+                  </div>
+                </div>
+                <h5 class="mb-3">Detalles de su reserva</h5>
+                <div class="row g-3">
+                  <div class="col-12">
+                    <div class="bg-light rounded p-3">
+                      <div class="row">
+                        <div class="col-12 col-md-6">
+                          <p class="mb-2"><strong>Número de reserva:</strong> <span id="conf_id"></span></p>
+                          <p class="mb-2"><strong>Paciente:</strong> <span id="conf_paciente"></span></p>
+                          <p class="mb-2"><strong>DNI:</strong> <span id="conf_dni"></span></p>
+                          <p class="mb-2"><strong>Tipo de atención:</strong> <span id="conf_tipo"></span></p>
+                          <p class="mb-2"><strong>Obra social:</strong> <span id="conf_obra"></span></p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <p class="mb-2"><strong>Especialidad:</strong> <span id="conf_especialidad"></span></p>
+                          <p class="mb-2"><strong>Médico:</strong> <span id="conf_medico"></span></p>
+                          <p class="mb-2"><strong>Fecha y hora:</strong> <span id="conf_turno"></span></p>
+                        </div>
+                      </div>
+                      <hr class="my-3" />
+                      <div class="row">
+                        <div class="col-12 col-md-4">
+                          <p class="mb-2"><strong>Costo de atención:</strong> $<span id="conf_costo">0</span></p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                          <p class="mb-2"><strong>Desc. (%):</strong> <span id="conf_descuento">0</span>%</p>
+                        </div>
+                        <div class="col-12 col-md-4">
+                          <p class="mb-2"><strong>Total a pagar:</strong> $<span id="conf_total">0</span></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center mt-4">
+                    <button class="btn btn-primary" id="btn-nueva-reserva">Reservar otro turno</button>
                   </div>
                 </div>
               </div>
@@ -238,7 +278,6 @@
 
   </main>
   <footer>
-    <!-- Boostrap 5 JS Bundle con Popper (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>

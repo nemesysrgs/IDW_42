@@ -117,12 +117,12 @@ function mostrar_turnos() {
   }
 
   turnos.forEach((turno) => {
-    const medico = medicos.find((m) => m.id === turno.medico_id);
+    const medico = medicos.find((m) => m.id === Number(turno.id_medico));
     const nombreMedico = medico 
       ? `${medico.nombre} ${medico.apellido}` 
       : "Médico no encontrado";
 
-    const fechaHora = new Date(turno.fecha_hora);
+    const fechaHora = new Date(turno.fecha);
     const fechaFormateada = fechaHora.toLocaleDateString("es-AR", {
       year: "numeric",
       month: "2-digit",
@@ -143,12 +143,12 @@ function mostrar_turnos() {
       <td>${fechaFormateada} ${horaFormateada}</td>
       <td><span class="${badgeClass}">${disponible}</span></td>
       <td class="text-center">
-        <button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${
+        ${ (new Date(turno.fecha) >= new Date()) ? `<button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${
           turno.id
         })">Editar</button>
         <button class="btn btn-sm btn-outline-danger btn-eliminar" onclick="abrir_modal_eliminar(${
           turno.id
-        })">Eliminar</button>
+        })">Eliminar</button>` : ''}
       </td>
     `;
     tbody.appendChild(tr);
@@ -222,9 +222,9 @@ function abrir_modal_editar(id) {
   cargar_select_medicos();
 
   document.getElementById("turnoId").value = turno.id;
-  document.getElementById("medico").value = turno.medico_id;
+  document.getElementById("medico").value = turno.id_medico;
 
-  const fechaHora = new Date(turno.fecha_hora);
+  const fechaHora = new Date(turno.fecha);
   const fechaLocal = new Date(fechaHora.getTime() - fechaHora.getTimezoneOffset() * 60000);
   document.getElementById("fechaHora").value = fechaLocal.toISOString().slice(0, 16);
   
@@ -280,7 +280,7 @@ function guardar_turno() {
     const turno = turnos.find((t) => t.id === id);
     if (turno) {
       Object.assign(turno, {
-        medico_id: medicoId,
+        id_medico: medicoId,
         fecha_hora: fechaHora,
         disponible: disponible,
       });
@@ -301,7 +301,7 @@ function guardar_turno() {
 
     turnos.push({
       id: proximoId,
-      medico_id: medicoId,
+      id_medico: medicoId,
       fecha_hora: fechaHora,
       disponible: disponible,
     });
