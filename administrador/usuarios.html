@@ -76,8 +76,9 @@
                     class="dropdown-item text-danger"
                     href="#"
                     onclick="cerrar_sesion(true)"
-                    >Cerrar sesión</a
                   >
+                    Cerrar sesión
+                  </a>
                 </li>
               </ul>
             </div>
@@ -90,15 +91,10 @@
     <main class="container my-4">
       <div class="row align-items-center mb-4">
         <div class="col-12 col-md-8">
-          <h1 class="mb-0">Gestión de Usuarios</h1>
+          <h1 class="mb-0">Usuarios del Sistema</h1>
           <p class="text-muted mb-0">
-            Administrá los usuarios registrados en el sistema
+            Visualizá los usuarios obtenidos desde DummyJSON
           </p>
-        </div>
-        <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
-          <button class="btn btn-primary w-auto" id="btn-agregar">
-            Agregar Usuario
-          </button>
         </div>
       </div>
 
@@ -116,197 +112,12 @@
               <th>Género</th>
               <th>Edad</th>
               <th>Fecha de Nacimiento</th>
-              <th>Acciones</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
       </div>
     </main>
-
-    <!-- ===== MODAL USUARIO ===== -->
-    <div
-      class="modal fade"
-      id="modalUsuario"
-      tabindex="-1"
-      aria-labelledby="modalUsuarioLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalUsuarioLabel">Editar Usuario</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="formUsuario">
-              <input type="hidden" id="userId" />
-
-              <div class="mb-3">
-                <label for="image" class="form-label"
-                  >URL Imagen (Opcional)</label
-                >
-                <input type="text" class="form-control" id="image" />
-              </div>
-
-              <div class="mb-3">
-                <label for="firstName" class="form-label">Nombre</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="firstName"
-                  required
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="lastName" class="form-label">Apellido</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="lastName"
-                  required
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" required />
-              </div>
-
-              <div class="mb-3">
-                <label for="phone" class="form-label">Teléfono</label>
-                <input
-                  type="tel"
-                  class="form-control"
-                  id="phone"
-                  placeholder="+XX X XX XXXX-XXXX"
-                  pattern="[0-9+\-()\s]*"
-                />
-              </div>
-
-              <div class="mb-3">
-                <label for="age" class="form-label">Edad</label>
-                <input type="number" class="form-control" id="age" min="0" />
-              </div>
-
-              <div class="mb-3">
-                <label for="gender" class="form-label">Género</label>
-                <select class="form-select" id="gender">
-                  <option value="">Seleccione</option>
-                  <option value="male">Masculino</option>
-                  <option value="female">Femenino</option>
-                  <option value="other">Otro</option>
-                </select>
-              </div>
-
-              <div class="mb-3">
-                <label for="birthDate" class="form-label"
-                  >Fecha de nacimiento</label
-                >
-                <input type="date" class="form-control" id="birthDate" />
-              </div>
-            </form>
-
-            <div
-              id="alertaValidacion"
-              class="alert alert-warning alert-dismissible fade show d-none"
-              role="alert"
-            >
-              <div id="alertaTexto"></div>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Cerrar"
-              ></button>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button type="button" class="btn btn-primary" id="btnGuardar">
-              Guardar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== MODAL ELIMINAR ===== -->
-    <div
-      class="modal fade"
-      id="modalEliminar"
-      tabindex="-1"
-      aria-labelledby="modalEliminarLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="modalEliminarLabel">
-              Eliminar Usuario
-            </h5>
-            <button
-              type="button"
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            ¿Está seguro de que desea eliminar este usuario?
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
-            >
-              Cancelar
-            </button>
-            <button
-              type="button"
-              class="btn btn-danger"
-              id="btnConfirmarEliminar"
-            >
-              Eliminar
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== TOAST ===== -->
-    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1100">
-      <div
-        id="toastNotificacion"
-        class="toast align-items-center text-bg-success border-0"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="d-flex">
-          <div class="toast-body" id="toastMensaje">Operación exitosa.</div>
-          <button
-            type="button"
-            class="btn-close btn-close-white me-2 m-auto"
-            data-bs-dismiss="toast"
-            aria-label="Close"
-          ></button>
-        </div>
-      </div>
-    </div>
 
     <!-- ===== FOOTER ===== -->
     <footer class="text-center py-4 text-muted small">

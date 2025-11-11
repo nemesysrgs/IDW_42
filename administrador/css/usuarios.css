@@ -1,8 +1,4 @@
-/* ======================================
-   ESTILOS RESPONSIVE - USUARIOS
-   ====================================== */
 
-/* ======== Ajustes generales ======== */
 main h1 {
   font-size: 1.6rem;
   font-weight: 600;
@@ -14,28 +10,6 @@ main h1 {
   }
 }
 
-/* ======== Botón principal ======== */
-#btn-agregar {
-  font-size: 0.95rem;
-  padding: 0.6rem 1.2rem;
-}
-
-/* ======== Centrar botón en móvil ======== */
-@media (max-width: 767.98px) {
-  #btn-agregar {
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-/* ======== Modal ancho en pantallas grandes ======== */
-@media (min-width: 992px) {
-  .modal-dialog {
-    max-width: 600px;
-  }
-}
-
-/* ======== Tabla ======== */
 .table td,
 .table th {
   vertical-align: middle;
@@ -52,18 +26,6 @@ main h1 {
   font-weight: 600;
 }
 
-/* ======== Margen inferior ======== */
 main {
   margin-bottom: 4rem;
-}
-
-/* ======================================
-   TOASTS PERSONALIZADOS
-   ====================================== */
-#toastNotificacion.text-bg-success {
-  background-color: #198754 !important;
-}
-
-#toastNotificacion.text-bg-danger {
-  background-color: #dc3545 !important;
 }
