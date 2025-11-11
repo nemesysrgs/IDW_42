@@ -1,0 +1,33 @@
+[
+  {
+    "id": 1,
+    "id_turno": 1,
+    "id_medico": 1,
+    "fecha": "2025-11-14T08:00:00",
+    "tipo_atencion": "particular",
+    "obra_social_id": null,
+    "especialidad_id": 12,
+    "dni": "12345678",
+    "nombre_apellido": "Juan Pérez",
+    "costo": 18000,
+    "descuento_porcentaje": 0,
+    "total": 18000,
+    "creado_en": "2025-01-15T10:30:00"
+  },
+  {
+    "id": 2,
+    "id_turno": 35,
+    "id_medico": 2,
+    "fecha": "2025-11-12T08:00:00",
+    "tipo_atencion": "obra_social",
+    "obra_social_id": 1,
+    "especialidad_id": 2,
+    "dni": "23456789",
+    "nombre_apellido": "María González",
+    "costo": 25000,
+    "descuento_porcentaje": 20,
+    "total": 20000,
+    "creado_en": "2025-01-16T14:20:00"
+  }
+]
+
