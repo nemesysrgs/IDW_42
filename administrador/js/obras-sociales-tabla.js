@@ -63,6 +63,7 @@ function mostrar_obras_sociales() {
     tr.innerHTML = `
       <td>${obraSocial.id}</td>
       <td>${obraSocial.nombre || "-"}</td>
+      <td>${obraSocial.porcentaje !== undefined ? obraSocial.porcentaje + "%" : "-"}</td>
       <td>${truncar_descripcion(obraSocial.descripcion)}</td>
       <td class="text-center">
         <button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${
@@ -82,7 +83,10 @@ function abrir_modal_agregar() {
   document.getElementById("formObraSocial").reset();
   document.getElementById("obraSocialId").value = "";
   document.getElementById("modalObraSocialLabel").textContent = "Agregar Obra Social";
-  document.getElementById("alertaValidacion").classList.add("d-none");
+  const alerta = document.getElementById("alertaValidacion");
+  if (alerta) {
+    alerta.classList.add("d-none");
+  }
   modalObraSocial.show();
 }
 
@@ -93,32 +97,57 @@ function abrir_modal_editar(id) {
 
   document.getElementById("obraSocialId").value = obraSocial.id;
   document.getElementById("nombre").value = obraSocial.nombre || "";
+  document.getElementById("porcentaje").value = obraSocial.porcentaje !== undefined ? obraSocial.porcentaje : "";
   document.getElementById("descripcion").value = obraSocial.descripcion || "";
 
   document.getElementById("modalObraSocialLabel").textContent = "Editar Obra Social";
-  document.getElementById("alertaValidacion").classList.add("d-none");
+  const alerta = document.getElementById("alertaValidacion");
+  if (alerta) {
+    alerta.classList.add("d-none");
+  }
   modalObraSocial.show();
 }
 
 function guardar_obra_social() {
   const id = parseInt(document.getElementById("obraSocialId").value);
   const nombre = document.getElementById("nombre").value.trim();
+  const porcentajeStr = document.getElementById("porcentaje").value.trim();
   const descripcion = document.getElementById("descripcion").value.trim();
 
   const alerta = document.getElementById("alertaValidacion");
   const alertaTexto = document.getElementById("alertaTexto");
 
-  alerta.classList.add("d-none");
-  alertaTexto.innerHTML = "";
+  if (alerta) {
+    alerta.classList.add("d-none");
+  }
+  if (alertaTexto) {
+    alertaTexto.innerHTML = "";
+  }
 
   let errores = [];
   if (!nombre) errores.push("El nombre es obligatorio.");
+  
+  if (!porcentajeStr) {
+    errores.push("El porcentaje es obligatorio.");
+  } else {
+    const porcentaje = parseFloat(porcentajeStr);
+    if (isNaN(porcentaje) || porcentaje < 0 || porcentaje > 100) {
+      errores.push("El porcentaje debe ser un número entre 0 y 100.");
+    }
+  }
+  
   if (errores.length > 0) {
-    alertaTexto.innerHTML =
-      "<strong>Revisa los campos:</strong><br>• " + errores.join("<br>• ");
-    alerta.classList.remove("d-none");
+    if (alertaTexto) {
+      alertaTexto.innerHTML =
+        "<strong>Revisa los campos:</strong><br>• " + errores.join("<br>• ");
+    }
+    if (alerta) {
+      alerta.classList.remove("d-none");
+    }
     return;
   }
+
+  const porcentaje = parseFloat(porcentajeStr);
   let datosCompletos = obtener_datos("obras_sociales");
 
   if (!datosCompletos || !datosCompletos.proximo) {
@@ -132,6 +161,7 @@ function guardar_obra_social() {
     const obraSocial = obrasSociales.find((o) => o.id === id);
     if (obraSocial) {
       obraSocial.nombre = nombre;
+      obraSocial.porcentaje = porcentaje;
       obraSocial.descripcion = descripcion;
     }
   } else {
@@ -140,6 +170,7 @@ function guardar_obra_social() {
     obrasSociales.push({
       id: proximoId,
       nombre: nombre,
+      porcentaje: porcentaje,
       descripcion: descripcion,
     });
 

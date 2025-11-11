@@ -85,6 +85,7 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th>Porcentaje</th>
             <th>Descripción</th>
             <th>Acciones</th>
           </tr>
@@ -109,6 +110,11 @@
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input type="text" class="form-control" id="nombre" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="porcentaje" class="form-label">Porcentaje de Descuento (%)</label>
+              <input type="number" class="form-control" id="porcentaje" min="0" max="100" step="0.01" required />
             </div>
 
             <div class="mb-3">
