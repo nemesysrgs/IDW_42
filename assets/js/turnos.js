@@ -446,13 +446,40 @@ async function inicializar_turnos() {
       location.reload();
     }
   });
+
+
+  const dniInput = document.getElementById("dni");
+  const nombreInput = document.getElementById("nombre_apellido");
+  const btnConfirmar = document.getElementById("btn-confirmar");
+  btnConfirmar.disabled = true;
+  // aca se van a eliminar los caracteres que no sean numeros del dni
+  dniInput.addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+    validarCampos();
+  });
+  // aca valido nuevamente por que hay veces que la validacion anterior falla
+  nombreInput.addEventListener("input", validarCampos);
+
+  // con esta funcion me asegiro que el dni tenga maximo 8 digitos y el nombre tenga algo escrito
+  function validarCampos() {
+    const dniValido = /^\d{8}$/.test(dniInput.value); 
+    const nombreValido = nombreInput.value.trim().length > 0;
+    btnConfirmar.disabled = !(dniValido && nombreValido);
+  }
+
   document.getElementById('btn-confirmar').addEventListener('click', () => {
-    const dni = document.getElementById('dni').value.trim();
-    const nombreApellido = document.getElementById('nombre_apellido').value.trim();
-    if (!dni || !nombreApellido) {
-      alert('Complete DNI y Nombre y Apellido.');
+    const dni = dniInput.value.trim()
+    const nombreApellido = nombreInput.value.trim()
+
+    if (!/^\d{8}$/.test(dni)) {
+      alert('El DNI debe tener exactamente 8 números.');
       return;
     }
+    if (!nombreApellido) {
+      alert('Complete el campo Nombre y Apellido.');
+      return;
+    }
+
     const total = Math.max(0, Math.round((estado.costo - (estado.costo * estado.descuentoPorcentaje / 100))));
     const reservasRaw = localStorage.getItem('reservas');
     const reservas = reservasRaw ? JSON.parse(reservasRaw) : [];
@@ -507,11 +534,9 @@ async function inicializar_turnos() {
     confTotal.textContent = total.toLocaleString('es-AR');
     encabezado.classList.add("d-none")
     mostrar_paso(paso6);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
   
   document.getElementById('btn-nueva-reserva').addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
     location.reload();
   });
 }

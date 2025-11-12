@@ -91,11 +91,11 @@
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="tipo_atencion" id="tipo_particular" value="particular" checked>
+                      <input class="form-check-input" autocomplete="off" checked type="radio" name="tipo_atencion" id="tipo_particular" value="particular" checked>
                       <label class="form-check-label" for="tipo_particular">Particular</label>
                     </div>
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" name="tipo_atencion" id="tipo_obra" value="obra_social">
+                      <input class="form-check-input" autocomplete="off" type="radio" name="tipo_atencion" id="tipo_obra" value="obra_social">
                       <label class="form-check-label" for="tipo_obra">Obra social</label>
                     </div>
                   </div>
@@ -158,7 +158,7 @@
                   </div>
                   <div class="col-12 col-md-6">
                     <label for="input_fecha" class="form-label">Seleccionar fecha</label>
-                    <input type="date" id="input_fecha" class="form-control" />
+                    <input type="date" autocomplete="off" id="input_fecha" class="form-control" />
                   </div>
                   <div class="col-12 col-md-6">
                     <label for="select_hora" class="form-label">Horarios disponibles</label>
@@ -194,14 +194,14 @@
                       </div>
                       <hr class="my-3" />
                       <div class="row">
-                        <div class="col-12 col-md-4">
+                        <div class="col-12">
                           <p class="mb-1"><strong>Costo de atención:</strong> $<span id="res_costo">0</span></p>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12">
                           <p class="mb-1"><strong>Desc. (%):</strong> <span id="res_descuento">0</span>%</p>
                         </div>
-                        <div class="col-12 col-md-4">
-                          <p class="mb-1"><strong>Total a pagar:</strong> $<span id="res_total">0</span></p>
+                        <div class="col-12">
+                          <p class="mb-1"><h5><strong>Total a pagar:</strong> $<span id="res_total">0</span></h5></p>
                         </div>
                       </div>
                     </div>
@@ -209,11 +209,11 @@
 
                   <div class="col-12 col-md-4">
                     <label for="dni" class="form-label">DNI</label>
-                    <input type="text" id="dni" class="form-control" />
+                    <input type="text" maxlength="8" autocomplete="off" id="dni" class="form-control" />
                   </div>
                   <div class="col-12 col-md-8">
                     <label for="nombre_apellido" class="form-label">Nombre y Apellido</label>
-                    <input type="text" id="nombre_apellido" class="form-control" />
+                    <input type="text" autocomplete="off" id="nombre_apellido" class="form-control" />
                   </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-5">Volver</button>
@@ -252,14 +252,14 @@
                       </div>
                       <hr class="my-3" />
                       <div class="row">
-                        <div class="col-12 col-md-4">
+                        <div class="col-12">
                           <p class="mb-2"><strong>Costo de atención:</strong> $<span id="conf_costo">0</span></p>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12">
                           <p class="mb-2"><strong>Desc. (%):</strong> <span id="conf_descuento">0</span>%</p>
                         </div>
-                        <div class="col-12 col-md-4">
-                          <p class="mb-2"><strong>Total a pagar:</strong> $<span id="conf_total">0</span></p>
+                        <div class="col-12">
+                          <p class="mb-2"><h5><strong>Total a pagar:</strong> $<span id="conf_total">0</span></h5></p>
                         </div>
                       </div>
                     </div>
