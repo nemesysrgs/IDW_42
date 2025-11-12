@@ -5,25 +5,32 @@ let medicos = [];
 let especialidades = [];
 let obrasSociales = [];
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   validar_usuario();
-  cargar_datos_base();
+  await cargar_datos_base();
   cargar_reservas();
 });
 
 async function cargar_datos_base() {
   try {
-    await cargar_data_archivo("administrador/data/medicos.json", "medicos");
-    const medicosData = obtener_datos("medicos");
-    medicos = Array.isArray(medicosData) ? medicosData : (medicosData?.data || []);
+    await cargar_data_archivo("./data/turnos.json", "turnos");
+    await cargar_data_archivo("./data/medicos.json", "medicos");
+    await cargar_data_archivo("./data/especialidades.json", "especialidades");
+    await cargar_data_archivo("./data/obras_sociales.json", "obras_sociales");
+    await cargar_data_archivo("./data/reservas.json", "reservas");
 
-    await cargar_data_archivo("administrador/data/especialidades.json", "especialidades");
-    const especialidadesData = obtener_datos("especialidades");
-    especialidades = Array.isArray(especialidadesData) ? especialidadesData : (especialidadesData?.data || []);
+    medicos = obtener_datos("medicos");
+    //console.log("medicos", medicos)
 
-    await cargar_data_archivo("administrador/data/obras_sociales.json", "obras_sociales");
-    const obrasData = obtener_datos("obras_sociales");
-    obrasSociales = Array.isArray(obrasData) ? obrasData : (obrasData?.data || []);
+    especialidades = obtener_datos("especialidades").data;
+    //console.log("medicos", medicos)
+
+    obrasSociales = obtener_datos("obras_sociales").data;
+    //console.log("medicos", medicos)
+
+    reservas = obtener_datos("reservas");
+    //console.log("medicos", medicos)
+
   } catch (error) {
     console.error("Error cargando datos base:", error);
     mostrar_toast("Error al cargar los datos base.", "danger");
@@ -32,31 +39,10 @@ async function cargar_datos_base() {
 
 async function cargar_reservas() {
   try {
-    const guardados = localStorage.getItem("reservas");
-    
-    if (guardados) {
-      const dataGuardada = JSON.parse(guardados);
-      if (Array.isArray(dataGuardada) && dataGuardada.length > 0) {
-        reservas = dataGuardada;
-        mostrar_reservas();
-        return;
-      }
-    }
 
-    try {
-      await cargar_data_archivo("administrador/data/reservas.json", "reservas");
-      const reservasData = obtener_datos("reservas");
-      if (Array.isArray(reservasData) && reservasData.length > 0) {
-        reservas = reservasData;
-        mostrar_reservas();
-        return;
-      } else if (reservasData?.data && Array.isArray(reservasData.data) && reservasData.data.length > 0) {
-        reservas = reservasData.data;
-        mostrar_reservas();
-        return;
-      }
-    } catch (error) {
-      console.log("No se encontró archivo reservas.json o está vacío");
+    if ( reservas.length > 0) {
+      mostrar_reservas();
+      return;
     }
 
     reservas = [];
@@ -106,7 +92,8 @@ function formatear_fecha(iso) {
 
 function obtener_nombre_medico(idMedico) {
   if (!idMedico) return "-";
-  const medico = medicos.find((m) => m.id === Number(idMedico));
+  const medico = medicos.find((m) => m.id == idMedico);
+  console.log(medicos, idMedico);
   return medico ? `${medico.apellido}, ${medico.nombre}` : `ID: ${idMedico}`;
 }
 
@@ -148,9 +135,9 @@ function mostrar_reservas() {
     const fechaCreacion = formatear_fecha(reserva.creado_en);
     
     tr.innerHTML = `
-      <td>${reserva.id || "-"}</td>
-      <td>${reserva.nombre_apellido || "-"}</td>
-      <td>${reserva.dni || "-"}</td>
+      <td>${reserva.id }</td>
+      <td>${reserva.nombre_apellido}</td>
+      <td>${reserva.dni}</td>
       <td>${nombreMedico}</td>
       <td>${nombreEspecialidad}</td>
       <td>${nombreObraSocial}</td>
