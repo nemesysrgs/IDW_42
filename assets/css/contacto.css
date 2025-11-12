@@ -16,6 +16,7 @@
   background-color: var(--bg-section);
   padding: 48px 0;
   display: block;
+  min-height: 60vh !important;
   font-family: "Montserrat", Arial, sans-serif;
 }
 

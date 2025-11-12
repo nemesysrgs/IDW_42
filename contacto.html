@@ -28,6 +28,7 @@
           </picture>
         </a>
         <div class="d-block d-md-none mb-2 text-center">
+          <a href="login.html" class="btn btn-outline-secondary"><img src="assets/img/icons/iniciar-sesion.png" width="16" height="16"></a>
           <a href="turnos.html" class="btn btn-portal">TURNOS</a>
         </div>
         <button class="navbar-toggler mb-2 mb-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -62,7 +63,7 @@
   </header>
 
   <main>
-    <section id="contacto" class="py-5">
+    <section id="contacto" class="py-5 h-100vh">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-12 col-sm-10 col-md-8 col-lg-6">
@@ -72,7 +73,13 @@
                 Por favor, complete el siguiente formulario y nos pondremos en
                 contacto con usted a la brevedad.
               </p>
-
+              <div class="row g-3">
+                <div class="col-12">
+                  <div id="successAlert" class="alert alert-success d-none" role="alert">
+                    <p>¡Gracias por contactarnos! Nos pondremos en contacto con usted a la brevedad.</p>
+                  </div>
+                </div>
+              </div>
               <form id="contact-form" action="#" method="post" novalidate>
                 <div class="row g-3">
                   <div class="col-12 col-md-6">
@@ -96,7 +103,7 @@
                   </div>
 
                   <div class="col-12">
-                    <button type="button" class="btn btn-primary w-100">
+                    <button type="submit" class="btn btn-primary w-100">
                       Enviar Mensaje
                     </button>
                   </div>
@@ -118,6 +125,22 @@
       async function inicializar_vista(){
           await carga_inicial()
       }
+
+      document.getElementById('contact-form').addEventListener('submit', function (e) {
+          console.log('submit');
+          e.preventDefault();
+          const form = e.target;
+          if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            return;
+          }
+
+          document.getElementById('successAlert').classList.remove('d-none');
+          form.classList.add('d-none');
+          form.reset();
+          form.classList.remove('was-validated');
+      });
+
       inicializar_vista()
     </script>
     <div class="row">
