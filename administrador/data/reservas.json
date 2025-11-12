@@ -17,7 +17,7 @@
   {
     "id": 2,
     "id_turno": 35,
-    "id_medico": 2,
+    "id_medico": 1,
     "fecha": "2025-11-12T08:00:00",
     "tipo_atencion": "obra_social",
     "obra_social_id": 1,

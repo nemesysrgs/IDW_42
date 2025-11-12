@@ -19,7 +19,7 @@ async function cargar_datos_base() {
     await cargar_data_archivo("./data/obras_sociales.json", "obras_sociales");
     await cargar_data_archivo("./data/reservas.json", "reservas");
 
-    medicos = obtener_datos("medicos");
+    medicos = obtener_datos("medicos").data;
     //console.log("medicos", medicos)
 
     especialidades = obtener_datos("especialidades").data;

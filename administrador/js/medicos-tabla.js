@@ -127,7 +127,7 @@ function mostrar_medicos() {
       <td>${espNombres}</td>
       <td>${obrasNombres}</td>
       <td>$${m.valor_consulta.toLocaleString()}</td>
-      <td class="text-start small">${m.descripcion || "-"}</td>
+      <td class="text-start small">${m.descripcion.slice(0, 20)+"..." || "-"}</td>
       <td>
         <button class="btn btn-sm btn-primary me-1" onclick="abrir_modal_editar(${
           m.id

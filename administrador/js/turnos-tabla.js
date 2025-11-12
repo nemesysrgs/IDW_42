@@ -1,4 +1,4 @@
-import { validar_usuario } from "../../assets/js/comunes.js";
+import { cargar_data_archivo, obtener_datos, validar_usuario } from "../../assets/js/comunes.js";
 
 let turnos = [];
 let medicos = [];
@@ -6,7 +6,7 @@ let modalTurno, modalEliminar;
 let modoEdicion = false;
 let idAEliminar = null;
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async() => {
   modalTurno = new bootstrap.Modal(document.getElementById("modalTurno"));
   modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
 
@@ -25,83 +25,23 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("change", validar_horario_tiempo_real);
 
   validar_usuario();
-  cargar_medicos();
+
+  const medicosData = await cargar_data_archivo("data/medicos.json", "medicos");
+    medicos = obtener_datos("medicos").data || medicosData.data || [];
+  turnos = obtener_datos("turnos").data || dataGuardada.data;
   cargar_turnos();
 });
 
-async function cargar_medicos() {
-  try {
-    const guardados = localStorage.getItem("medicos");
-    if (guardados) {
-      const dataGuardada = JSON.parse(guardados);
-      if (Array.isArray(dataGuardada) && dataGuardada.length > 0) {
-        medicos = dataGuardada;
-        return;
-      }
-    }
-
-    const resp = await fetch("data/medicos.json");
-    const data = await resp.json();
-    medicos = data.data || [];
-    localStorage.setItem("medicos", JSON.stringify(medicos));
-  } catch (error) {
-    console.error("Error cargando médicos:", error);
-  }
-}
 
 function cargar_turnos() {
   try {
-    const guardados = localStorage.getItem("turnos");
-    if (guardados) {
-      const dataGuardada = JSON.parse(guardados);
-      if (dataGuardada && dataGuardada.data && Array.isArray(dataGuardada.data)) {
-        turnos = dataGuardada.data;
-        mostrar_turnos();
-        return;
-      }
-    }
-
-    const estructuraInicial = {
-      proximo: 1,
-      data: []
-    };
-    localStorage.setItem("turnos", JSON.stringify(estructuraInicial));
-    turnos = [];
-    mostrar_turnos();
+      mostrar_turnos();
   } catch (error) {
     console.error("Error cargando turnos:", error);
     mostrar_toast("Error al cargar los turnos.", "danger");
   }
 }
 
-function guardar_turnos() {
-  try {
-    const guardados = localStorage.getItem("turnos");
-    let estructura = {
-      proximo: 1,
-      data: []
-    };
-
-    if (guardados) {
-      const dataGuardada = JSON.parse(guardados);
-      if (dataGuardada && dataGuardada.proximo !== undefined) {
-        estructura.proximo = dataGuardada.proximo;
-      }
-    }
-
-    estructura.data = turnos;
-    
-    if (turnos.length > 0) {
-      const maxId = Math.max(...turnos.map(t => t.id));
-      estructura.proximo = maxId + 1;
-    }
-
-    localStorage.setItem("turnos", JSON.stringify(estructura));
-  } catch (error) {
-    console.error("Error guardando turnos:", error);
-    mostrar_toast("Error al guardar los turnos.", "danger");
-  }
-}
 
 function mostrar_turnos() {
   const tbody = document.querySelector("#tabla_turnos tbody");
@@ -240,6 +180,7 @@ function abrir_modal_editar(id) {
 }
 
 function guardar_turno() {
+  const _turnos = obtener_datos("turnos"); 
   const id = parseInt(document.getElementById("turnoId").value);
   const medicoId = parseInt(document.getElementById("medico").value);
   const fechaHora = document.getElementById("fechaHora").value;
@@ -298,7 +239,7 @@ function guardar_turno() {
     } else if (turnos.length > 0) {
       proximoId = Math.max(...turnos.map((t) => t.id)) + 1;
     }
-
+    _turnos.proximo = proximoId + 1;
     turnos.push({
       id: proximoId,
       id_medico: medicoId,
@@ -306,8 +247,10 @@ function guardar_turno() {
       disponible: disponible,
     });
   }
+  
+  _turnos.data = turnos;
+  localStorage.setItem("turnos", JSON.stringify(_turnos));
 
-  guardar_turnos();
   mostrar_turnos();
   mostrar_toast(
     modoEdicion
@@ -324,8 +267,10 @@ function abrir_modal_eliminar(id) {
 }
 
 function confirmar_eliminar() {
+  const _turnos = obtener_datos("turnos");
   turnos = turnos.filter((t) => t.id !== idAEliminar);
-  guardar_turnos();
+  _turnos.data = turnos;
+  localStorage.setItem("turnos", JSON.stringify(_turnos));
   mostrar_turnos();
   mostrar_toast("Turno eliminado correctamente", "danger");
   modalEliminar.hide();
