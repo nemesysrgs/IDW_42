@@ -22,26 +22,33 @@
           <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
         </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems">
-          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems"
+          aria-controls="navbarItems" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
 
         <div class="collapse navbar-collapse" id="navbarItems">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" href="medicos.html">Médicos</a>
+              <a class="nav-link" href="index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="medicos.html">Médicos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="usuarios.html">Usuarios</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="especialidades.html">Especialidades</a>
+              <a class="nav-link active" href="especialidades.html">Especialidades</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="turnos.html">Turnos</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="obras-sociales.html">Obras Sociales</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="reservas.html">Reservas</a>
             </li>
           </ul>
 
@@ -52,9 +59,6 @@
             <ul class="dropdown-menu dropdown-menu-end">
               <li>
                 <a class="dropdown-item text-danger" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="reservas.html">Reservas</a>
               </li>
             </ul>
           </div>
