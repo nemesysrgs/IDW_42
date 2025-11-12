@@ -4,9 +4,10 @@ const prof_container = document.getElementById("profesionales_container")
 
 
 async function cargar_profesionales(){
-    let medicos = obtener_datos("medicos").data
-    let obras_sociales = obtener_datos("obras_sociales").data
-    let especialidades = obtener_datos("especialidades").data
+    
+    let medicos = await obtener_datos("medicos")
+    let obras_sociales = await obtener_datos("obras_sociales").data
+    let especialidades = await obtener_datos("especialidades").data
 
     medicos.forEach( (medico, index) => {
         let article = document.createElement("article")
