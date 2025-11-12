@@ -51,11 +51,18 @@ async function cargar_datos_base() {
       "data/obras_sociales.json",
       "obras_sociales"
     );
+    const medicosData = await cargar_data_archivo(
+      "data/medicos.json",
+      "medicos"
+    );
 
     especialidades =
       espData?.data || obtener_datos("especialidades").data || [];
     obrasSociales =
       obrasData?.data || obtener_datos("obras_sociales").data || [];
+
+    //agrego medicos a la carga etandar con funcion de comunes.js para evitar errores en la vista de profesionales
+    medicos = medicosData?.data || obtener_datos("medicos").data || [];
 
     renderizar_checkboxes();
   } catch (error) {
@@ -66,20 +73,13 @@ async function cargar_datos_base() {
 
 async function cargar_medicos() {
   try {
-    const guardados = localStorage.getItem("medicos");
-    if (guardados) {
-      const dataGuardada = JSON.parse(guardados);
-      if (Array.isArray(dataGuardada) && dataGuardada.length > 0) {
-        medicos = dataGuardada;
-        mostrar_medicos();
-        return;
-      }
+   
+    if (medicos.length > 0) {
+      mostrar_medicos();
+      return;
     }
 
-    const resp = await fetch("data/medicos.json");
-    const data = await resp.json();
-    medicos = data.data || [];
-    localStorage.setItem("medicos", JSON.stringify(medicos));
+    medicos = [];
 
     mostrar_medicos();
   } catch (error) {
@@ -199,6 +199,7 @@ function abrir_modal_editar(id) {
 }
 
 async function guardar_medico() {
+  const _medicos = obtener_datos("medicos");
   const id = parseInt(document.getElementById("medicoId").value);
   const matriculaInput = document.getElementById("matricula");
   const apellidoInput = document.getElementById("apellido");
@@ -293,9 +294,8 @@ async function guardar_medico() {
     });
     mostrar_toast("Médico actualizado correctamente.", "success");
   } else {
-    const nuevo_id = medicos.length
-      ? Math.max(...medicos.map((m) => m.id)) + 1
-      : 1;
+    
+    const nuevo_id = _medicos.proximo;
 
     medicos.push({
       id: nuevo_id,
@@ -308,11 +308,13 @@ async function guardar_medico() {
       image,
       valor_consulta,
     });
+    _medicos.proximo = _medicos.proximo + 1;
 
     mostrar_toast("Médico agregado correctamente.", "success");
   }
+  _medicos.data = medicos;
 
-  localStorage.setItem("medicos", JSON.stringify(medicos));
+  localStorage.setItem("medicos", JSON.stringify(_medicos));
   mostrar_medicos();
   modalMedico.hide();
 }
@@ -522,8 +524,8 @@ function handleImagenChange(event) {
       return;
     }
 
-    if (file.size > maxSize) {
-      mostrar_toast("La imagen es demasiado grande. Máximo 5MB.", "danger");
+    if (file.size > 1024*1024) {
+      mostrar_toast("La imagen es demasiado grande. Máximo 1MB.", "danger");
       event.target.value = "";
       preview.style.display = "none";
       preview.src = "";

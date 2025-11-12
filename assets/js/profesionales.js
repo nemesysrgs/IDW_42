@@ -5,7 +5,7 @@ const prof_container = document.getElementById("profesionales_container")
 
 async function cargar_profesionales(){
     
-    let medicos = await obtener_datos("medicos")
+    let medicos = await obtener_datos("medicos").data
     let obras_sociales = await obtener_datos("obras_sociales").data
     let especialidades = await obtener_datos("especialidades").data
 
