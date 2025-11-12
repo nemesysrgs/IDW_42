@@ -1,362 +1,250 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Panel Admin - Médicos</title>
 
-    <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel Admin - Médicos</title>
 
-    <!-- Estilos globales -->
-    <link rel="stylesheet" href="../assets/css/global.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
-    <link rel="stylesheet" href="css/medicos.css" />
-  </head>
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <body>
-    <!-- ===== NAVBAR ===== -->
-    <header>
-      <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-bold" href="index.html">
-            <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
-          </a>
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="../assets/css/global.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <link rel="stylesheet" href="css/medicos.css" />
+</head>
 
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarItems"
-          >
-            <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
-          </button>
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <nav class="navbar navbar-expand-lg bg-rosa shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="index.html">
+          <img src="../assets/img/navbar/logo2.png" alt="Logo" height="40" />
+        </a>
 
-          <div class="collapse navbar-collapse" id="navbarItems">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" href="medicos.html">Médicos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="usuarios.html">Usuarios</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="especialidades.html"
-                  >Especialidades</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="turnos.html">Turnos</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="obras-sociales.html"
-                  >Obras Sociales</a
-                >
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarItems">
+          <span class="navbar-toggler-icon" style="filter: invert(1)"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarItems">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="medicos.html">Médicos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="usuarios.html">Usuarios</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="especialidades.html">Especialidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="turnos.html">Turnos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="obras-sociales.html">Obras Sociales</a>
+            </li>
+          </ul>
+
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              Menú
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li>
+                <a class="dropdown-item text-danger" href="#" onclick="cerrar_sesion(true)">Cerrar sesión</a>
               </li>
             </ul>
-
-            <div class="dropdown">
-              <button
-                class="btn btn-outline-primary dropdown-toggle"
-                type="button"
-                data-bs-toggle="dropdown"
-              >
-                Menú
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end">
-                <li>
-                  <a
-                    class="dropdown-item text-danger"
-                    href="#"
-                    onclick="cerrar_sesion(true)"
-                    >Cerrar sesión</a
-                  >
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
-      </nav>
-    </header>
-
-    <!-- ===== CONTENIDO PRINCIPAL ===== -->
-    <main class="container my-4">
-      <div class="row align-items-center mb-4">
-        <div class="col-12 col-md-8">
-          <h1 class="mb-0">Gestión de Médicos</h1>
-          <p class="text-muted mb-0">Administrá los médicos registrados</p>
-        </div>
-        <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
-          <button class="btn btn-primary w-auto" id="btn-agregar">
-            Agregar Médico
-          </button>
-        </div>
       </div>
+    </nav>
+  </header>
 
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="tabla_medicos">
-          <thead class="table-light">
-            <tr>
-              <th>ID</th>
-              <th>Matrícula</th>
-              <th>Foto</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Especialidad</th>
-              <th>Obras Sociales</th>
-              <th>Valor Consulta</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="container my-4">
+    <div class="row align-items-center mb-4">
+      <div class="col-12 col-md-8">
+        <h1 class="mb-0">Gestión de Médicos</h1>
+        <p class="text-muted mb-0">Administrá los médicos registrados</p>
       </div>
-    </main>
+      <div class="col-12 col-md-4 text-md-end mt-3 mt-md-0">
+        <button class="btn btn-primary w-auto" id="btn-agregar">
+          Agregar Médico
+        </button>
+      </div>
+    </div>
 
-    <!-- ===== MODAL MÉDICO ===== -->
-    <div
-      class="modal fade"
-      id="modalMedico"
-      tabindex="-1"
-      aria-labelledby="modalMedicoLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalMedicoLabel">Agregar Médico</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <form id="formMedico">
-              <input type="hidden" id="medicoId" />
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered" id="tabla_medicos">
+        <thead class="table-light">
+          <tr>
+            <th>ID</th>
+            <th>Matrícula</th>
+            <th>Foto</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Especialidad</th>
+            <th>Obras Sociales</th>
+            <th>Valor Consulta</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </main>
 
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Matrícula Profesional</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="matricula"
-                    required
-                  />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Valor Consulta ($)</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="valor_consulta"
-                    required
-                  />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Apellido</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="apellido"
-                    required
-                  />
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Nombre</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="nombre"
-                    required
-                  />
-                </div>
-                <div class="col-md-12 mb-3">
-                  <label class="form-label">Descripción</label>
-                  <textarea
-                    class="form-control"
-                    id="descripcion"
-                    rows="2"
-                  ></textarea>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Especialidades</label>
-                  <div class="accordion" id="accordionEspecialidades">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingEsp">
-                        <button
-                          class="accordion-button collapsed"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseEsp"
-                        >
-                          Seleccionar especialidades
-                        </button>
-                      </h2>
-                      <div
-                        id="collapseEsp"
-                        class="accordion-collapse collapse"
-                        data-bs-parent="#accordionEspecialidades"
-                      >
-                        <div
-                          class="accordion-body"
-                          id="contenedor-especialidades"
-                        >
-                          <!-- checkboxes dinámicos -->
-                        </div>
+  <!-- ===== MODAL MÉDICO ===== -->
+  <div class="modal fade" id="modalMedico" tabindex="-1" aria-labelledby="modalMedicoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalMedicoLabel">Agregar Médico</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formMedico">
+            <input type="hidden" id="medicoId" />
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Matrícula Profesional</label>
+                <input type="number" class="form-control" id="matricula" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Valor Consulta ($)</label>
+                <input type="number" class="form-control" id="valor_consulta" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" required />
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required />
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Descripción</label>
+                <textarea class="form-control" id="descripcion" rows="2"></textarea>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Especialidades</label>
+                <div class="accordion" id="accordionEspecialidades">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingEsp">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseEsp">
+                        Seleccionar especialidades
+                      </button>
+                    </h2>
+                    <div id="collapseEsp" class="accordion-collapse collapse" data-bs-parent="#accordionEspecialidades">
+                      <div class="accordion-body" id="contenedor-especialidades">
+                        <!-- checkboxes dinámicos -->
                       </div>
                     </div>
                   </div>
-                  <small
-                    class="text-muted d-block mt-1"
-                    id="resumen-especialidades"
-                  >
-                    Ninguna seleccionada
-                  </small>
                 </div>
+                <small class="text-muted d-block mt-1" id="resumen-especialidades">
+                  Ninguna seleccionada
+                </small>
+              </div>
 
-                <div class="col-md-6 mb-3">
-                  <label class="form-label">Obras Sociales</label>
-                  <div class="accordion" id="accordionObras">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingObs">
-                        <button
-                          class="accordion-button collapsed"
-                          type="button"
-                          data-bs-toggle="collapse"
-                          data-bs-target="#collapseObs"
-                        >
-                          Seleccionar obras sociales
-                        </button>
-                      </h2>
-                      <div
-                        id="collapseObs"
-                        class="accordion-collapse collapse"
-                        data-bs-parent="#accordionObras"
-                      >
-                        <div class="accordion-body" id="contenedor-obras">
-                          <!-- checkboxes dinámicos -->
-                        </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Obras Sociales</label>
+                <div class="accordion" id="accordionObras">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingObs">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseObs">
+                        Seleccionar obras sociales
+                      </button>
+                    </h2>
+                    <div id="collapseObs" class="accordion-collapse collapse" data-bs-parent="#accordionObras">
+                      <div class="accordion-body" id="contenedor-obras">
+                        <!-- checkboxes dinámicos -->
                       </div>
                     </div>
                   </div>
-                  <small class="text-muted d-block mt-1" id="resumen-obras">
-                    Ninguna seleccionada
-                  </small>
                 </div>
-                <div class="col-md-12 mb-3">
-                  <label class="form-label">Foto (URL)</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="imagen"
-                    placeholder="Pega aquí una URL de imagen"
-                    oninput="mostrarPreviewImagen(this.value)"
-                  />
-                  <div class="mt-2 text-center">
-                    <img
-                      id="previewImagen"
-                      src=""
-                      alt="Vista previa"
-                      style="
-                        max-width: 120px;
-                        max-height: 120px;
+                <small class="text-muted d-block mt-1" id="resumen-obras">
+                  Ninguna seleccionada
+                </small>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label class="form-label">Foto</label>
+                <input type="file" class="form-control" id="imagen" accept="image/*" />
+                <small class="text-muted">Formatos aceptados: JPG, PNG, GIF, WebP</small>
+                <div class="mt-3 text-center">
+                  <img id="previewImagen" src="" alt="Vista previa" class="img-thumbnail" style="
+                        max-width: 200px;
+                        max-height: 200px;
                         display: none;
                         border-radius: 8px;
                         object-fit: cover;
-                      "
-                    />
-                  </div>
+                      " />
                 </div>
               </div>
-            </form>
-            <!-- mensajes de alerta -->
-            <div
-              id="alertaMedico"
-              class="alert alert-warning alert-dismissible fade d-none"
-              role="alert"
-            >
-              <span id="mensajeAlertaMedico"></span>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Cerrar"
-              ></button>
             </div>
+          </form>
+          <!-- mensajes de alerta -->
+          <div id="alertaMedico" class="alert alert-warning alert-dismissible fade d-none" role="alert">
+            <span id="mensajeAlertaMedico"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">
-              Cancelar
-            </button>
-            <button class="btn btn-primary" id="btnGuardar">Guardar</button>
-          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button class="btn btn-primary" id="btnGuardar">Guardar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- ===== MODAL ELIMINAR ===== -->
-    <div
-      class="modal fade"
-      id="modalEliminar"
-      tabindex="-1"
-      aria-labelledby="modalEliminarLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header bg-danger text-white">
-            <h5 class="modal-title" id="modalEliminarLabel">Eliminar Médico</h5>
-            <button
-              class="btn-close btn-close-white"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            ¿Está seguro que desea eliminar este médico?
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" data-bs-dismiss="modal">
-              Cancelar
-            </button>
-            <button class="btn btn-danger" id="btnConfirmarEliminar">
-              Eliminar
-            </button>
-          </div>
+  <!-- ===== MODAL ELIMINAR ===== -->
+  <div class="modal fade" id="modalEliminar" tabindex="-1" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+          <h5 class="modal-title" id="modalEliminarLabel">Eliminar Médico</h5>
+          <button class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          ¿Está seguro que desea eliminar este médico?
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">
+            Cancelar
+          </button>
+          <button class="btn btn-danger" id="btnConfirmarEliminar">
+            Eliminar
+          </button>
         </div>
       </div>
     </div>
-    <!-- Toast de notificaciones -->
-    <div class="toast-container position-fixed top-0 end-0 p-3">
-      <div
-        id="toastMedico"
-        class="toast align-items-center text-bg-success border-0"
-        role="alert"
-        aria-live="assertive"
-        aria-atomic="true"
-      >
-        <div class="d-flex">
-          <div class="toast-body" id="toastMensajeMedico">
-            Acción realizada correctamente.
-          </div>
-          <button
-            type="button"
-            class="btn-close btn-close-white me-2 m-auto"
-            data-bs-dismiss="toast"
-            aria-label="Cerrar"
-          ></button>
+  </div>
+  <!-- Toast de notificaciones -->
+  <div class="toast-container position-fixed top-0 end-0 p-3">
+    <div id="toastMedico" class="toast align-items-center text-bg-success border-0" role="alert" aria-live="assertive"
+      aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMensajeMedico">
+          Acción realizada correctamente.
         </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+          aria-label="Cerrar"></button>
       </div>
     </div>
+  </div>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="js/medicos-tabla.js"></script>
-  </body>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/medicos-tabla.js"></script>
+</body>
+
 </html>
