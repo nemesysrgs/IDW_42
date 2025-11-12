@@ -312,8 +312,8 @@ async function guardar_medico() {
 
     mostrar_toast("Médico agregado correctamente.", "success");
   }
-  _medicos.data = medicos;
 
+  _medicos.data = medicos;
   localStorage.setItem("medicos", JSON.stringify(_medicos));
   mostrar_medicos();
   modalMedico.hide();
@@ -368,8 +368,10 @@ function abrir_modal_eliminar(id) {
 }
 
 function confirmar_eliminar() {
+  const _medicos = obtener_datos("medicos");
   medicos = medicos.filter((m) => m.id !== idAEliminar);
-  localStorage.setItem("medicos", JSON.stringify(medicos));
+  _medicos.data = medicos;
+  localStorage.setItem("medicos", JSON.stringify(_medicos));
   mostrar_medicos();
   modalEliminar.hide();
   mostrar_toast("Médico eliminado correctamente.", "danger");
