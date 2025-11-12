@@ -87,7 +87,7 @@
                 <p class="text-muted text-center mb-4">Completá los pasos para reservar tu turno</p>
               </div>
               <div id="paso-1" class="wizard-step">
-                <h5 class="mb-3">1. Tipo de atención</h5>
+                <h5 class="mb-3">1 / 5 - Tipo de atención</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="form-check">
@@ -105,6 +105,9 @@
                       <option value="">Seleccione...</option>
                     </select>
                   </div>
+                  <div class="col-12">
+                    <div id="errores_paso1"></div>
+                  </div>
                   <div class="col-12 d-flex justify-content-end">
                     <button class="btn btn-primary" id="btn-next-1">Siguiente</button>
                   </div>
@@ -112,13 +115,16 @@
               </div>
 
               <div id="paso-2" class="wizard-step" style="display:none;">
-                <h5 class="mb-3">2. Especialidad</h5>
+                <h5 class="mb-3">2 / 5 - Especialidad</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <label for="select_especialidad" class="form-label">Seleccione la especialidad</label>
                     <select id="select_especialidad" class="form-select">
                       <option value="">Seleccione...</option>
                     </select>
+                  </div>
+                  <div class="col-12">
+                    <div id="errores_paso2"></div>
                   </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-2">Volver</button>
@@ -128,7 +134,7 @@
               </div>
 
               <div id="paso-3" class="wizard-step" style="display:none;">
-                <h5 class="mb-3">3. Médico</h5>
+                <h5 class="mb-3">3 / 5 - Médico</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <label for="select_medico" class="form-label">Seleccione el profesional</label>
@@ -139,6 +145,9 @@
                   <div class="col-12">
                     <div class="alert alert-info py-2 mb-0" id="info_valor_consulta" style="display:none;"></div>
                   </div>
+                  <div class="col-12">
+                    <div id="errores_paso3"></div>
+                  </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-3">Volver</button>
                     <button class="btn btn-primary" id="btn-next-3">Siguiente</button>
@@ -147,7 +156,7 @@
               </div>
 
               <div id="paso-4" class="wizard-step" style="display:none;">
-                <h5 class="mb-3">4. Fecha y horario</h5>
+                <h5 class="mb-3">4 / 5 - Fecha y horario</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="form-text mb-2">Sugerencia: próximo turno disponible</div>
@@ -169,6 +178,9 @@
                   <div class="col-12">
                     <div id="ayuda_horarios" class="form-text">Sólo se muestran horarios disponibles para la fecha elegida.</div>
                   </div>
+                  <div class="col-12">
+                    <div id="errores_paso4"></div>
+                  </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-4">Volver</button>
                     <button class="btn btn-primary" id="btn-next-4">Siguiente</button>
@@ -177,7 +189,7 @@
               </div>
 
               <div id="paso-5" class="wizard-step" style="display:none;">
-                <h5 class="mb-3">5. Datos del paciente y resumen</h5>
+                <h5 class="mb-3">5 / 5 - Datos del paciente y resumen</h5>
                 <div class="row g-3">
                   <div class="col-12">
                     <div class="bg-light rounded p-3">
@@ -214,6 +226,9 @@
                   <div class="col-12 col-md-8">
                     <label for="nombre_apellido" class="form-label">Nombre y Apellido</label>
                     <input type="text" autocomplete="off" id="nombre_apellido" class="form-control" />
+                  </div>
+                  <div class="col-12">
+                    <div id="errores_paso5"></div>
                   </div>
                   <div class="col-12 d-flex justify-content-between">
                     <button class="btn btn-outline-secondary" id="btn-back-5">Volver</button>

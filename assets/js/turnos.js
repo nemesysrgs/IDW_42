@@ -70,6 +70,12 @@ const inputFecha = document.getElementById('input_fecha');
 const selectHora = document.getElementById('select_hora');
 let turnosNormalizados = [];
 
+const errores_paso1 = document.getElementById('errores_paso1');
+const errores_paso2 = document.getElementById('errores_paso2');
+const errores_paso3 = document.getElementById('errores_paso3');
+const errores_paso4 = document.getElementById('errores_paso4');
+const errores_paso5 = document.getElementById('errores_paso5');
+
 const resTipo = document.getElementById('res_tipo');
 const resObra = document.getElementById('res_obra');
 const resEsp = document.getElementById('res_especialidad');
@@ -259,6 +265,7 @@ async function inicializar_turnos() {
 
   document.getElementById('tipo_particular').addEventListener('change', (e) => {
     if (e.target.checked) {
+      errores_paso1.innerHTML = '';
       estado.tipoAtencion = 'particular';
       contObra.style.display = 'none';
       estado.obraSocialId = null;
@@ -272,6 +279,7 @@ async function inicializar_turnos() {
   });
   document.getElementById('tipo_obra').addEventListener('change', (e) => {
     if (e.target.checked) {
+      errores_paso1.innerHTML = '';
       estado.tipoAtencion = 'obra_social';
       contObra.style.display = '';
       
@@ -282,7 +290,7 @@ async function inicializar_turnos() {
           const obra = obras.find(o => o.id === estado.obraSocialId);
           const especialidades = obtener_lista('especialidades');
           const especialidad = especialidades.find(e => e.id === estado.especialidadId);
-          alert(`No hay médicos disponibles para la especialidad "${especialidad?.nombre || 'seleccionada'}" que atiendan con la obra social "${obra?.nombre || 'seleccionada'}".`);
+          errores_paso1.innerHTML = `<div class="alert alert-warning">No hay médicos disponibles para la especialidad "${especialidad?.nombre || 'seleccionada'}" que atiendan con la obra social "${obra?.nombre || 'seleccionada'}".</div>`;
         }
         
         estado.medicoId = null;
@@ -292,6 +300,7 @@ async function inicializar_turnos() {
     }
   });
   selObra.addEventListener('change', (e) => {
+    errores_paso1.innerHTML = '';
     estado.obraSocialId = e.target.value ? Number(e.target.value) : null;
 
     
@@ -311,7 +320,7 @@ async function inicializar_turnos() {
         } else {
           mensaje = 'No hay médicos disponibles con las condiciones seleccionadas.';
         }
-        alert(mensaje);
+        errores_paso2.innerHTML = `<div class="alert alert-warning">${mensaje}</div>`;
       }
       
       estado.medicoId = null;
@@ -321,19 +330,25 @@ async function inicializar_turnos() {
   });
   document.getElementById('btn-next-1').addEventListener('click', () => {
     if (estado.tipoAtencion === 'obra_social' && !estado.obraSocialId) {
-      alert('Seleccione una obra social.');
+      errores_paso1.innerHTML = `<div class="alert alert-warning">Selecciona una obra social</div>`;
       return;
     }
+    errores_paso1.innerHTML = '';
     mostrar_paso(paso2);
   });
 
-  document.getElementById('btn-back-2').addEventListener('click', () => mostrar_paso(paso1));
+  document.getElementById('btn-back-2').addEventListener('click', () => {errores_paso2.innerHTML = ''; mostrar_paso(paso1)});
+  selEspecialidad.addEventListener('change', (e) => {
+    errores_paso2.innerHTML = '';
+  })
+
   document.getElementById('btn-next-2').addEventListener('click', () => {
     const espId = selEspecialidad.value;
     if (!espId) {
-      alert('Seleccione una especialidad.');
+      errores_paso2.innerHTML = `<div class="alert alert-warning">Seleccione una especialidad</div>`;
       return;
     }
+    errores_paso2.innerHTML = '';
     estado.especialidadId = Number(espId);
     const resultado = cargar_medicos(medicos, estado.especialidadId, estado.obraSocialId, estado.tipoAtencion);
     
@@ -352,15 +367,16 @@ async function inicializar_turnos() {
       } else {
         mensaje = 'No hay médicos disponibles con las condiciones seleccionadas.';
       }
-      alert(mensaje);
+      errores_paso2.innerHTML = `<div class="alert alert-warning">${mensaje}</div>`;
       return;
     }
     
     mostrar_paso(paso3);
   });
 
-  document.getElementById('btn-back-3').addEventListener('click', () => mostrar_paso(paso2));
+  document.getElementById('btn-back-3').addEventListener('click', () => { errores_paso3.innerHTML = ""; mostrar_paso(paso2)});
   selMedico.addEventListener('change', (e) => {
+    errores_paso3.innerHTML = '';
     const medicoId = e.target.value ? Number(e.target.value) : null;
     estado.medicoId = medicoId;
     if (medicoId) {
@@ -376,7 +392,7 @@ async function inicializar_turnos() {
   });
   document.getElementById('btn-next-3').addEventListener('click', () => {
     if (!estado.medicoId) {
-      alert('Seleccione un médico.');
+      errores_paso3.innerHTML = `<div class="alert alert-warning">Seleccione un médico</div>`;
       return;
     }
     cargar_fechas_y_horarios(turnosNormalizados, estado.medicoId);
@@ -390,7 +406,7 @@ async function inicializar_turnos() {
 
     const hoyISO = convertir_fecha(new Date());
     if (f < hoyISO) {
-      alert('No puede seleccionar una fecha anterior a hoy.');
+      errores_paso4.innerHTML = `<div class="alert alert-warning">No puede seleccionar una fecha y hora anterior a hoy.</div>`;
       inputFecha.value = hoyISO;
       return;
     }
@@ -411,7 +427,7 @@ async function inicializar_turnos() {
     const fechaSel = inputFecha.value;
     const horaSelId = selectHora.value;
     if (!fechaSel || !horaSelId) {
-      alert('Seleccione fecha y horario.');
+      errores_paso4.innerHTML = `<div class="alert alert-warning">Seleccione fecha y horario.</div>`;
       return;
     }
     const opt = selectHora.selectedOptions[0];
@@ -436,10 +452,11 @@ async function inicializar_turnos() {
 
     estado.descuentoPorcentaje = calcular_descuento(estado.tipoAtencion, estado.obraSocialId, obras);
     calcular_totales();
+    errores_paso4.innerHTML = "";
     mostrar_paso(paso5);
   });
 
-  document.getElementById('btn-back-5').addEventListener('click', () => mostrar_paso(paso4));
+  document.getElementById('btn-back-5').addEventListener('click', () => {errores_paso5.innerHTML ="";mostrar_paso(paso4)});
   document.getElementById('btn-cancelar').addEventListener('click', () => {
     if (confirm('¿Desea cancelar el proceso?')) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -472,11 +489,11 @@ async function inicializar_turnos() {
     const nombreApellido = nombreInput.value.trim()
 
     if (!/^\d{8}$/.test(dni)) {
-      alert('El DNI debe tener exactamente 8 números.');
+      errores_paso5.innerHTML = `<div class="alert alert-warning">El DNI debe tener exactamente 8 números.</div>`;
       return;
     }
     if (!nombreApellido) {
-      alert('Complete el campo Nombre y Apellido.');
+      errores_paso5.innerHTML = `<div class="alert alert-warning">Complete el campo Nombre y Apellido.</div>`;
       return;
     }
 
