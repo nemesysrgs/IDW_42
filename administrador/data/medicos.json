@@ -1,4 +1,5 @@
 {
+  "proximo": 4,
   "data": [
     {
       "id": 1,
@@ -19,7 +20,7 @@
       "matricula": 20895,
       "apellido": "Gómez",
       "nombre": "Ricardo",
-      "especialidad": [2, 3],
+      "especialidad": [2],
       "descripcion": "Cardiólogo con formación en diagnóstico por imágenes.",
       "obras_sociales": [2, 4],
       "image": {

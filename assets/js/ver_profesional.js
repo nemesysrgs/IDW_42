@@ -1,4 +1,4 @@
-import { carga_inicial, obtener_datos } from "./comunes.js";
+import { carga_inicial, obtener_datos, obtenerImagenMedico } from "./comunes.js";
 
 function cargar_datos_medico(){
     const url_medico = window.location.href;
@@ -20,7 +20,9 @@ function cargar_datos_medico(){
     const medico = _medico[0];
     const especialidad = obtener_datos("especialidades")
     const obras_sociales = obtener_datos("obras_sociales")
-    document.getElementById("foto_medico").src = medico.imagen;
+    const imagenMedico = obtenerImagenMedico(medico)
+
+    document.getElementById("foto_medico").src = imagenMedico;
     document.getElementById("nombre").innerText = `${medico.apellido}, ${medico.nombre}`;
     document.getElementById("especialidades").innerText = medico.especialidad.map(espec_id => {
         const espec = especialidad.data.find(e => e.id === espec_id);

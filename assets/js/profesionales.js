@@ -1,4 +1,4 @@
-import { carga_inicial, obtener_datos } from "./comunes.js"
+import { carga_inicial, obtener_datos, obtenerImagenMedico } from "./comunes.js"
 
 const prof_container = document.getElementById("profesionales_container")
 
@@ -13,9 +13,10 @@ async function cargar_profesionales(){
         article.classList.add("col-12","col-sm-6","col-lg-3")
         let especialidad = especialidades.filter( esp => medico.especialidad.includes(esp.id) )
         let obra_social = obras_sociales.filter( os => medico.obras_sociales.includes(os.id) )
+        const medicoImg = obtenerImagenMedico(medico)
         article.innerHTML =  ` 
         <div class="card h-100 text-center shadow-sm">
-            <img src="${medico.imagen}" alt="Foto de ${medico.apellido}, ${medico.nombre}" class="card-img-top img-fluid" />
+            <img src="${medicoImg}" alt="Foto de ${medico.apellido}, ${medico.nombre}" class="card-img-top img-fluid" />
             <div class="card-body">
                 <h2 class="card-title">${medico.apellido}, ${medico.nombre} </h2>
                 <p class="card-text">
