@@ -98,7 +98,7 @@ function obtener_nombre_medico(idMedico) {
 }
 
 function obtener_nombre_especialidad(idEspecialidad) {
-  if (!idEspecialidad) return "-";
+  if (idEspecialidad == undefined || idEspecialidad === null ) return "-";
   const especialidad = especialidades.find((e) => e.id === Number(idEspecialidad));
   return especialidad ? especialidad.nombre : `ID: ${idEspecialidad}`;
 }
