@@ -1,4 +1,4 @@
-import { validar_usuario, cargar_data_archivo, obtener_datos } from "../../assets/js/comunes.js";
+import { validar_usuario, cargar_data_archivo, obtener_datos, decodificarImagenBase64 } from "../../assets/js/comunes.js";
 
 let obrasSociales = [];
 let modalObraSocial, modalEliminar;
@@ -18,6 +18,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document
     .getElementById("btnConfirmarEliminar")
     .addEventListener("click", confirmar_eliminar);
+
+  const imagenInput = document.getElementById("imagen");
+  if (imagenInput) {
+    imagenInput.addEventListener("change", handleImagenChange);
+  }
 
   validar_usuario();
   cargar_obras_sociales();
@@ -59,9 +64,31 @@ function mostrar_obras_sociales() {
   tbody.innerHTML = "";
 
   obrasSociales.forEach((obraSocial) => {
+    let imagenHTML = "";
+    if (obraSocial.image && obraSocial.image.data) {
+      const imgSrc = decodificarImagenBase64(obraSocial.image);
+      imagenHTML = `
+        <img 
+          src="${imgSrc}" 
+          alt="Logo de ${obraSocial.nombre}" 
+          class="border" 
+          width="60" 
+          height="60"
+          style="object-fit: cover; border-radius: 4px;"
+        >
+      `;
+    } else {
+      imagenHTML = `
+        <span class="text-danger small fw-bold">
+          Sin imagen
+        </span>
+      `;
+    }
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${obraSocial.id}</td>
+      <td>${imagenHTML}</td>
       <td>${obraSocial.nombre || "-"}</td>
       <td>${obraSocial.porcentaje !== undefined ? obraSocial.porcentaje + "%" : "-"}</td>
       <td>${truncar_descripcion(obraSocial.descripcion)}</td>
@@ -82,6 +109,9 @@ function abrir_modal_agregar() {
   modoEdicion = false;
   document.getElementById("formObraSocial").reset();
   document.getElementById("obraSocialId").value = "";
+  document.getElementById("previewImagen").style.display = "none";
+  document.getElementById("previewImagen").src = "";
+  document.getElementById("imagen").required = true;
   document.getElementById("modalObraSocialLabel").textContent = "Agregar Obra Social";
   const alerta = document.getElementById("alertaValidacion");
   if (alerta) {
@@ -99,6 +129,17 @@ function abrir_modal_editar(id) {
   document.getElementById("nombre").value = obraSocial.nombre || "";
   document.getElementById("porcentaje").value = obraSocial.porcentaje !== undefined ? obraSocial.porcentaje : "";
   document.getElementById("descripcion").value = obraSocial.descripcion || "";
+  document.getElementById("imagen").value = "";
+  document.getElementById("imagen").required = false;
+  
+  const preview = document.getElementById("previewImagen");
+  if (obraSocial.image && obraSocial.image.data) {
+    preview.src = decodificarImagenBase64(obraSocial.image);
+    preview.style.display = "block";
+  } else {
+    preview.style.display = "none";
+    preview.src = "";
+  }
 
   document.getElementById("modalObraSocialLabel").textContent = "Editar Obra Social";
   const alerta = document.getElementById("alertaValidacion");
@@ -108,11 +149,12 @@ function abrir_modal_editar(id) {
   modalObraSocial.show();
 }
 
-function guardar_obra_social() {
+async function guardar_obra_social() {
   const id = parseInt(document.getElementById("obraSocialId").value);
   const nombre = document.getElementById("nombre").value.trim();
   const porcentajeStr = document.getElementById("porcentaje").value.trim();
   const descripcion = document.getElementById("descripcion").value.trim();
+  const imagenInput = document.getElementById("imagen");
 
   const alerta = document.getElementById("alertaValidacion");
   const alertaTexto = document.getElementById("alertaTexto");
@@ -133,6 +175,40 @@ function guardar_obra_social() {
     const porcentaje = parseFloat(porcentajeStr);
     if (isNaN(porcentaje) || porcentaje < 0 || porcentaje > 100) {
       errores.push("El porcentaje debe ser un número entre 0 y 100.");
+    }
+  }
+
+  const file = imagenInput.files[0];
+  let image = null;
+
+  if (modoEdicion) {
+    if (file) {
+      if (!file.type.startsWith("image/")) {
+        errores.push("El archivo debe ser una imagen válida (JPG, PNG).");
+      } else if (file.size > 1024 * 1024) {
+        errores.push("La imagen es demasiado grande. Máximo 1MB.");
+      } else {
+        image = await convertirArchivoABase64(file);
+      }
+    } else {
+      const obraSocialExistente = obrasSociales.find((o) => o.id === id);
+      if (obraSocialExistente?.image && obraSocialExistente.image.data) {
+        image = obraSocialExistente.image;
+      } else {
+        errores.push("La imagen es obligatoria.");
+      }
+    }
+  } else {
+    if (!file) {
+      errores.push("La imagen es obligatoria.");
+    } else {
+      if (!file.type.startsWith("image/")) {
+        errores.push("El archivo debe ser una imagen válida (JPG, PNG).");
+      } else if (file.size > 1024 * 1024) {
+        errores.push("La imagen es demasiado grande. Máximo 1MB.");
+      } else {
+        image = await convertirArchivoABase64(file);
+      }
     }
   }
   
@@ -163,6 +239,7 @@ function guardar_obra_social() {
       obraSocial.nombre = nombre;
       obraSocial.porcentaje = porcentaje;
       obraSocial.descripcion = descripcion;
+      obraSocial.image = image;
     }
   } else {
     const proximoId = datosCompletos.proximo || (obrasSociales.length > 0 ? Math.max(...obrasSociales.map((o) => o.id)) + 1 : 0);
@@ -172,6 +249,7 @@ function guardar_obra_social() {
       nombre: nombre,
       porcentaje: porcentaje,
       descripcion: descripcion,
+      image: image,
     });
 
     datosCompletos.proximo = proximoId + 1;
@@ -222,6 +300,58 @@ function mostrar_toast(mensaje, tipo = "success") {
   toastEl.className = `toast align-items-center text-bg-${tipo} border-0`;
   const toast = new bootstrap.Toast(toastEl, { delay: 3500 });
   toast.show();
+}
+
+async function convertirArchivoABase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result.split(",")[1];
+      const mime = file.type;
+      resolve({ mime, data: base64 });
+    };
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+function handleImagenChange(event) {
+  const file = event.target.files[0];
+  const preview = document.getElementById("previewImagen");
+  
+  if (!preview) return;
+
+  if (file) {
+    if (!file.type.startsWith("image/")) {
+      mostrar_toast("Por favor, selecciona un archivo de imagen válido.", "danger");
+      event.target.value = "";
+      preview.style.display = "none";
+      preview.src = "";
+      return;
+    }
+
+    if (file.size > 1024 * 1024) {
+      mostrar_toast("La imagen es demasiado grande. Máximo 1MB.", "danger");
+      event.target.value = "";
+      preview.style.display = "none";
+      preview.src = "";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = "block";
+    };
+    reader.onerror = function() {
+      mostrar_toast("Error al cargar la imagen.", "danger");
+      preview.style.display = "none";
+    };
+    reader.readAsDataURL(file);
+  } else {
+    preview.style.display = "none";
+    preview.src = "";
+  }
 }
 
 window.abrir_modal_editar = abrir_modal_editar;

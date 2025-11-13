@@ -1,6 +1,7 @@
-import { carga_inicial, obtener_datos, obtenerImagenMedico } from "./comunes.js"
+import { carga_inicial, decodificarImagenBase64, obtener_datos, obtenerImagenMedico } from "./comunes.js"
 
 const prof_container = document.getElementById("profesionales_container")
+const div_obras_sociales = document.getElementById("obras_sociales")
 
 
 async function cargar_profesionales(){
@@ -32,9 +33,29 @@ async function cargar_profesionales(){
     })
 }
 
+async function cargar_obras_sociales(){
+    
+    let obras_sociales = await obtener_datos("obras_sociales").data
+
+
+
+    obras_sociales.filter((os)=>os.id > 0).forEach( (obraSocial) => {
+        let div = document.createElement("div")
+        div.classList.add("col-6","col-sm-4","col-md-3","col-lg-2","col-xl-1")
+        const imgSrc = decodificarImagenBase64(obraSocial.image);
+        div.innerHTML =  ` 
+          <a href="#obras-sociales" class="d-block text-center">
+            <img src="${imgSrc}" class="img-fluid p-2" alt="imagen de ${obraSocial.nombre}" title="${obraSocial.nombre}" />
+          </a>
+        `
+        div_obras_sociales.appendChild(div)
+    })
+}
+
 async function inicializar_vista(){
     await carga_inicial()
     cargar_profesionales()
+    cargar_obras_sociales()
 }
 inicializar_vista()
 
