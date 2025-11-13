@@ -177,18 +177,23 @@ function mostrar_turnos() {
   let turnosFiltrados = turnos.filter((turno) => {
     const fechaTurno = turno.fecha || turno.fecha_hora;
     if (!fechaTurno) return false;
-    if (turnosAnteriores) {
-      return true;
-    } else {
-      return new Date(fechaTurno) >= new Date();
-    }
+
+    const fecha = new Date(fechaTurno);
+    const ahora = new Date();
+
+    return turnosAnteriores ? fecha < ahora : fecha >= ahora;
   });
 
   if ( medicoSeleccionado != "todos" ){
-    turnosFiltrados = turnosFiltrados.filter((turno) => turno.id_medico == medicoSeleccionado);
+    turnosFiltrados = turnosFiltrados.filter((turno) => Number(turno.id_medico) === Number(medicoSeleccionado));
   }
 
 
+  turnosFiltrados.sort((a, b) => {
+    const fechaA = new Date(a.fecha || a.fecha_hora);
+    const fechaB = new Date(b.fecha || b.fecha_hora);
+    return fechaA - fechaB;
+  });
   turnosFiltrados.forEach((turno) => {
     const medico = medicos.find((m) => m.id === Number(turno.id_medico));
     const nombreMedico = medico 
@@ -327,7 +332,7 @@ function abrir_modal_editar(id) {
 }
 
 function guardar_turno() {
-  const _turnos = obtener_datos("turnos"); 
+  const _turnos = obtener_datos("turnos");
   const id = parseInt(document.getElementById("turnoId").value);
   const medicoId = parseInt(document.getElementById("medico").value);
   const fecha = fechaInput ? fechaInput.value : "";
@@ -336,11 +341,11 @@ function guardar_turno() {
 
   const alerta = document.getElementById("alertaValidacion");
   const alertaTexto = document.getElementById("alertaTexto");
-
   alerta.classList.add("d-none");
   alertaTexto.innerHTML = "";
 
   let errores = [];
+
   if (!medicoId || isNaN(medicoId)) {
     errores.push("Debe seleccionar un médico.");
   }
@@ -350,44 +355,49 @@ function guardar_turno() {
   if (!horaSeleccionada) {
     errores.push("La hora es obligatoria.");
   }
+
   let fechaCompleta = null;
   if (fecha && horaSeleccionada) {
     fechaCompleta = new Date(`${fecha}T${horaSeleccionada}`);
+    const ahora = new Date();
+
     if (isNaN(fechaCompleta.getTime())) {
       errores.push("La fecha y hora seleccionadas no son válidas.");
-    } else {
-      const ahora = new Date();
-      if (fechaCompleta < ahora) {
-        errores.push("La fecha y hora no pueden ser en el pasado.");
-      }
-
-      if (!validar_horario_permitido(horaSeleccionada)) {
-        errores.push("Los horarios permitidos son de 8:00 a 12:30 y de 14:00 a 20:00.");
-      }
     }
-  }
-  let fechaISO = "";
-  if (fechaCompleta && !isNaN(fechaCompleta.getTime())) {
-    const existeTurno = turnos.some((turno) => {
-      if (turno.id === id) return false;
+
+    if (fechaCompleta < ahora) {
+      errores.push("La fecha y hora no pueden ser en el pasado.");
+    }
+
+    if (!validar_horario_permitido(horaSeleccionada)) {
+      errores.push("Los horarios permitidos son de 8:00 a 12:30 y de 14:00 a 20:00.");
+    }
+    
+    const conflicto = turnos.some((turno) => {
+      if (turno.id === id) return false; 
+      if (Number(turno.id_medico) !== Number(medicoId)) return false;
+
       const fechaExistente = turno.fecha || turno.fecha_hora;
       if (!fechaExistente) return false;
+
       const fechaTurno = new Date(fechaExistente);
-      if (isNaN(fechaTurno.getTime())) return false;
       return fechaTurno.getTime() === fechaCompleta.getTime();
     });
-    if (existeTurno) {
-      errores.push("Ya existe un turno con la fecha y hora seleccionadas.");
-    } else {
-      fechaISO = fechaCompleta.toISOString();
+
+    if (conflicto) {
+      errores.push("El médico ya tiene un turno en el mismo horario seleccionado.");
     }
   }
+
+  
   if (errores.length > 0) {
     alertaTexto.innerHTML =
       "<strong>Revisa los campos:</strong><br>• " + errores.join("<br>• ");
     alerta.classList.remove("d-none");
     return;
   }
+
+  const fechaISO = fechaCompleta.toISOString();
 
   if (modoEdicion) {
     const turno = turnos.find((t) => t.id === id);
@@ -405,6 +415,7 @@ function guardar_turno() {
   } else {
     const guardados = localStorage.getItem("turnos");
     let proximoId = 1;
+
     if (guardados) {
       const dataGuardada = JSON.parse(guardados);
       if (dataGuardada && dataGuardada.proximo) {
@@ -415,7 +426,9 @@ function guardar_turno() {
     } else if (turnos.length > 0) {
       proximoId = Math.max(...turnos.map((t) => t.id)) + 1;
     }
+
     _turnos.proximo = proximoId + 1;
+
     turnos.push({
       id: proximoId,
       id_medico: medicoId,
@@ -424,22 +437,22 @@ function guardar_turno() {
       disponible: disponible,
     });
   }
-  
+
   _turnos.data = turnos;
   localStorage.setItem("turnos", JSON.stringify(_turnos));
 
   mostrar_turnos();
   mostrar_toast(
-    modoEdicion
-      ? "Turno actualizado correctamente"
-      : "Turno agregado correctamente",
+    modoEdicion ? "Turno actualizado correctamente" : "Turno agregado correctamente",
     "success"
   );
   modalTurno.hide();
+
   if (!modoEdicion) {
     setTimeout(() => window.location.reload(), 500);
   }
 }
+
 
 function abrir_modal_eliminar(id) {
   idAEliminar = id;

@@ -122,6 +122,12 @@ function mostrar_reservas() {
     return;
   }
 
+  reservas.sort((a, b) => {
+    const aDate = new Date(a.fecha);
+    const bDate = new Date(b.fecha);
+    return aDate - bDate;
+  })
+
   reservas.forEach((reserva) => {
     const tr = document.createElement("tr");
     
@@ -135,7 +141,7 @@ function mostrar_reservas() {
     const fechaCreacion = formatear_fecha(reserva.creado_en);
     
     tr.innerHTML = `
-      <td>${reserva.id }</td>
+      <td>${reserva.id_turno }</td>
       <td>${reserva.nombre_apellido}</td>
       <td>${reserva.dni}</td>
       <td>${nombreMedico}</td>
