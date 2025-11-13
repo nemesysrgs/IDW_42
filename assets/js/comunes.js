@@ -18,7 +18,6 @@ export async function validar_usuario(){
     if ( user_logueado ){
         try{
             const userData = await getUserData(user_logueado)
-            console.log(userData.role)
             if ( userData.role != "admin" && userData.role != 'moderator') location.href = "../index.html"
         }catch(e){
             cerrar_sesion()
@@ -53,6 +52,8 @@ export async function carga_inicial(){
     await cargar_data_archivo("administrador/data/medicos.json", "medicos")
     await cargar_data_archivo("administrador/data/obras_sociales.json", "obras_sociales")
     await cargar_data_archivo("administrador/data/especialidades.json", "especialidades")
+    await cargar_data_archivo("administrador/data/turnos.json", "turnos")
+    await cargar_data_archivo("administrador/data/reservas.json", "reservas")
 }
 
 window.cerrar_sesion = cerrar_sesion

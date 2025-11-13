@@ -49,7 +49,8 @@ const estado = {
   fechaISO: null,
   horaISO: null,
   costo: 0,
-  descuentoPorcentaje: 0
+  descuentoPorcentaje: 0,
+  turnoSugeridoId: null
 };
 const encabezado = document.getElementById('reserva-encabezado');
 const paso1 = document.getElementById('paso-1');
@@ -112,9 +113,35 @@ function cargar_obras_sociales(obras) {
   });
 }
 
-function cargar_especialidades(especialidades) {
+function cargar_especialidades(especialidades = [], medicos = [], turnos = []) {
   selEspecialidad.innerHTML = '<option value="">Seleccione...</option>';
-  especialidades.forEach(e => {
+
+  const medicosConTurnos = new Set(
+    (turnos)
+      .filter(t => t && t.disponible && t.id_medico !== null && t.id_medico !== undefined)
+      .map(t => Number(t.id_medico))
+  );
+
+  const especialidadesConDisponibilidad = new Set(
+    (medicos)
+      .filter(m => m && medicosConTurnos.has(Number(m.id)))
+      .map(m => Number(m.especialidad))
+  );
+
+  const especialidadesFiltradas = (especialidades).filter(e =>
+    especialidadesConDisponibilidad.has(Number(e.id))
+  );
+
+  if (especialidadesFiltradas.length === 0) {
+    const opt = document.createElement('option');
+    opt.value = '';
+    opt.textContent = 'No hay especialidades con turnos disponibles';
+    opt.disabled = true;
+    selEspecialidad.appendChild(opt);
+    return;
+  }
+
+  especialidadesFiltradas.forEach(e => {
     const opt = document.createElement('option');
     opt.value = e.id;
     opt.textContent = e.nombre;
@@ -234,8 +261,8 @@ function cargar_fechas_y_horarios(turnos, medicoId) {
   inputFecha.min = min;
   const prox = obtener_proximo_turno(turnos, medicoId);
   proximoTurno.style.display = prox ? '' : 'none';
+  estado.turnoSugeridoId = prox ? prox.id : null;
   if (prox) {
-    estado.turnoSugeridoId = prox.id;
     if (proximoTurnoTexto) {
       proximoTurnoTexto.textContent = prox.fecha ? `Próximo turno: ${formatear_fecha_hora(prox.fecha)}` : '';
     }
@@ -246,6 +273,7 @@ function cargar_fechas_y_horarios(turnos, medicoId) {
     inputFecha.value = '';
     selectHora.innerHTML = '<option value="">Sin horarios</option>';
   }
+  return Boolean(prox);
 }
 
 async function inicializar_turnos() {
@@ -261,7 +289,7 @@ async function inicializar_turnos() {
     .filter(t => t && t.id && t.fecha && t.id_medico !== null && !Number.isNaN(t.id_medico));
 
   cargar_obras_sociales(obras);
-  cargar_especialidades(especialidades);
+  cargar_especialidades(especialidades, medicos, turnosNormalizados);
 
   document.getElementById('tipo_particular').addEventListener('change', (e) => {
     if (e.target.checked) {
@@ -395,7 +423,12 @@ async function inicializar_turnos() {
       errores_paso3.innerHTML = `<div class="alert alert-warning">Seleccione un médico</div>`;
       return;
     }
-    cargar_fechas_y_horarios(turnosNormalizados, estado.medicoId);
+    const tieneTurnos = cargar_fechas_y_horarios(turnosNormalizados, estado.medicoId);
+    if (!tieneTurnos) {
+      errores_paso3.innerHTML = `<div class="alert alert-warning">El médico seleccionado no tiene turnos disponibles en este momento.</div>`;
+      return;
+    }
+    errores_paso3.innerHTML = '';
     mostrar_paso(paso4);
   });
 
@@ -498,8 +531,8 @@ async function inicializar_turnos() {
     }
 
     const total = Math.max(0, Math.round((estado.costo - (estado.costo * estado.descuentoPorcentaje / 100))));
-    const reservasRaw = localStorage.getItem('reservas');
-    const reservas = reservasRaw ? JSON.parse(reservasRaw) : [];
+
+    const reservas = obtener_datos("reservas");
     const nuevaReserva = {
       id: (reservas.at(-1)?.id ?? 0) + 1,
       id_turno: estado.turnoId,

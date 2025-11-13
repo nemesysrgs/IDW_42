@@ -11,9 +11,19 @@ export async function auth( username, password ){
             throw new Error('Error en la autenticación')
         }
         const response = await promesa.json()
+        const userData = await getUserData( response.accessToken );
+        if ( !userData ){
+            throw new Error('Error en la autenticación')
+        }
+
+        if ( userData.role != "admin" && userData.role != 'moderator' ){
+            throw new Error('Usuario deshabilitado')
+        }
+
         return response
     }catch(e){
         console.log(e)
+        return e
     }
 }
 
@@ -32,5 +42,6 @@ export async function getUserData( accessToken ){
         return response
     }catch(e){
         console.log(e)
+        return e
     }
 }
