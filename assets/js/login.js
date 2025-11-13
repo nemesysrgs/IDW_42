@@ -41,7 +41,7 @@ formulario.addEventListener("submit",async function ( event ){
         sessionStorage.setItem("access_token",user.accessToken)
         sessionStorage.setItem("username",user.username)
         const userData = await getUserData(user.accessToken)
-        if ( userData.role == "admin" ||userData.role == "superadmin") location.href = "administrador/medicos.html"
+        if ( userData.role == "admin" ||userData.role == "superadmin") location.href = "administrador/index.html"
         else location.href = "turnos.html"
     } catch (error) {
         div_error.innerHTML = `<div class="alert alert-danger" role="alert">El usuario o la contraseña son incorrectas</div>`
