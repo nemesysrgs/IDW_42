@@ -29,3 +29,7 @@
 .obras-sociales a:hover{
     background-color: #c8d9e6;
 }
+
+.medico_data {
+    min-height: 55vh;
+}
