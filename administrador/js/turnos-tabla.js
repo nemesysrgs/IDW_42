@@ -6,9 +6,21 @@ let modalTurno, modalEliminar;
 let modoEdicion = false;
 let idAEliminar = null;
 
+let turnosAnteriores = false;
+let medicoSeleccionado = "todos";
+let selectMedico = null
+let selectMedicoModal = null
+let checkboxAnteriores = null
+
 document.addEventListener("DOMContentLoaded", async() => {
   modalTurno = new bootstrap.Modal(document.getElementById("modalTurno"));
   modalEliminar = new bootstrap.Modal(document.getElementById("modalEliminar"));
+  selectMedicoModal = document.getElementById("medico");
+  selectMedico = document.getElementById("select-medico");
+  checkboxAnteriores = document.getElementById("checkbox-anteriores")
+  checkboxAnteriores.addEventListener("change", toggle_turnos_anteriores);
+  selectMedico.addEventListener("change", filtrar_medicos);
+
 
   document
     .getElementById("btn-agregar")
@@ -27,9 +39,12 @@ document.addEventListener("DOMContentLoaded", async() => {
   validar_usuario();
 
   const medicosData = await cargar_data_archivo("data/medicos.json", "medicos");
-    medicos = obtener_datos("medicos").data || medicosData.data || [];
+  const dataGuardada = await cargar_data_archivo("data/turnos.json", "turnos");
+
+  medicos = obtener_datos("medicos").data || medicosData.data || [];
   turnos = obtener_datos("turnos").data || dataGuardada.data;
   cargar_turnos();
+  cargar_select_medicos( selectMedico, false )
 });
 
 
@@ -42,6 +57,32 @@ function cargar_turnos() {
   }
 }
 
+function cargar_select_medicos( selector, modal = true ){
+  if ( modal ) selector.innerHTML = '<option value="">Seleccione un médico</option>';
+  else selector.innerHTML = '<option value="todos">Mostrar todos</option>';
+  medicos.forEach(medico => {
+    const option = document.createElement("option")
+    const nombreMedico = `${medico.apellido}, ${medico.nombre}`
+    option.value = medico.id
+    option.innerHTML = nombreMedico
+    selector.appendChild(option)
+  });
+
+}
+
+function toggle_turnos_anteriores() {
+  if (checkboxAnteriores.checked) {
+    turnosAnteriores = true;
+  } else {
+    turnosAnteriores = false;
+  }
+  mostrar_turnos();
+}
+
+function filtrar_medicos(){
+  medicoSeleccionado = selectMedico.value
+  mostrar_turnos();
+}
 
 function mostrar_turnos() {
   const tbody = document.querySelector("#tabla_turnos tbody");
@@ -56,10 +97,23 @@ function mostrar_turnos() {
     return;
   }
 
-  turnos.forEach((turno) => {
+
+  let turnosFiltrados = turnos.filter((turno) => {
+    if (turnosAnteriores) {
+      return turno;
+    } else {
+      return new Date(turno.fecha) >= new Date();
+    }
+  });
+
+  if ( medicoSeleccionado != "todos" ){
+    turnosFiltrados = turnosFiltrados.filter((turno) => turno.id_medico == medicoSeleccionado);
+  }
+
+  turnosFiltrados.forEach((turno) => {
     const medico = medicos.find((m) => m.id === Number(turno.id_medico));
     const nombreMedico = medico 
-      ? `${medico.nombre} ${medico.apellido}` 
+      ? `${medico.apellido}, ${medico.nombre}` 
       : "Médico no encontrado";
 
     const fechaHora = new Date(turno.fecha);
@@ -92,18 +146,6 @@ function mostrar_turnos() {
       </td>
     `;
     tbody.appendChild(tr);
-  });
-}
-
-function cargar_select_medicos() {
-  const selectMedico = document.getElementById("medico");
-  selectMedico.innerHTML = '<option value="">Seleccione un médico</option>';
-
-  medicos.forEach((medico) => {
-    const option = document.createElement("option");
-    option.value = medico.id;
-    option.textContent = `${medico.nombre} ${medico.apellido}`;
-    selectMedico.appendChild(option);
   });
 }
 
@@ -150,7 +192,7 @@ function abrir_modal_agregar() {
   document.getElementById("alertaValidacion").classList.add("d-none");
   document.getElementById("fechaHora").classList.remove("is-invalid");
   
-  cargar_select_medicos();
+  cargar_select_medicos( selectMedicoModal );
   modalTurno.show();
 }
 
@@ -159,7 +201,7 @@ function abrir_modal_editar(id) {
   const turno = turnos.find((t) => t.id === id);
   if (!turno) return;
 
-  cargar_select_medicos();
+  cargar_select_medicos( selectMedicoModal );
 
   document.getElementById("turnoId").value = turno.id;
   document.getElementById("medico").value = turno.id_medico;
