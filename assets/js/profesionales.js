@@ -36,9 +36,6 @@ async function cargar_profesionales(){
 async function cargar_obras_sociales(){
     
     let obras_sociales = await obtener_datos("obras_sociales").data
-
-
-
     obras_sociales.filter((os)=>os.id > 0).forEach( (obraSocial) => {
         let div = document.createElement("div")
         div.classList.add("col-6","col-sm-4","col-md-3","col-lg-2","col-xl-1")

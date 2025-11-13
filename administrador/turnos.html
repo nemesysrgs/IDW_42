@@ -127,8 +127,15 @@
             </div>
 
             <div class="mb-3">
-              <label for="fechaHora" class="form-label">Fecha y Hora <span class="text-danger">*</span></label>
-              <input type="datetime-local" class="form-control" id="fechaHora" required />
+              <label for="fecha" class="form-label">Fecha <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" id="fecha" autocomplete="off" required />
+            </div>
+
+            <div class="mb-3">
+              <label for="hora" class="form-label">Hora <span class="text-danger">*</span></label>
+              <select class="form-select" id="hora" required>
+                <option value="">Seleccione un horario</option>
+              </select>
             </div>
 
             <div class="mb-3">

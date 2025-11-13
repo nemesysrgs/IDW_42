@@ -23,7 +23,7 @@ export async function auth( username, password ){
         return response
     }catch(e){
         console.log(e)
-        return e
+        return { error: true, message: e.message }
     }
 }
 
@@ -41,7 +41,6 @@ export async function getUserData( accessToken ){
         const response = await promesa.json()
         return response
     }catch(e){
-        console.log(e)
-        return e
+        return { error: true, message: e.message }
     }
 }
