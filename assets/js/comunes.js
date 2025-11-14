@@ -33,7 +33,6 @@ export function cerrar_sesion( admin = false){
 }
 
 export function decodificarImagenBase64(imageObj) {
-  if (!imageObj || !imageObj.data) return "../assets/img/no-image.png";
   return `data:${imageObj.mime};base64,${imageObj.data}`;
 }
 
