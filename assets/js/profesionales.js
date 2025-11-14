@@ -38,12 +38,13 @@ async function cargar_obras_sociales(){
     let obras_sociales = await obtener_datos("obras_sociales").data
     obras_sociales.filter((os)=>os.id > 0).forEach( (obraSocial) => {
         let div = document.createElement("div")
-        div.classList.add("col-6","col-sm-4","col-md-3","col-lg-2","col-xl-1")
+        div.classList.add("col-6","col-sm-3","col-md-3","col-lg-3","col-xl-3")
         const imgSrc = decodificarImagenBase64(obraSocial.image);
         div.innerHTML =  ` 
           <a href="#obras-sociales" class="d-block text-center">
             <img src="${imgSrc}" class="img-fluid p-2" alt="imagen de ${obraSocial.nombre}" title="${obraSocial.nombre}" />
           </a>
+          <p class="text-center small">${obraSocial.descripcion}</p>
         `
         div_obras_sociales.appendChild(div)
     })
